@@ -1,0 +1,204 @@
+import React, { useState, useEffect } from 'react';
+import { TEXTS } from './constants';
+import { Language } from './types';
+import { SectionBasics } from './components/SectionBasics';
+import { SectionVisual } from './components/SectionVisual';
+import { SectionTheorem } from './components/SectionTheorem';
+import { SectionProblems } from './components/SectionProblems';
+import { SectionExpert } from './components/SectionExpert';
+import { Lock, Unlock, RefreshCw, Globe, ChevronRight } from 'lucide-react';
+
+const App: React.FC = () => {
+  const [lang, setLang] = useState<Language>('ca');
+  const [level, setLevel] = useState(1);
+  const [activeSection, setActiveSection] = useState(1);
+  const [started, setStarted] = useState(false);
+  // Session key acts as a seed to force full component re-initialization on reset
+  const [sessionKey, setSessionKey] = useState(0);
+
+  // Load progress
+  useEffect(() => {
+    const savedLevel = localStorage.getItem('pythagoras_level');
+    const savedLang = localStorage.getItem('pythagoras_lang');
+    if (savedLevel) {
+      setLevel(parseInt(savedLevel));
+      // If we have a saved level, we assume the user has started before, 
+      // but strictly following the flow, we let them click start unless we want to auto-resume.
+      // Let's keep strict "Start" flow but restore level.
+    }
+    if (savedLang) setLang(savedLang as Language);
+  }, []);
+
+  const updateLevel = (newLevel: number) => {
+    if (newLevel > level) {
+      setLevel(newLevel);
+      localStorage.setItem('pythagoras_level', newLevel.toString());
+    }
+    setActiveSection(newLevel);
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleLang = () => {
+    const newLang = lang === 'ca' ? 'es' : 'ca';
+    setLang(newLang);
+    localStorage.setItem('pythagoras_lang', newLang);
+  };
+
+  const resetProgress = () => {
+    const msg = lang === 'ca' 
+      ? "Estàs segur que vols reiniciar tot el progrés? S'esborraran totes les dades." 
+      : "¿Estás seguro de que quieres reiniciar todo el progreso? Se borrarán todos los datos.";
+      
+    if (window.confirm(msg)) {
+      // 1. Clear ALL storage related to the app
+      localStorage.removeItem('pythagoras_level');
+      localStorage.removeItem('pythagoras_lang');
+      
+      // 2. Reset all states to default
+      setLang('ca'); // Reset language to default
+      setLevel(1);
+      setActiveSection(1);
+      setStarted(false);
+      
+      // 3. Force full re-render of components (clears inputs and chat)
+      setSessionKey(prev => prev + 1); 
+      
+      // 4. Reset scroll
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  if (!started && level === 1) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6">
+          <div className="text-6xl mb-4 animate-bounce">📐</div>
+          <h1 className="text-4xl font-black text-gray-800">{TEXTS.welcome_title[lang]}</h1>
+          <p className="text-gray-500 text-lg">{TEXTS.welcome_desc[lang]}</p>
+          
+          <button 
+            onClick={() => setStarted(true)}
+            className="w-full bg-indigo-600 text-white text-xl font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all"
+          >
+            {TEXTS.start_btn[lang]}
+          </button>
+          
+          <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
+            <Globe size={16} /> {lang === 'ca' ? 'Canviar a Castellano' : 'Canviar a Català'}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const sections = [
+    { id: 1, title: TEXTS.section_1_title[lang], Component: SectionBasics },
+    { id: 2, title: TEXTS.section_2_title[lang], Component: SectionVisual },
+    { id: 3, title: TEXTS.section_3_title[lang], Component: SectionTheorem },
+    { id: 4, title: TEXTS.section_4_title[lang], Component: SectionProblems },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 pb-20">
+      {/* Header */}
+      <header className="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+          <h1 className="font-black text-xl md:text-2xl text-indigo-900 flex items-center gap-2">
+            <span className="text-2xl">📐</span> {TEXTS.title[lang]}
+          </h1>
+          
+          <div className="flex gap-2">
+             <button onClick={toggleLang} className="p-2 rounded-lg hover:bg-gray-100 text-gray-600 font-bold text-sm border border-gray-200">
+               {lang.toUpperCase()}
+             </button>
+             <button 
+               type="button"
+               onClick={resetProgress} 
+               className="px-3 py-2 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 font-bold text-sm flex items-center gap-2 transition-colors border border-red-100 cursor-pointer" 
+               title={TEXTS.reset[lang]}
+             >
+               <RefreshCw size={16} />
+               <span className="hidden sm:inline">{lang === 'ca' ? 'Reiniciar' : 'Reset'}</span>
+             </button>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 pt-8">
+        
+        {/* Navigation / Progress Map */}
+        <div className="flex overflow-x-auto pb-6 gap-3 mb-6 no-scrollbar">
+           {sections.map((sec) => (
+             <button 
+               key={sec.id}
+               onClick={() => level >= sec.id && setActiveSection(sec.id)}
+               className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
+                 activeSection === sec.id 
+                   ? 'bg-indigo-600 text-white shadow-lg scale-105' 
+                   : level >= sec.id 
+                     ? 'bg-white text-indigo-600 border border-indigo-100' 
+                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+               }`}
+             >
+               {level >= sec.id ? <Unlock size={14} /> : <Lock size={14} />}
+               {sec.title}
+             </button>
+           ))}
+           {/* Expert Level Badge */}
+           {level > 4 && (
+             <button 
+                onClick={() => setActiveSection(5)}
+                className={`px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-1 transition-all ${activeSection === 5 ? 'bg-yellow-400 text-yellow-900 scale-105 shadow-md' : 'bg-yellow-100 text-yellow-800'}`}
+             >
+               ⭐ Expert
+             </button>
+           )}
+        </div>
+
+        {/* Active Section Content */}
+        <div className="space-y-8">
+          {sections.map(sec => {
+             // Only render the active section to save DOM nodes and focus
+             if (sec.id !== activeSection) return null;
+             
+             // The key includes sessionKey, forcing a full remount (and state reset) when sessionKey changes
+             return (
+               <div key={`sec-${sec.id}-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                 <sec.Component 
+                   lang={lang} 
+                   isLocked={level < sec.id}
+                   onComplete={() => updateLevel(sec.id + 1)}
+                 />
+               </div>
+             )
+          })}
+          
+          {/* Extension Content (Only shows if unlocked) */}
+          {activeSection === 5 && (
+             <div key={`expert-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <SectionExpert lang={lang} />
+             </div>
+          )}
+        </div>
+
+        {/* Next Section Teaser (if current is done but user scrolled back) */}
+        {activeSection < level && activeSection < 4 && (
+           <div className="flex justify-center mt-12 opacity-50 hover:opacity-100 transition-opacity">
+              <button 
+                onClick={() => setActiveSection(activeSection + 1)}
+                className="flex items-center gap-2 font-bold text-indigo-400"
+              >
+                Anar a la següent <ChevronRight />
+              </button>
+           </div>
+        )}
+
+      </main>
+
+
+    </div>
+  );
+};
+
+export default App;
