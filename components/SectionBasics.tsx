@@ -97,7 +97,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
       {/* 1. CLASSIFICATION THEORY */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <h4 className="font-bold text-gray-800 text-lg mb-4 flex items-center gap-2">
-          <Ruler className="text-indigo-500" /> Classificació de Triangles
+          <Ruler className="text-indigo-500" /> {TEXTS.s1_classif_title[lang]}
         </h4>
 
         <div className="mb-6 bg-indigo-50 p-4 rounded-xl border border-indigo-100">

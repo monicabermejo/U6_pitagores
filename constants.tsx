@@ -26,6 +26,7 @@ export const TEXTS: Translations = {
   
   // Section 1 - Theory
   s1_intro: { ca: "Abans d'entrar en matèria, hem de repassar els conceptes bàsics de geometria i càlcul.", es: "Antes de entrar en materia, debemos repasar los conceptos básicos de geometría y cálculo." },
+  s1_classif_title: { ca: "Classificació de Triangles", es: "Clasificación de Triángulos" },
   s1_two_names_title: { ca: "Un triangle pot tenir dos noms alhora:", es: "Un triángulo puede tener dos nombres a la vez:" },
   
   // Classification
