@@ -3,8 +3,9 @@ import { SectionProps } from '../types';
 import { REAL_PROBLEMS, TEXTS } from '../constants';
 import { motion } from 'framer-motion';
 import { Check, X, ChevronRight, ChevronDown } from 'lucide-react';
+import { trackAnswer } from '../utils/trackAnswer';
 
-export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLocked }) => {
+export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLocked, studentEmail, sessionId }) => {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [results, setResults] = useState<{ [key: string]: boolean | null }>({});
   
@@ -22,6 +23,19 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
     const val = parseFloat(answers[currentProblem.id]);
     const isCorrect = val === currentProblem.answer;
     setResults({ ...results, [currentProblem.id]: isCorrect });
+
+    // Registrar resposta al Google Sheet
+    trackAnswer({
+      email: studentEmail,
+      questionId: currentProblem.id,
+      questionText: currentProblem.question[lang],
+      userAnswer: isNaN(val) ? '' : val,
+      correctAnswer: currentProblem.answer,
+      isCorrect,
+      section: 'problems',
+      lang,
+      sessionId,
+    });
   };
 
   return (

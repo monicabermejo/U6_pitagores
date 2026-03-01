@@ -3,8 +3,9 @@ import { SectionProps } from '../types';
 import { TEXTS } from '../constants';
 import { Check, AlertTriangle, Calculator, Ruler, ChevronDown, ChevronUp, Table } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackAnswer } from '../utils/trackAnswer';
 
-export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLocked }) => {
+export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLocked, studentEmail, sessionId }) => {
   // State for Classification Game
   const [q1Answer, setQ1Answer] = useState('');
   const [q1Feedback, setQ1Feedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -26,7 +27,21 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
   // --- Handlers ---
   const handleQ1Check = () => {
-    q1Answer === 'b' ? setQ1Feedback('correct') : setQ1Feedback('incorrect');
+    const isCorrect = q1Answer === 'b';
+    setQ1Feedback(isCorrect ? 'correct' : 'incorrect');
+    trackAnswer({
+      email: studentEmail,
+      questionId: 'basics_q1_triangle_type',
+      questionText: lang === 'ca'
+        ? 'Quin triangle és rectàngle?'
+        : '¿Qué triángulo es rectángulo?',
+      userAnswer: q1Answer,
+      correctAnswer: 'b',
+      isCorrect,
+      section: 'basics',
+      lang,
+      sessionId,
+    });
   };
 
   const handlePlace = (boxId: string, correctLabel: string) => {
@@ -60,7 +75,33 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
     if (q1ok && q2ok && q3ok && q4ok && q5ok) {
         setApFeedback(true);
+        trackAnswer({
+          email: studentEmail,
+          questionId: 'basics_area_perimeter',
+          questionText: lang === 'ca'
+            ? 'Exercici àrea i perímetre (5 figures)'
+            : 'Ejercicio área y perímetro (5 figuras)',
+          userAnswer: 'tot correcte',
+          correctAnswer: 'tot correcte',
+          isCorrect: true,
+          section: 'basics',
+          lang,
+          sessionId,
+        });
     } else {
+        trackAnswer({
+          email: studentEmail,
+          questionId: 'basics_area_perimeter',
+          questionText: lang === 'ca'
+            ? 'Exercici àrea i perímetre (5 figures)'
+            : 'Ejercicio área y perímetro (5 figuras)',
+          userAnswer: JSON.stringify(apAnswers),
+          correctAnswer: 'q1p:20,q1a:25,q2p:16,q2a:12,q3p:31.4,q3a:78.5,q4p:18,q4a:20.25,q5p:180,q5a:1560',
+          isCorrect: false,
+          section: 'basics',
+          lang,
+          sessionId,
+        });
         alert(lang === 'ca' ? "Alguna resposta no és correcta. Revisa els càlculs!" : "Alguna respuesta no es correcta. ¡Revisa los cálculos!");
     }
   };
@@ -75,7 +116,29 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
     if (q1Correct && q2Correct && q3Correct) {
         setRootFeedback(true);
+        trackAnswer({
+          email: studentEmail,
+          questionId: 'basics_arrels',
+          questionText: lang === 'ca' ? 'Exercici arrels quadrades' : 'Ejercicio raíces cuadradas',
+          userAnswer: JSON.stringify(rootAnswers),
+          correctAnswer: 'q1:5, q2:≈3.16, q3a:5 q3b:6',
+          isCorrect: true,
+          section: 'basics',
+          lang,
+          sessionId,
+        });
     } else {
+        trackAnswer({
+          email: studentEmail,
+          questionId: 'basics_arrels',
+          questionText: lang === 'ca' ? 'Exercici arrels quadrades' : 'Ejercicio raíces cuadradas',
+          userAnswer: JSON.stringify(rootAnswers),
+          correctAnswer: 'q1:5, q2:≈3.16, q3a:5 q3b:6',
+          isCorrect: false,
+          section: 'basics',
+          lang,
+          sessionId,
+        });
         alert(TEXTS.incorrect[lang]);
     }
   };

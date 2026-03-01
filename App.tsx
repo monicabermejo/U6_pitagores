@@ -8,6 +8,11 @@ import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
 import { Lock, Unlock, RefreshCw, Globe, ChevronRight } from 'lucide-react';
 
+/** Genera un ID de sessió curt i aleatori */
+function generateSessionId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
+
 const App: React.FC = () => {
   const [lang, setLang] = useState<Language>('ca');
   const [level, setLevel] = useState(1);
@@ -15,6 +20,10 @@ const App: React.FC = () => {
   const [started, setStarted] = useState(false);
   // Session key acts as a seed to force full component re-initialization on reset
   const [sessionKey, setSessionKey] = useState(0);
+  const [studentEmail, setStudentEmail] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [sessionId] = useState<string>(generateSessionId);
 
   // Load progress
   useEffect(() => {
@@ -27,6 +36,8 @@ const App: React.FC = () => {
       // Let's keep strict "Start" flow but restore level.
     }
     if (savedLang) setLang(savedLang as Language);
+    const savedEmail = localStorage.getItem('pythagoras_email');
+    if (savedEmail) setStudentEmail(savedEmail);
   }, []);
 
   const updateLevel = (newLevel: number) => {
@@ -54,12 +65,15 @@ const App: React.FC = () => {
       // 1. Clear ALL storage related to the app
       localStorage.removeItem('pythagoras_level');
       localStorage.removeItem('pythagoras_lang');
+      localStorage.removeItem('pythagoras_email');
       
       // 2. Reset all states to default
-      setLang('ca'); // Reset language to default
+      setLang('ca');
       setLevel(1);
       setActiveSection(1);
       setStarted(false);
+      setStudentEmail('');
+      setEmailInput('');
       
       // 3. Force full re-render of components (clears inputs and chat)
       setSessionKey(prev => prev + 1); 
@@ -69,6 +83,18 @@ const App: React.FC = () => {
     }
   };
 
+  const handleStart = () => {
+    const trimmed = emailInput.trim().toLowerCase();
+    if (!trimmed || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) {
+      setEmailError(true);
+      return;
+    }
+    setEmailError(false);
+    setStudentEmail(trimmed);
+    localStorage.setItem('pythagoras_email', trimmed);
+    setStarted(true);
+  };
+
   if (!started && level === 1) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-4">
@@ -76,9 +102,31 @@ const App: React.FC = () => {
           <div className="text-6xl mb-4 animate-bounce">📐</div>
           <h1 className="text-4xl font-black text-gray-800">{TEXTS.welcome_title[lang]}</h1>
           <p className="text-gray-500 text-lg">{TEXTS.welcome_desc[lang]}</p>
-          
+
+          {/* Email d'identificació */}
+          <div className="text-left">
+            <label className="block text-sm font-bold text-gray-600 mb-1">
+              {lang === 'ca' ? 'Correu electrònic' : 'Correo electrónico'}
+            </label>
+            <input
+              type="email"
+              value={emailInput}
+              onChange={(e) => { setEmailInput(e.target.value); setEmailError(false); }}
+              onKeyDown={(e) => e.key === 'Enter' && handleStart()}
+              placeholder={lang === 'ca' ? 'el.teu@correu.com' : 'tu@correo.com'}
+              className={`w-full border-2 rounded-xl px-4 py-3 text-gray-700 outline-none transition-colors ${
+                emailError ? 'border-red-400 bg-red-50' : 'border-gray-200 focus:border-indigo-400'
+              }`}
+            />
+            {emailError && (
+              <p className="text-red-500 text-sm mt-1">
+                {lang === 'ca' ? 'Introdueix un correu vàlid.' : 'Introduce un correo válido.'}
+              </p>
+            )}
+          </div>
+
           <button 
-            onClick={() => setStarted(true)}
+            onClick={handleStart}
             className="w-full bg-indigo-600 text-white text-xl font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all"
           >
             {TEXTS.start_btn[lang]}
@@ -169,6 +217,8 @@ const App: React.FC = () => {
                    lang={lang} 
                    isLocked={level < sec.id}
                    onComplete={() => updateLevel(sec.id + 1)}
+                   studentEmail={studentEmail}
+                   sessionId={sessionId}
                  />
                </div>
              )

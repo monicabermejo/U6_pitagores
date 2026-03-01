@@ -21,4 +21,8 @@ export interface SectionProps {
   lang: Language;
   onComplete: () => void;
   isLocked: boolean;
+  /** Email de l'alumne per identificar les respostes al Google Sheet */
+  studentEmail: string;
+  /** ID de sessió per agrupar respostes d'una mateixa sessió */
+  sessionId: string;
 }
