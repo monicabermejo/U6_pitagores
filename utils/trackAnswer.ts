@@ -1,11 +1,7 @@
-/// <reference types="vite/client" />
 /**
  * trackAnswer
  * -----------
  * Envia les dades d'una resposta al Web App de Google Apps Script.
- *
- * Configura la URL del desplegament a la variable d'entorn:
- *   VITE_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
  */
 
 export interface TrackPayload {
@@ -29,15 +25,11 @@ export interface TrackPayload {
   sessionId?: string;
 }
 
-const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL as string | undefined;
+import { APPS_SCRIPT_URL } from '../config';
 
-/**
- * Envia una resposta al Google Sheet.
- * No llança errors: logeja silenciosament per no interrompre el flux de l'alumne.
- */
 export async function trackAnswer(payload: TrackPayload): Promise<void> {
   if (!APPS_SCRIPT_URL) {
-    console.warn("[trackAnswer] VITE_APPS_SCRIPT_URL no definida – no s'ha enviat res.");
+    console.warn("[trackAnswer] URL no definida – no s'ha enviat res.");
     return;
   }
   if (!payload.email) {
