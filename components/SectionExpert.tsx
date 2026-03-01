@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { TEXTS } from '../constants';
 import { motion } from 'framer-motion';
 import { FlaskConical, Calculator } from 'lucide-react';
+import { trackAnswer } from '../utils/trackAnswer';
 
-export const SectionExpert: React.FC<{ lang: 'ca' | 'es' }> = ({ lang }) => {
+export const SectionExpert: React.FC<{ lang: 'ca' | 'es'; studentEmail: string; sessionId: string }> = ({ lang, studentEmail, sessionId }) => {
   // Challenge State
   const [chalInputs, setChalInputs] = useState({ t1: '', t2: '', t3: '' });
   const [chalFeedback, setChalFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -16,12 +17,21 @@ export const SectionExpert: React.FC<{ lang: 'ca' | 'es' }> = ({ lang }) => {
     const v1 = parseFloat(chalInputs.t1);
     const v2 = parseFloat(chalInputs.t2);
     const v3 = parseFloat(chalInputs.t3);
-
-    if (v1 === 6 && v2 === 8 && v3 === 10) {
-      setChalFeedback('correct');
-    } else {
-      setChalFeedback('incorrect');
-    }
+    const isCorrect = v1 === 6 && v2 === 8 && v3 === 10;
+    setChalFeedback(isCorrect ? 'correct' : 'incorrect');
+    trackAnswer({
+      email: studentEmail,
+      questionId: 'expert_challenge_terna',
+      questionText: lang === 'ca'
+        ? 'Calcula la terna (3×2, 4×2, 5×2)'
+        : 'Calcula la terna (3×2, 4×2, 5×2)',
+      userAnswer: `${v1}, ${v2}, ${v3}`,
+      correctAnswer: '6, 8, 10',
+      isCorrect,
+      section: 'expert',
+      lang,
+      sessionId,
+    });
   };
 
   const checkLab = () => {
@@ -49,6 +59,19 @@ export const SectionExpert: React.FC<{ lang: 'ca' | 'es' }> = ({ lang }) => {
         msg: lang === 'ca' ? "❌ No. Prova amb altres nombres." : "❌ No. Prueba con otros números." 
       });
     }
+    trackAnswer({
+      email: studentEmail,
+      questionId: 'expert_lab_terna',
+      questionText: lang === 'ca'
+        ? `Laboratori de ternes – (${a}, ${b}, ${c})`
+        : `Laboratorio de ternas – (${a}, ${b}, ${c})`,
+      userAnswer: `${a}, ${b}, ${c}`,
+      correctAnswer: isPythagorean ? `${a}, ${b}, ${c}` : 'no és terna',
+      isCorrect: isPythagorean,
+      section: 'expert',
+      lang,
+      sessionId,
+    });
   };
 
   return (

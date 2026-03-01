@@ -3,8 +3,9 @@ import { SectionProps } from '../types';
 import { TEXTS } from '../constants';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import { trackAnswer } from '../utils/trackAnswer';
 
-export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLocked }) => {
+export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLocked, studentEmail, sessionId }) => {
   const [feedback, setFeedback] = useState<string>('');
   // Track which specific exercises (by index) are completed
   const [completed, setCompleted] = useState<number[]>([]);
@@ -16,11 +17,37 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
     if (!completed.includes(index)) {
       setFeedback(TEXTS.correct[lang]);
       setCompleted(prev => [...prev, index]);
+      trackAnswer({
+        email: studentEmail,
+        questionId: `visual_hypotenuse_t${index + 1}`,
+        questionText: lang === 'ca'
+          ? `Identifica la hipotenusa – triangle ${index + 1}`
+          : `Identifica la hipotenusa – triángulo ${index + 1}`,
+        userAnswer: 'hipotenusa',
+        correctAnswer: 'hipotenusa',
+        isCorrect: true,
+        section: 'visual',
+        lang,
+        sessionId,
+      });
     }
   };
 
-  const handleWrong = () => {
+  const handleWrong = (index: number) => {
     setFeedback(lang === 'ca' ? "No, això és un catet!" : "¡No, eso es un cateto!");
+    trackAnswer({
+      email: studentEmail,
+      questionId: `visual_hypotenuse_t${index + 1}`,
+      questionText: lang === 'ca'
+        ? `Identifica la hipotenusa – triangle ${index + 1}`
+        : `Identifica la hipotenusa – triángulo ${index + 1}`,
+      userAnswer: 'catet',
+      correctAnswer: 'hipotenusa',
+      isCorrect: false,
+      section: 'visual',
+      lang,
+      sessionId,
+    });
   };
 
   const isCompleted = (index: number) => completed.includes(index);
@@ -101,9 +128,9 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
                   <svg width="150" height="150" viewBox="0 0 100 100" className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <path d="M 10 10 L 10 90 L 90 90 Z" fill="none" stroke="transparent"/>
                     <line x1="10" y1="10" x2="10" y2="90" stroke="black" strokeWidth="3"/>
-                    <line x1="10" y1="10" x2="10" y2="90" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                    <line x1="10" y1="10" x2="10" y2="90" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                     <line x1="10" y1="90" x2="90" y2="90" stroke="black" strokeWidth="3"/>
-                    <line x1="10" y1="90" x2="90" y2="90" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                    <line x1="10" y1="90" x2="90" y2="90" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                     <line x1="10" y1="10" x2="90" y2="90" stroke="black" strokeWidth="3"/>
                     <line x1="10" y1="10" x2="90" y2="90" stroke="transparent" strokeWidth="20" onClick={() => handleCorrect(0)} className="cursor-pointer hover:stroke-green-500/20"/>
                     <rect x="10" y="75" width="15" height="15" fill="none" stroke="black"/>
@@ -115,9 +142,9 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
                   <svg width="150" height="150" viewBox="0 0 100 100" className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <g transform="rotate(45, 50, 50)">
                         <line x1="20" y1="20" x2="20" y2="80" stroke="black" strokeWidth="3"/>
-                        <line x1="20" y1="20" x2="20" y2="80" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                        <line x1="20" y1="20" x2="20" y2="80" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                         <line x1="20" y1="80" x2="80" y2="80" stroke="black" strokeWidth="3"/>
-                        <line x1="20" y1="80" x2="80" y2="80" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                        <line x1="20" y1="80" x2="80" y2="80" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                         <line x1="20" y1="20" x2="80" y2="80" stroke="black" strokeWidth="3"/>
                         <line x1="20" y1="20" x2="80" y2="80" stroke="transparent" strokeWidth="20" onClick={() => handleCorrect(1)} className="cursor-pointer hover:stroke-green-500/20"/>
                         <rect x="20" y="65" width="15" height="15" fill="none" stroke="black"/>
@@ -130,9 +157,9 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
                    <svg width="150" height="150" viewBox="0 0 100 100" className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
                      <g transform="rotate(200, 50, 50) translate(20, 20)">
                         <line x1="0" y1="0" x2="50" y2="0" stroke="black" strokeWidth="3"/>
-                        <line x1="0" y1="0" x2="50" y2="0" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                        <line x1="0" y1="0" x2="50" y2="0" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                         <line x1="0" y1="0" x2="0" y2="70" stroke="black" strokeWidth="3"/>
-                        <line x1="0" y1="0" x2="0" y2="70" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20"/>
+                        <line x1="0" y1="0" x2="0" y2="70" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20"/>
                         <line x1="50" y1="0" x2="0" y2="70" stroke="black" strokeWidth="3"/>
                         <line x1="50" y1="0" x2="0" y2="70" stroke="transparent" strokeWidth="20" onClick={() => handleCorrect(2)} className="cursor-pointer hover:stroke-green-500/20"/>
                         <rect x="0" y="0" width="10" height="10" fill="none" stroke="black"/>
@@ -146,7 +173,7 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
                      {/* Legs (Rectangle Border) */}
                      <rect x="10" y="30" width="80" height="40" fill="none" stroke="black" strokeWidth="3" />
                      {/* Click area Legs */}
-                     <rect x="10" y="30" width="80" height="40" fill="none" stroke="transparent" strokeWidth="20" onClick={handleWrong} className="cursor-pointer hover:stroke-red-500/20" />
+                     <rect x="10" y="30" width="80" height="40" fill="none" stroke="transparent" strokeWidth="20" onClick={() => handleWrong(idx)} className="cursor-pointer hover:stroke-red-500/20" />
 
                      {/* Hypotenuse (Diagonal) - SAME THICKNESS */}
                      <line x1="10" y1="70" x2="90" y2="30" stroke="black" strokeWidth="3" />

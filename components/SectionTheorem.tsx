@@ -3,8 +3,9 @@ import { SectionProps } from '../types';
 import { TEXTS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { trackAnswer } from '../utils/trackAnswer';
 
-export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLocked }) => {
+export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLocked, studentEmail, sessionId }) => {
   const [openHistory, setOpenHistory] = useState<string | null>(null);
   const [drillScore, setDrillScore] = useState(0);
   const [hasChecked, setHasChecked] = useState(false);
@@ -15,19 +16,33 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
   if (isLocked) return null;
 
   const checkDrill = () => {
+    const answers: { id: string; correct: number; type: string }[] = [
+      { id: 'q1',  correct: 5,  type: 'h' }, { id: 'q2',  correct: 6,  type: 'c' },
+      { id: 'q3',  correct: 13, type: 'h' }, { id: 'q4',  correct: 5,  type: 'c' },
+      { id: 'q5',  correct: 10, type: 'h' }, { id: 'q6',  correct: 12, type: 'c' },
+      { id: 'q7',  correct: 17, type: 'h' }, { id: 'q8',  correct: 24, type: 'c' },
+      { id: 'q9',  correct: 41, type: 'h' }, { id: 'q10', correct: 12, type: 'c' },
+      { id: 'q11', correct: 25, type: 'h' }, { id: 'q12', correct: 15, type: 'c' },
+    ];
     let score = 0;
-    if (parseFloat(inputs.q1) === 5) score++;
-    if (parseFloat(inputs.q2) === 6) score++;
-    if (parseFloat(inputs.q3) === 13) score++;
-    if (parseFloat(inputs.q4) === 5) score++;
-    if (parseFloat(inputs.q5) === 10) score++;
-    if (parseFloat(inputs.q6) === 12) score++;
-    if (parseFloat(inputs.q7) === 17) score++;
-    if (parseFloat(inputs.q8) === 24) score++;
-    if (parseFloat(inputs.q9) === 41) score++;
-    if (parseFloat(inputs.q10) === 12) score++;
-    if (parseFloat(inputs.q11) === 25) score++;
-    if (parseFloat(inputs.q12) === 15) score++;
+    answers.forEach(({ id, correct, type }) => {
+      const val = parseFloat(inputs[id as keyof typeof inputs]);
+      const isCorrect = val === correct;
+      if (isCorrect) score++;
+      trackAnswer({
+        email: studentEmail,
+        questionId: `theorem_drill_${id}`,
+        questionText: type === 'h'
+          ? (lang === 'ca' ? `Drill teorema – troba la hipotenusa (${id})` : `Drill teorema – encuentra la hipotenusa (${id})`)
+          : (lang === 'ca' ? `Drill teorema – troba el catet (${id})` : `Drill teorema – encuentra el cateto (${id})`),
+        userAnswer: isNaN(val) ? '' : val,
+        correctAnswer: correct,
+        isCorrect,
+        section: 'theorem',
+        lang,
+        sessionId,
+      });
+    });
     setDrillScore(score);
     setHasChecked(true);
   };

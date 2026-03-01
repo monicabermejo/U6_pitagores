@@ -234,7 +234,7 @@ const App: React.FC = () => {
           {/* Extension Content (Only shows if unlocked) */}
           {activeSection === 5 && (
              <div key={`expert-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <SectionExpert lang={lang} />
+                <SectionExpert lang={lang} studentEmail={studentEmail} sessionId={sessionId} />
              </div>
           )}
         </div>
