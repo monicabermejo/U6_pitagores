@@ -24,6 +24,8 @@ const App: React.FC = () => {
   const [emailInput, setEmailInput] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [sessionId] = useState<string>(generateSessionId);
+  // Prevents flash of email screen before localStorage is read
+  const [ready, setReady] = useState(false);
 
   // Load progress
   useEffect(() => {
@@ -38,6 +40,7 @@ const App: React.FC = () => {
     if (savedLang) setLang(savedLang as Language);
     const savedEmail = localStorage.getItem('pythagoras_email');
     if (savedEmail) setStudentEmail(savedEmail);
+    setReady(true);
   }, []);
 
   const updateLevel = (newLevel: number) => {
@@ -95,7 +98,11 @@ const App: React.FC = () => {
     setStarted(true);
   };
 
-  if (!started && level === 1) {
+  // Wait until localStorage has been read to avoid showing the email screen
+  // briefly even when a saved email exists
+  if (!ready) return null;
+
+  if (!studentEmail) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6">
