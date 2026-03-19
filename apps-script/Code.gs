@@ -180,8 +180,21 @@ function updateSummary(email, studentName, studentGroup, isCorrect, section) {
   ]);
 }
 
-// ── GET per comprovar que el desplegament funciona ──────────────────────────
-function doGet() {
+// ── GET: health check i validació d'email ───────────────────────────────────
+function doGet(e) {
+  // ?action=validate&email=xxx → comprova si l'email és a Participants
+  if (e && e.parameter && e.parameter.action === "validate") {
+    var email = String(e.parameter.email || "").trim().toLowerCase();
+    if (!email) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: false, error: "Missing email" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true, authorized: isAuthorized(email) }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true, message: "Pitàgores API operativa." }))
     .setMimeType(ContentService.MimeType.JSON);

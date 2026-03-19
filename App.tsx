@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TEXTS } from './constants';
 import { Language } from './types';
+import { APPS_SCRIPT_URL } from './config';
 import { SectionBasics } from './components/SectionBasics';
 import { SectionVisual } from './components/SectionVisual';
 import { SectionTheorem } from './components/SectionTheorem';
@@ -23,6 +24,8 @@ const App: React.FC = () => {
   const [studentEmail, setStudentEmail] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [emailError, setEmailError] = useState(false);
+  const [validating, setValidating] = useState(false);
+  const [unauthorized, setUnauthorized] = useState(false);
   const [sessionId] = useState<string>(generateSessionId);
   // Prevents flash of email screen before localStorage is read
   const [ready, setReady] = useState(false);
@@ -86,13 +89,34 @@ const App: React.FC = () => {
     }
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
     const trimmed = emailInput.trim().toLowerCase();
     if (!trimmed || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) {
       setEmailError(true);
+      setUnauthorized(false);
       return;
     }
     setEmailError(false);
+    setUnauthorized(false);
+
+    if (APPS_SCRIPT_URL) {
+      setValidating(true);
+      try {
+        const res = await fetch(
+          `${APPS_SCRIPT_URL}?action=validate&email=${encodeURIComponent(trimmed)}`
+        );
+        const json = await res.json();
+        if (!json.authorized) {
+          setUnauthorized(true);
+          setValidating(false);
+          return;
+        }
+      } catch {
+        // Si falla la xarxa, el servidor rebutjarà igualment els no autoritzats
+      }
+      setValidating(false);
+    }
+
     setStudentEmail(trimmed);
     localStorage.setItem('pythagoras_email', trimmed);
     setStarted(true);
@@ -130,13 +154,23 @@ const App: React.FC = () => {
                 {lang === 'ca' ? 'Introdueix un correu vàlid.' : 'Introduce un correo válido.'}
               </p>
             )}
+            {unauthorized && (
+              <p className="text-red-500 text-sm mt-1">
+                {lang === 'ca'
+                  ? 'Aquest correu no està registrat. Demana-ho al professor.'
+                  : 'Este correo no está registrado. Pídelo al profesor.'}
+              </p>
+            )}
           </div>
 
           <button 
             onClick={handleStart}
-            className="w-full bg-indigo-600 text-white text-xl font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all"
+            disabled={validating}
+            className="w-full bg-indigo-600 text-white text-xl font-bold py-4 rounded-xl shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
           >
-            {TEXTS.start_btn[lang]}
+            {validating
+              ? (lang === 'ca' ? 'Verificant...' : 'Verificando...')
+              : TEXTS.start_btn[lang]}
           </button>
           
           <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
