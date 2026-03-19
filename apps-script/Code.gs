@@ -6,12 +6,13 @@
  *   · Quién tiene acceso: Cualquiera
  *
  * La validación de usuarios se hace internamente comprobando
- * la hoja "Alumnes_autoritzats" antes de escribir nada.
+ * la hoja "Participants" antes de escribir nada.
+ * Columnes de Participants: Email | Nom | Cognom | Grup
  */
 
 // ── Nombres de las hojas ────────────────────────────────────────────────────
 var SHEET_RESPONSES    = "Respostes";
-var SHEET_AUTHORIZED   = "Alumnes_autoritzats";
+var SHEET_AUTHORIZED   = "Participants";
 var SHEET_SUMMARY      = "Resum_alumnes";
 
 // ── Punto de entrada POST ───────────────────────────────────────────────────
@@ -40,29 +41,31 @@ function doPost(e) {
       return output;
     }
 
-    // 4. Buscar el nombre del alumno en la hoja de autorizados
-    var studentName = getStudentName(email);
+    // 4. Buscar nom complet i grup a la pestanya Participants
+    var studentName  = getStudentName(email);
+    var studentGroup = getStudentGroup(email);
 
     // 5. Escribir la respuesta en la hoja de Respostes
     var ss       = SpreadsheetApp.getActiveSpreadsheet();
     var sheetRes = ss.getSheetByName(SHEET_RESPONSES);
 
     sheetRes.appendRow([
-      new Date(),                          // A: Timestamp
-      email,                               // B: Email
-      studentName,                         // C: Nom alumne
-      String(data.section),                // D: Secció
-      String(data.questionId),             // E: ID pregunta
-      String(data.questionText),           // F: Text pregunta
-      String(data.userAnswer),             // G: Resposta alumne
-      String(data.correctAnswer),          // H: Resposta correcta
-      data.isCorrect ? "SÍ" : "NO",        // I: Correcte?
-      String(data.lang),                   // J: Idioma
-      String(data.sessionId || "")         // K: ID sessió
+      new Date(),                          // Timestamp
+      email,                               // Email
+      studentName,                         // Nom complet
+      studentGroup,                        // Grup
+      String(data.section),               // Secció
+      String(data.questionId),            // ID pregunta
+      String(data.questionText),          // Text pregunta
+      String(data.userAnswer),            // Resposta alumne
+      String(data.correctAnswer),         // Resposta correcta
+      data.isCorrect ? "SÍ" : "NO",       // Correcte?
+      String(data.lang),                  // Idioma
+      String(data.sessionId || "")        // ID sessió
     ]);
 
-    // 6. Actualizar el resum (opcional – upsert per alumne)
-    updateSummary(email, studentName, data.isCorrect, data.section);
+    // 6. Actualizar el resum (upsert per alumne)
+    updateSummary(email, studentName, studentGroup, data.isCorrect, data.section);
 
     output.setContent(JSON.stringify({ ok: true, message: "Resposta enregistrada." }));
 
@@ -76,7 +79,7 @@ function doPost(e) {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 /**
- * Comprova si l'email està a la columna A de "Alumnes_autoritzats".
+ * Comprova si l'email està a la columna Email de "Participants".
  * Ignora majúscules/minúscules i espais.
  */
 function isAuthorized(email) {
@@ -84,7 +87,7 @@ function isAuthorized(email) {
   var sheet  = ss.getSheetByName(SHEET_AUTHORIZED);
   var values = sheet.getRange("A:A").getValues();
 
-  for (var i = 1; i < values.length; i++) { // fila 0 és la capçalera
+  for (var i = 1; i < values.length; i++) {
     var cell = String(values[i][0]).trim().toLowerCase();
     if (cell === email) return true;
   }
@@ -92,21 +95,41 @@ function isAuthorized(email) {
 }
 
 /**
- * Retorna el nom de l'alumne (columna B) a partir del seu email (columna A).
- * Retorna l'email si no té nom assignat.
+ * Retorna el nom complet (Nom + Cognom, columnes B i C) a partir de l'email.
+ * Participants: A=Email | B=Nom | C=Cognom | D=Grup
  */
 function getStudentName(email) {
   var ss     = SpreadsheetApp.getActiveSpreadsheet();
   var sheet  = ss.getSheetByName(SHEET_AUTHORIZED);
-  var values = sheet.getRange("A:B").getValues();
+  var values = sheet.getRange("A:C").getValues();
 
   for (var i = 1; i < values.length; i++) {
     var cell = String(values[i][0]).trim().toLowerCase();
     if (cell === email) {
-      return values[i][1] ? String(values[i][1]) : email;
+      var nom    = values[i][1] ? String(values[i][1]) : "";
+      var cognom = values[i][2] ? String(values[i][2]) : "";
+      var full   = (nom + " " + cognom).trim();
+      return full || email;
     }
   }
   return email;
+}
+
+/**
+ * Retorna el grup (columna D) a partir de l'email.
+ */
+function getStudentGroup(email) {
+  var ss     = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet  = ss.getSheetByName(SHEET_AUTHORIZED);
+  var values = sheet.getRange("A:D").getValues();
+
+  for (var i = 1; i < values.length; i++) {
+    var cell = String(values[i][0]).trim().toLowerCase();
+    if (cell === email) {
+      return values[i][3] ? String(values[i][3]) : "Sense grup";
+    }
+  }
+  return "Sense grup";
 }
 
 /**
@@ -114,30 +137,31 @@ function getStudentName(email) {
  * – Si l'alumne ja existeix, actualitza els comptadors.
  * – Si és nou, afegeix una fila.
  *
- * Columnes: Email | Nom | Total respostes | Correctes | Incorrectes | % Èxit | Última activitat | Seccions completades
+ * Columnes: Email | Nom | Grup | Total | Correctes | Incorrectes | % Èxit | Última activitat | Seccions
  */
-function updateSummary(email, studentName, isCorrect, section) {
+function updateSummary(email, studentName, studentGroup, isCorrect, section) {
   var ss         = SpreadsheetApp.getActiveSpreadsheet();
   var sheetSum   = ss.getSheetByName(SHEET_SUMMARY);
   var data       = sheetSum.getDataRange().getValues();
   var now        = new Date();
 
   // Buscar fila existent (comença a fila 2 → índex 1)
+  // Columnes: 0=Email 1=Nom 2=Grup 3=Total 4=Correctes 5=Incorrectes 6=%Èxit 7=Última activitat 8=Seccions
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]).trim().toLowerCase() === email) {
       var row      = i + 1; // 1-based per a Sheets
-      var total    = (data[i][2] || 0) + 1;
-      var correct  = (data[i][3] || 0) + (isCorrect ? 1 : 0);
-      var incorrect= (data[i][4] || 0) + (isCorrect ? 0 : 1);
+      var total    = (data[i][3] || 0) + 1;
+      var correct  = (data[i][4] || 0) + (isCorrect ? 1 : 0);
+      var incorrect= (data[i][5] || 0) + (isCorrect ? 0 : 1);
       var pct      = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-      // Afegir la secció a la llista si no hi és
-      var sections = data[i][7] ? String(data[i][7]) : "";
+      var sections = data[i][8] ? String(data[i][8]) : "";
       if (section && sections.indexOf(section) === -1) {
         sections = sections ? sections + ", " + section : section;
       }
 
-      sheetSum.getRange(row, 3, 1, 6).setValues([[total, correct, incorrect, pct + "%", now, sections]]);
+      // Actualitza des de columna D (índex 4 en 1-based) → 6 valors
+      sheetSum.getRange(row, 4, 1, 6).setValues([[total, correct, incorrect, pct + "%", now, sections]]);
       return;
     }
   }
@@ -146,6 +170,7 @@ function updateSummary(email, studentName, isCorrect, section) {
   sheetSum.appendRow([
     email,
     studentName,
+    studentGroup,
     1,
     isCorrect ? 1 : 0,
     isCorrect ? 0 : 1,
