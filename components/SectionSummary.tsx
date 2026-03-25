@@ -143,13 +143,13 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
               <span> c₁=3, c₂=4 → h=</span>
               <span className="inline-flex items-end">
-                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
-                <span className="border-t border-green-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>9+16</span>
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-green-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>9+16</span>
               </span>
               <span>=</span>
               <span className="inline-flex items-end">
-                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
-                <span className="border-t border-green-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>25</span>
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-green-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>25</span>
               </span>
               <span>=</span><span className="font-black">5</span>
             </div>
@@ -178,13 +178,16 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
               <span> h=10, c₂=8 → c₁=</span>
               <span className="inline-flex items-end">
-                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
-                <span className="border-t border-orange-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>100−64</span>
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>100−64</span>
               </span>
               <span>=</span>
               <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>36</span>
+              </span>
                 <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
-                <span className="border-t border-orange-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>36</span>
+                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>36</span>
               </span>
               <span>=</span><span className="font-black">6</span>
             </div>
