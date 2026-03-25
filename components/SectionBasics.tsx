@@ -210,6 +210,117 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
               </div>
            </div>
         </div>
+
+        {/* Combination table */}
+        <div className="mt-6 border border-gray-200 rounded-xl overflow-hidden">
+          <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
+            <p className="text-xs font-black text-gray-500 uppercase tracking-widest text-center">
+              {lang === 'ca' ? 'Totes les combinacions possibles' : 'Todas las combinaciones posibles'}
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs text-center">
+              <thead>
+                <tr className="bg-indigo-50">
+                  <th className="px-3 py-2 text-left text-gray-500 font-bold w-28"></th>
+                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}</th>
+                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_right[lang]}</th>
+                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Equilateral row */}
+                <tr className="border-t border-gray-100">
+                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_equilateral[lang]}</td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="30,6 54,54 6,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <circle cx="30" cy="34" r="1.5" fill="#4f46e5"/>
+                        <circle cx="18" cy="34" r="1.5" fill="#4f46e5"/>
+                        <circle cx="42" cy="34" r="1.5" fill="#4f46e5"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2 bg-gray-50 text-gray-300 text-lg font-bold align-middle">—</td>
+                  <td className="px-3 py-2 bg-gray-50 text-gray-300 text-lg font-bold align-middle">—</td>
+                </tr>
+                {/* Isosceles row */}
+                <tr className="border-t border-gray-100">
+                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_isosceles[lang]}</td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="30,8 50,54 10,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <line x1="21" y1="31" x2="15" y2="31" stroke="red" strokeWidth="1.5"/>
+                        <line x1="39" y1="31" x2="45" y2="31" stroke="red" strokeWidth="1.5"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2 bg-yellow-50 border border-yellow-200 rounded">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="10,10 10,54 54,54" fill="rgba(234,179,8,0.15)" stroke="#ca8a04" strokeWidth="2"/>
+                        <rect x="10" y="44" width="10" height="10" fill="none" stroke="#ca8a04" strokeWidth="1.5"/>
+                        <line x1="7" y1="32" x2="13" y2="32" stroke="red" strokeWidth="1.5"/>
+                        <line x1="32" y1="57" x2="32" y2="51" stroke="red" strokeWidth="1.5"/>
+                      </svg>
+                      <span className="text-yellow-500 font-black text-sm">★</span>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="6,54 43,54 50,12" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <line x1="26" y1="33" x2="17" y2="33" stroke="red" strokeWidth="1.5"/>
+                        <line x1="48" y1="33" x2="57" y2="33" stroke="red" strokeWidth="1.5"/>
+                        <path d="M 35,54 A 8,8 0 0,1 37,47" fill="none" stroke="#374151" strokeWidth="1.3"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                </tr>
+                {/* Scalene row */}
+                <tr className="border-t border-gray-100">
+                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_scalene[lang]}</td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="20,8 54,54 6,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="10,10 10,54 52,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <rect x="10" y="44" width="10" height="10" fill="none" stroke="#4f46e5" strokeWidth="1.5"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2">
+                    <div className="flex flex-col items-center gap-1">
+                      <svg viewBox="0 0 60 60" className="w-10 h-10">
+                        <polygon points="6,54 46,54 54,14" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <path d="M 33,54 A 8,8 0 0,1 36,47" fill="none" stroke="#374151" strokeWidth="1.3"/>
+                      </svg>
+                      <span className="text-green-600 font-bold">✓</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="bg-yellow-50 border-t border-yellow-200 px-4 py-2 flex flex-wrap items-center gap-2 text-xs text-yellow-800">
+            <span className="text-yellow-500 font-black text-base">★</span>
+            <span className="flex-1">{lang === 'ca' ? 'El triangle isòsceles rectangle és el protagonista d\'aquest tema!' : '¡El triángulo isósceles rectángulo es el protagonista de este tema!'}</span>
+            <span className="text-gray-400">{lang === 'ca' ? '— = impossible' : '— = imposible'}</span>
+          </div>
+        </div>
       </div>
 
       {/* 2. WARNING */}
