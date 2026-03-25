@@ -233,7 +233,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                 <tr className="bg-indigo-50">
                   <th className="px-3 py-2 text-left text-gray-500 font-bold"></th>
                   <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'tots &lt; 90°' : 'todos &lt; 90°'}</span></th>
-                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_right[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un = 90°' : 'uno = 90°'}</span></th>
+                  <th className="px-2 py-2 bg-indigo-600 text-white font-black rounded-t">{TEXTS.s1_right[lang]}<br/><span className="font-normal text-indigo-200">{lang === 'ca' ? 'un = 90° ★' : 'uno = 90° ★'}</span></th>
                   <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un &gt; 90°' : 'uno &gt; 90°'}</span></th>
                 </tr>
               </thead>
@@ -286,15 +286,15 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                       <span className="text-gray-400">70°, 70°, 40°</span>
                     </div>
                   </td>
-                  <td className="px-2 py-3 bg-yellow-50 border-x border-yellow-200">
+                  <td className="px-2 py-3 bg-indigo-50 border-x border-indigo-200">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
-                        <polygon points="10,10 10,54 54,54" fill="rgba(234,179,8,0.15)" stroke="#ca8a04" strokeWidth="2"/>
-                        <rect x="10" y="44" width="10" height="10" fill="none" stroke="#ca8a04" strokeWidth="1.5"/>
+                        <polygon points="10,10 10,54 54,54" fill="rgba(99,102,241,0.15)" stroke="#4f46e5" strokeWidth="2"/>
+                        <rect x="10" y="44" width="10" height="10" fill="none" stroke="#4f46e5" strokeWidth="1.5"/>
                         <line x1="7" y1="32" x2="13" y2="32" stroke="red" strokeWidth="1.5"/>
                         <line x1="32" y1="57" x2="32" y2="51" stroke="red" strokeWidth="1.5"/>
                       </svg>
-                      <span className="text-yellow-500 font-black text-sm">★</span>
+                      <span className="text-green-600 font-bold">✓</span>
                       <span className="text-gray-400">90°, 45°, 45°</span>
                     </div>
                   </td>
@@ -326,10 +326,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                       <span className="text-gray-400">80°, 60°, 40°</span>
                     </div>
                   </td>
-                  <td className="px-2 py-3">
+                  <td className="px-2 py-3 bg-indigo-50 border-x border-indigo-200">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
-                        <polygon points="10,10 10,54 52,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
+                        <polygon points="10,10 10,54 52,54" fill="rgba(99,102,241,0.15)" stroke="#4f46e5" strokeWidth="2"/>
                         <rect x="10" y="44" width="10" height="10" fill="none" stroke="#4f46e5" strokeWidth="1.5"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
@@ -350,9 +350,9 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
               </tbody>
             </table>
           </div>
-          <div className="bg-yellow-50 border-t border-yellow-200 px-4 py-2 flex flex-wrap items-center gap-2 text-xs text-yellow-800">
-            <span className="text-yellow-500 font-black text-base">★</span>
-            <span className="flex-1">{lang === 'ca' ? 'El triangle isòsceles rectangle és el protagonista d\'aquest tema!' : '¡El triángulo isósceles rectángulo es el protagonista de este tema!'}</span>
+          <div className="bg-indigo-50 border-t border-indigo-200 px-4 py-2 flex flex-wrap items-center gap-2 text-xs text-indigo-800">
+            <span className="text-indigo-600 font-black text-base">★</span>
+            <span className="flex-1">{lang === 'ca' ? 'En aquest tema treballarem tots els triangles rectangles, tant isòsceles com escalens!' : '¡En este tema trabajaremos todos los triángulos rectángulos, tanto isósceles como escalenos!'}</span>
             <span className="text-gray-400">{lang === 'ca' ? '— = impossible' : '— = imposible'}</span>
           </div>
         </div>
