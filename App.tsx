@@ -8,7 +8,7 @@ import { SectionTheorem } from './components/SectionTheorem';
 import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
 import { SectionSummary } from './components/SectionSummary';
-import { Lock, Unlock, RefreshCw, Globe, ChevronRight } from 'lucide-react';
+import { RefreshCw, Globe, ChevronRight } from 'lucide-react';
 
 /** Genera un ID de sessió curt i aleatori */
 function generateSessionId(): string {
@@ -218,20 +218,19 @@ const App: React.FC = () => {
       <main className="max-w-4xl mx-auto px-4 pt-8">
         
         {/* Navigation / Progress Map */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-1.5 mb-6">
            {sections.map((sec) => (
              <button 
                key={sec.id}
                onClick={() => level >= sec.id && setActiveSection(sec.id)}
-               className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
+               className={`px-3 py-1.5 rounded-full font-bold text-xs transition-all whitespace-nowrap ${
                  activeSection === sec.id 
                    ? 'bg-indigo-600 text-white shadow-lg scale-105' 
                    : level >= sec.id 
-                     ? 'bg-white text-indigo-600 border border-indigo-100' 
+                     ? 'bg-white text-indigo-600 border border-indigo-200' 
                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                }`}
              >
-               {level >= sec.id ? <Unlock size={14} /> : <Lock size={14} />}
                {sec.title}
              </button>
            ))}
@@ -239,7 +238,7 @@ const App: React.FC = () => {
            {level > 4 && (
              <button 
                 onClick={() => setActiveSection(5)}
-                className={`px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-1 transition-all ${activeSection === 5 ? 'bg-yellow-400 text-yellow-900 scale-105 shadow-md' : 'bg-yellow-100 text-yellow-800'}`}
+                className={`px-3 py-1.5 rounded-full font-bold text-xs shadow-sm transition-all ${activeSection === 5 ? 'bg-yellow-400 text-yellow-900 scale-105 shadow-md' : 'bg-yellow-100 text-yellow-800'}`}
              >
                ⭐ Expert
              </button>
@@ -247,7 +246,7 @@ const App: React.FC = () => {
            {/* Summary Badge — always visible */}
            <button
              onClick={() => setActiveSection(6)}
-             className={`px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-1 transition-all ${activeSection === 6 ? 'bg-violet-600 text-white scale-105 shadow-md' : 'bg-violet-100 text-violet-800'}`}
+             className={`px-3 py-1.5 rounded-full font-bold text-xs shadow-sm transition-all ${activeSection === 6 ? 'bg-violet-600 text-white scale-105 shadow-md' : 'bg-violet-100 text-violet-800'}`}
            >
              🚀 {lang === 'ca' ? 'Resum' : 'Resumen'}
            </button>
