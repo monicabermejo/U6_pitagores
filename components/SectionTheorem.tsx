@@ -33,10 +33,6 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
     setCheckedProblems(prev => ({ ...prev, [p.id]: true }));
   };
 
-  const drillScore = problems.filter(p =>
-    checkedProblems[p.id] && parseFloat(inputs[p.id as keyof typeof inputs]) === p.ans
-  ).length;
-
   const problems = [
     { id: 'q1', num: 1, tex: <>c<sub>1</sub> = 3, c<sub>2</sub> = 4.</>, type: 'h', ans: 5 },
     { id: 'q2', num: 2, tex: <>h = 10, c = 8.</>, type: 'c', ans: 6 },
@@ -51,6 +47,10 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
     { id: 'q11', num: 11, tex: <>c<sub>1</sub> = 7, c<sub>2</sub> = 24.</>, type: 'h', ans: 25 },
     { id: 'q12', num: 12, tex: <>h = 39, c = 36.</>, type: 'c', ans: 15 },
   ];
+
+  const drillScore = problems.filter(p =>
+    checkedProblems[p.id] && parseFloat(inputs[p.id as keyof typeof inputs]) === p.ans
+  ).length;
 
   return (
     <motion.div 
