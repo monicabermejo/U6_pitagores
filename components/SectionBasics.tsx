@@ -567,7 +567,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="80" height="70" viewBox="-18 0 108 90">
+                  <svg width="80" height="70" viewBox="-22 0 112 90">
                      {[['#e53e3e','#3182ce','#ed8936'],['#f7fafc','#ecc94b','#48bb78'],['#3182ce','#e53e3e','#f7fafc']]
                        .map((row, ri) => row.map((color, ci) => (
                          <rect key={`${ri}-${ci}`} x={ci*30} y={ri*30} width="30" height="30" fill={color} stroke="black" strokeWidth="2"/>
@@ -591,7 +591,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                      <polygon points="10,10 90,10 50,90" fill="white" stroke="red" strokeWidth="5"/>
                      <text x="50" y="3" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#374151">60 cm</text>
                      <line x1="50" y1="10" x2="50" y2="90" stroke="red" strokeDasharray="3"/>
-                     <text x="55" y="60" fontSize="10" fill="red" fontWeight="bold">52</text>
+                     <text x="55" y="50" fontSize="10" fill="red" fontWeight="bold">52</text>
                   </svg>
                   <label className="text-xs font-bold text-gray-500 uppercase text-center">Cediu el Pas</label>
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
