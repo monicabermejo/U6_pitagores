@@ -8,7 +8,7 @@ import { SectionTheorem } from './components/SectionTheorem';
 import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
 import { SectionSummary } from './components/SectionSummary';
-import { RefreshCw, Globe, ChevronRight } from 'lucide-react';
+import { RefreshCw, Globe } from 'lucide-react';
 
 /** Genera un ID de sessió curt i aleatori */
 function generateSessionId(): string {
@@ -286,18 +286,6 @@ const App: React.FC = () => {
              </div>
           )}
         </div>
-
-        {/* Next Section Teaser (if current is done but user scrolled back) */}
-        {activeSection < level && activeSection < 4 && (
-           <div className="flex justify-center mt-12 opacity-50 hover:opacity-100 transition-opacity">
-              <button 
-                onClick={() => setActiveSection(activeSection + 1)}
-                className="flex items-center gap-2 font-bold text-indigo-400"
-              >
-                Anar a la següent <ChevronRight />
-              </button>
-           </div>
-        )}
 
       </main>
 
