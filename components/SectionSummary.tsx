@@ -128,9 +128,9 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-green-200 mb-3">
               <div className="text-2xl font-black font-mono text-green-700 flex items-center justify-center">
                 <span>h =&nbsp;</span>
-                <span className="inline-flex items-end">
+                <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                   <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                  <span className="border-t-2 border-green-700" style={{ paddingLeft: '2px', paddingRight: '3px' }}>c₁² + c₂²</span>
+                  <span style={{ borderTop: '2px solid #15803d', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>c₁² + c₂²</span>
                 </span>
               </div>
             </div>
@@ -142,14 +142,14 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
             <div className="mt-3 bg-green-100 rounded-lg p-2 text-xs text-green-900 flex flex-wrap items-end gap-x-0.5">
               <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
               <span> c₁=3, c₂=4 → h=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-green-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>9+16</span>
+                <span style={{ borderTop: '2px solid #166534', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>9+16</span>
               </span>
               <span>=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-green-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>25</span>
+                <span style={{ borderTop: '2px solid #166534', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>25</span>
               </span>
               <span>=</span><span className="font-black">5</span>
             </div>
@@ -163,9 +163,9 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-orange-200 mb-3">
               <div className="text-2xl font-black font-mono text-orange-700 flex items-center justify-center">
                 <span>c₁ =&nbsp;</span>
-                <span className="inline-flex items-end">
+                <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                   <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                  <span className="border-t-2 border-orange-700" style={{ paddingLeft: '2px', paddingRight: '3px' }}>h² − c₂²</span>
+                  <span style={{ borderTop: '2px solid #c2410c', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>h² − c₂²</span>
                 </span>
               </div>
             </div>
@@ -177,17 +177,14 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
             <div className="mt-3 bg-orange-100 rounded-lg p-2 text-xs text-orange-900 flex flex-wrap items-end gap-x-0.5">
               <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
               <span> h=10, c₂=8 → c₁=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>100−64</span>
+                <span style={{ borderTop: '2px solid #9a3412', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>100−64</span>
               </span>
               <span>=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>36</span>
-              </span>
-                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-orange-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>36</span>
+                <span style={{ borderTop: '2px solid #9a3412', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>36</span>
               </span>
               <span>=</span><span className="font-black">6</span>
             </div>
@@ -302,26 +299,26 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
             <div className="flex flex-wrap items-end gap-x-0.5">
               <span className="font-bold">2.</span>
               <span> c =</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>15² + 8²</span>
+                <span style={{ borderTop: '2px solid #1e40af', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>15² + 8²</span>
               </span>
               <span>=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>225 + 64</span>
+                <span style={{ borderTop: '2px solid #1e40af', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>225 + 64</span>
               </span>
               <span>=</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>289</span>
+                <span style={{ borderTop: '2px solid #1e40af', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>289</span>
               </span>
             </div>
             <div className="flex flex-wrap items-end gap-x-0.5">
               <span className="font-bold">3.</span>
-              <span className="inline-flex items-end">
+              <span style={{ display:'inline-flex', alignItems:'flex-end' }}>
                 <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
-                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>289</span>
+                <span style={{ borderTop: '2px solid #1e40af', paddingLeft: '3px', paddingRight: '3px', display:'inline-block' }}>289</span>
               </span>
               <span>= <span className="font-black text-sky-700 text-base">17 m</span></span>
             </div>
