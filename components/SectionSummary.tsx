@@ -56,37 +56,6 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-8"
     >
-      {/* ── HEADER ─────────────────────────────────────────────────────────── */}
-      <div className="bg-gradient-to-r from-violet-600 to-indigo-600 rounded-2xl p-6 text-white shadow-lg">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-4xl">🚀</span>
-          <div>
-            <h2 className="text-2xl font-black">
-              {t('Resum Express · Pitàgores', 'Resumen Exprés · Pitágoras', lang)}
-            </h2>
-            <p className="text-violet-200 text-sm mt-0.5">
-              {t(
-                'Tot el que necessites saber per a l\'examen en una sola pàgina',
-                'Todo lo que necesitas saber para el examen en una sola página',
-                lang
-              )}
-            </p>
-          </div>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-          {[
-            { emoji: '🔬', label: t('El Teorema', 'El Teorema', lang) },
-            { emoji: '🧮', label: t('Les Fórmules', 'Las Fórmulas', lang) },
-            { emoji: '🗺️', label: t('Problemes Reals', 'Problemas Reales', lang) },
-          ].map(item => (
-            <div key={item.label} className="bg-white/15 rounded-xl py-2 font-bold">
-              <div className="text-xl">{item.emoji}</div>
-              <div>{item.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── 1. EL TEOREMA ──────────────────────────────────────────────────── */}
       <section className="bg-white border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-black text-indigo-800 mb-1 flex items-center gap-2">
@@ -113,34 +82,34 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               {/* right angle marker */}
               <polyline points="25,113 37,113 37,125" fill="none" stroke="#374151" strokeWidth="2" />
               {/* labels legs */}
-              <text x="10" y="75" fontSize="13" fill="#2563eb" fontWeight="bold" textAnchor="middle">a</text>
-              <text x="105" y="141" fontSize="13" fill="#2563eb" fontWeight="bold" textAnchor="middle">b</text>
+              <text x="10" y="75" fontSize="13" fill="#2563eb" fontWeight="bold" textAnchor="middle">c₁</text>
+              <text x="105" y="141" fontSize="13" fill="#2563eb" fontWeight="bold" textAnchor="middle">c₂</text>
               {/* hypotenuse label */}
               <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="13"
-                transform="translate(111,64) rotate(33)">c</text>
+                transform="translate(111,64) rotate(33)">h</text>
               {/* squares sketch */}
               <rect x="37" y="125" width="20" height="20" fill="rgba(37,99,235,0.12)" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="3 2" />
-              <text x="47" y="140" fontSize="8" fill="#2563eb" textAnchor="middle">b²</text>
+              <text x="47" y="140" fontSize="8" fill="#2563eb" textAnchor="middle">c₂²</text>
               <rect x="5" y="15" width="20" height="20" fill="rgba(37,99,235,0.12)" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="3 2" />
-              <text x="15" y="30" fontSize="8" fill="#2563eb" textAnchor="middle">a²</text>
+              <text x="15" y="30" fontSize="8" fill="#2563eb" textAnchor="middle">c₁²</text>
             </svg>
           </div>
 
           {/* Formula box */}
           <div className="flex-1 space-y-3">
             <div className="bg-indigo-600 text-white rounded-xl px-6 py-4 text-center shadow">
-              <div className="text-3xl font-black font-mono tracking-wide">a² + b² = c²</div>
+              <div className="text-3xl font-black font-mono tracking-wide">c₁² + c₂² = h²</div>
               <div className="text-indigo-200 text-xs mt-1">
-                {t('on c és sempre la hipotenusa', 'donde c es siempre la hipotenusa', lang)}
+                {t('on h és sempre la hipotenusa', 'donde h es siempre la hipotenusa', lang)}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                <div className="font-bold text-blue-700 mb-1">{t('Catets (a, b)', 'Catetos (a, b)', lang)}</div>
+                <div className="font-bold text-blue-700 mb-1">{t('Catets (c₁, c₂)', 'Catetos (c₁, c₂)', lang)}</div>
                 <div className="text-blue-600 text-xs">{t('Formen l\'angle recte (90°)', 'Forman el ángulo recto (90°)', lang)}</div>
               </div>
               <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                <div className="font-bold text-red-700 mb-1">{t('Hipotenusa (c)', 'Hipotenusa (c)', lang)}</div>
+                <div className="font-bold text-red-700 mb-1">{t('Hipotenusa (h)', 'Hipotenusa (h)', lang)}</div>
                 <div className="text-red-600 text-xs">{t('La més llarga. Oposada a 90°', 'La más larga. Opuesta a 90°', lang)}</div>
               </div>
             </div>
@@ -158,10 +127,10 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
           {/* Find hypotenuse */}
           <div className="bg-green-50 border-2 border-green-400 rounded-xl p-5">
             <div className="font-black text-green-700 text-base mb-3">
-              {t('🔍 Trobar la HIPOTENUSA (c)', '🔍 Encontrar la HIPOTENUSA (c)', lang)}
+              {t('🔍 Trobar la HIPOTENUSA (h)', '🔍 Encontrar la HIPOTENUSA (h)', lang)}
             </div>
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-green-200 mb-3">
-              <div className="text-2xl font-black font-mono text-green-700">c = √(a² + b²)</div>
+              <div className="text-2xl font-black font-mono text-green-700">h = √(c₁² + c₂²)</div>
             </div>
             <div className="space-y-1 text-sm text-green-800">
               <div className="flex items-start gap-2"><span className="font-bold">1.</span><span>{t('Eleva al quadrat els dos catets', 'Eleva al cuadrado los dos catetos', lang)}</span></div>
@@ -169,25 +138,25 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               <div className="flex items-start gap-2"><span className="font-bold">3.</span><span>{t('Aplica l\'arrel quadrada', 'Aplica la raíz cuadrada', lang)}</span></div>
             </div>
             <div className="mt-3 bg-green-100 rounded-lg p-2 text-xs text-green-900">
-              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> a=3, b=4 → c=√(9+16)=√25=<span className="font-black">5</span>
+              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> c₁=3, c₂=4 → h=√(9+16)=√25=<span className="font-black">5</span>
             </div>
           </div>
 
           {/* Find leg */}
           <div className="bg-orange-50 border-2 border-orange-400 rounded-xl p-5">
             <div className="font-black text-orange-700 text-base mb-3">
-              {t('🔍 Trobar un CATET (a o b)', '🔍 Encontrar un CATETO (a o b)', lang)}
+              {t('🔍 Trobar un CATET (c₁ o c₂)', '🔍 Encontrar un CATETO (c₁ o c₂)', lang)}
             </div>
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-orange-200 mb-3">
-              <div className="text-2xl font-black font-mono text-orange-700">a = √(c² − b²)</div>
+              <div className="text-2xl font-black font-mono text-orange-700">c₁ = √(h² − c₂²)</div>
             </div>
             <div className="space-y-1 text-sm text-orange-800">
               <div className="flex items-start gap-2"><span className="font-bold">1.</span><span>{t('Eleva al quadrat la hipotenusa i el catet conegut', 'Eleva al cuadrado la hipotenusa y el cateto conocido', lang)}</span></div>
-              <div className="flex items-start gap-2"><span className="font-bold">2.</span><span>{t('Resta: hipotenusa² − catet²', 'Resta: hipotenusa² − cateto²', lang)}</span></div>
+              <div className="flex items-start gap-2"><span className="font-bold">2.</span><span>{t('Resta: h² − catet²', 'Resta: h² − cateto²', lang)}</span></div>
               <div className="flex items-start gap-2"><span className="font-bold">3.</span><span>{t('Aplica l\'arrel quadrada', 'Aplica la raíz cuadrada', lang)}</span></div>
             </div>
             <div className="mt-3 bg-orange-100 rounded-lg p-2 text-xs text-orange-900">
-              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> c=10, b=8 → a=√(100−64)=√36=<span className="font-black">6</span>
+              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> h=10, c₂=8 → c₁=√(100−64)=√36=<span className="font-black">6</span>
             </div>
           </div>
         </div>
@@ -198,11 +167,11 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 flex items-center gap-2 bg-green-100 rounded-lg px-3 py-2">
               <span className="text-lg">✅</span>
-              <span className="text-green-800">{t('Tens els dos catets → busques hipotenusa → SUMA', 'Tienes los dos catetos → buscas hipotenusa → SUMA', lang)}</span>
+              <span className="text-green-800">{t('Tens c₁ i c₂ → busques h → SUMA', 'Tienes c₁ y c₂ → buscas h → SUMA', lang)}</span>
             </div>
             <div className="flex-1 flex items-center gap-2 bg-orange-100 rounded-lg px-3 py-2">
               <span className="text-lg">✅</span>
-              <span className="text-orange-800">{t('Tens hipotenusa + un catet → busques l\'altre catet → RESTA', 'Tienes hipotenusa + un cateto → buscas el otro cateto → RESTA', lang)}</span>
+              <span className="text-orange-800">{t('Tens h + un catet → busques l\'altre catet → RESTA', 'Tienes h + un cateto → buscas el otro cateto → RESTA', lang)}</span>
             </div>
           </div>
         </div>
@@ -303,55 +272,7 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
         </div>
       </section>
 
-      {/* ── 5. ERRORS TÍPICS ───────────────────────────────────────────────── */}
-      <section className="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-lg font-black text-rose-800 mb-4 flex items-center gap-2">
-          <span>⚠️</span> {t('5. Errors típics (i com evitar-los)', '5. Errores típicos (y cómo evitarlos)', lang)}
-        </h3>
-        <div className="space-y-3">
-          {[
-            {
-              wrong_ca: 'Sumar tots tres costats',
-              wrong_es: 'Sumar los tres lados',
-              right_ca: 'Pitàgores és a² + b² = c², no una suma de costats',
-              right_es: 'Pitágoras es a² + b² = c², no una suma de lados',
-            },
-            {
-              wrong_ca: 'Confondre la hipotenusa amb un catet',
-              wrong_es: 'Confundir la hipotenusa con un cateto',
-              right_ca: 'La hipotenusa sempre és el costat oposat a l\'angle de 90°, el més llarg',
-              right_es: 'La hipotenusa siempre es el lado opuesto al ángulo de 90°, el más largo',
-            },
-            {
-              wrong_ca: 'Oblidar l\'arrel quadrada al final',
-              wrong_es: 'Olvidar la raíz cuadrada al final',
-              right_ca: 'El resultat és c², però la resposta és c = √(a²+b²)',
-              right_es: 'El resultado es c², pero la respuesta es c = √(a²+b²)',
-            },
-            {
-              wrong_ca: 'Aplicar c²−a² quan busques la hipotenusa',
-              wrong_es: 'Aplicar c²−a² cuando buscas la hipotenusa',
-              right_ca: 'SUMA per trobar la hipotenusa, RESTA per trobar un catet',
-              right_es: 'SUMA para encontrar la hipotenusa, RESTA para encontrar un cateto',
-            },
-          ].map((e, i) => (
-            <div key={i} className="flex gap-3 items-start">
-              <div className="flex-shrink-0 bg-rose-100 rounded-lg p-2 mt-0.5">
-                <XCircle size={16} className="text-rose-500" />
-              </div>
-              <div className="flex-1">
-                <div className="text-rose-700 font-bold text-sm line-through">{t(e.wrong_ca, e.wrong_es, lang)}</div>
-                <div className="text-emerald-700 text-sm mt-0.5 flex items-start gap-1">
-                  <CheckCircle size={14} className="flex-shrink-0 mt-0.5" />
-                  <span>{t(e.right_ca, e.right_es, lang)}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 6. MINI QUIZ ───────────────────────────────────────────────────── */}
+      {/* ── 5. MINI QUIZ ───────────────────────────────────────────────────── */}
       <section className="bg-white border-2 border-violet-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-black text-violet-800 mb-1 flex items-center gap-2">
           <span>✏️</span> {t('6. Autoavaluació ràpida', '6. Autoevaluación rápida', lang)}
@@ -431,7 +352,7 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
           )}
         </p>
         <div className="mt-4 font-black text-2xl font-mono bg-white/20 rounded-xl py-2 px-6 inline-block">
-          a² + b² = c²
+          c₁² + c₂² = h²
         </div>
       </div>
     </motion.div>
