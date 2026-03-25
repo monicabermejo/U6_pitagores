@@ -99,10 +99,10 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
               <path d="M 30,36 A 16,16 0 0,0 44,28" fill="none" stroke="#059669" strokeWidth="1.8"/>
               <text x="45" y="46" fontSize="12" fill="#059669" fontWeight="bold">α</text>
 
-              {/* Angle β at C(215,130) — arc centered at C, sweep=0 (CCW screen = going UP from CB to CA), from CB to CA */}
-              {/* on CB at d=20: (195,130) · on CA at d=20: C + 20*(-0.857,-0.510) = (198,120) */}
-              <path d="M 195,130 A 20,20 0 0,0 198,120" fill="none" stroke="#059669" strokeWidth="1.8"/>
-              <text x="173" y="126" fontSize="12" fill="#059669" fontWeight="bold">β</text>
+              {/* Angle β at C(215,130) — arc centered at C (vertex), sweep=1 (CW screen), from CB to CA */}
+              {/* on CB at d=20: (195,130) · on CA at d=20: (198,120) */}
+              <path d="M 195,130 A 20,20 0 0,1 198,120" fill="none" stroke="#059669" strokeWidth="1.8"/>
+              <text x="182" y="123" fontSize="12" fill="#059669" fontWeight="bold">β</text>
             </svg>
           </div>
 
