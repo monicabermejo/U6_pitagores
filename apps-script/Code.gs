@@ -199,3 +199,71 @@ function doGet(e) {
     .createTextOutput(JSON.stringify({ ok: true, message: "Pitàgores API operativa." }))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
+// ── Crear fulls filtrats per grup ───────────────────────────────────────────
+/**
+ * Executa des de l'editor d'Apps Script (▶ Run) o des del menú personalitzat.
+ * Llegeix els grups únics de "Participants" (columna D) i crea:
+ *   · Resum_<grup>     → QUERY sobre Resum_alumnes filtrat per grup
+ *   · Respostes_<grup> → QUERY sobre Respostes filtrat per grup
+ *
+ * Si el full ja existeix, no el sobreescriu (per seguretat).
+ */
+function crearFullsPerGrup() {
+  var ss    = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_AUTHORIZED);
+  var data  = sheet.getRange("D2:D" + sheet.getLastRow()).getValues();
+
+  // Recollir grups únics (ignorant buits)
+  var grups = {};
+  for (var i = 0; i < data.length; i++) {
+    var g = String(data[i][0]).trim();
+    if (g && g !== "undefined" && g !== "null") grups[g] = true;
+  }
+
+  var grupList = Object.keys(grups).sort();
+  var creats = [];
+
+  for (var j = 0; j < grupList.length; j++) {
+    var grup = grupList[j];
+
+    // ── Resum ──
+    var nomResum = "Resum_" + grup;
+    if (!ss.getSheetByName(nomResum)) {
+      var sResum = ss.insertSheet(nomResum);
+      sResum.getRange("A1").setFormula(
+        '=QUERY(Resum_alumnes!A:I, "SELECT * WHERE C = \'' + grup + '\'", 1)'
+      );
+      sResum.setTabColor("#6d28d9"); // violet
+      creats.push(nomResum);
+    }
+
+    // ── Respostes ──
+    var nomResp = "Respostes_" + grup;
+    if (!ss.getSheetByName(nomResp)) {
+      var sResp = ss.insertSheet(nomResp);
+      sResp.getRange("A1").setFormula(
+        '=QUERY(Respostes!A:L, "SELECT * WHERE D = \'' + grup + '\'", 1)'
+      );
+      sResp.setTabColor("#0284c7"); // sky
+      creats.push(nomResp);
+    }
+  }
+
+  if (creats.length > 0) {
+    SpreadsheetApp.getUi().alert("Fulls creats: " + creats.join(", "));
+  } else {
+    SpreadsheetApp.getUi().alert("Tots els fulls per grup ja existien. No s'ha creat res.");
+  }
+}
+
+/**
+ * Afegeix un menú personalitzat "Pitàgores" al full de càlcul
+ * perquè el professor pugui executar la creació de fulls fàcilment.
+ */
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu("📐 Pitàgores")
+    .addItem("Crear fulls per grup", "crearFullsPerGrup")
+    .addToUi();
+}
