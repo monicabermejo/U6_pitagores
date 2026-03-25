@@ -139,8 +139,19 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               <div className="flex items-start gap-2"><span className="font-bold">2.</span><span>{t('Suma els resultats', 'Suma los resultados', lang)}</span></div>
               <div className="flex items-start gap-2"><span className="font-bold">3.</span><span>{t('Aplica l\'arrel quadrada', 'Aplica la raíz cuadrada', lang)}</span></div>
             </div>
-            <div className="mt-3 bg-green-100 rounded-lg p-2 text-xs text-green-900">
-              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> c₁=3, c₂=4 → h=√(9+16)=√25=<span className="font-black">5</span>
+            <div className="mt-3 bg-green-100 rounded-lg p-2 text-xs text-green-900 flex flex-wrap items-end gap-x-0.5">
+              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
+              <span> c₁=3, c₂=4 → h=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
+                <span className="border-t border-green-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>9+16</span>
+              </span>
+              <span>=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
+                <span className="border-t border-green-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>25</span>
+              </span>
+              <span>=</span><span className="font-black">5</span>
             </div>
           </div>
 
@@ -163,8 +174,19 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               <div className="flex items-start gap-2"><span className="font-bold">2.</span><span>{t('Resta: h² − catet²', 'Resta: h² − cateto²', lang)}</span></div>
               <div className="flex items-start gap-2"><span className="font-bold">3.</span><span>{t('Aplica l\'arrel quadrada', 'Aplica la raíz cuadrada', lang)}</span></div>
             </div>
-            <div className="mt-3 bg-orange-100 rounded-lg p-2 text-xs text-orange-900">
-              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span> h=10, c₂=8 → c₁=√(100−64)=√36=<span className="font-black">6</span>
+            <div className="mt-3 bg-orange-100 rounded-lg p-2 text-xs text-orange-900 flex flex-wrap items-end gap-x-0.5">
+              <span className="font-bold">{t('Exemple:', 'Ejemplo:', lang)}</span>
+              <span> h=10, c₂=8 → c₁=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
+                <span className="border-t border-orange-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>100−64</span>
+              </span>
+              <span>=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.25em', lineHeight: 1 }}>√</span>
+                <span className="border-t border-orange-800" style={{ paddingLeft: '1px', paddingRight: '1px' }}>36</span>
+              </span>
+              <span>=</span><span className="font-black">6</span>
             </div>
           </div>
         </div>
