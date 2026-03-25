@@ -204,7 +204,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                     <span className="font-bold text-indigo-600">{TEXTS.s1_right[lang]}</span>
                  </div>
                  <div className="flex flex-col items-center gap-2">
-                    <svg viewBox="0 0 100 100" className="w-16 h-16"><polygon points="40,20 90,90 10,90" fill="none" stroke="black" strokeWidth="2"/></svg>
+                    <svg viewBox="0 0 100 100" className="w-16 h-16"><polygon points="10,90 72,90 82,18" fill="none" stroke="black" strokeWidth="2"/><path d="M 62,90 A 10,10 0 0,1 73,80" fill="none" stroke="black" strokeWidth="1.5"/></svg>
                     <span>{TEXTS.s1_obtuse[lang]}</span>
                  </div>
               </div>

@@ -287,6 +287,9 @@ const App: React.FC = () => {
 
       </main>
 
+      <footer className="text-center pb-6 pt-2">
+        <span className="text-xs italic text-gray-400">© Mónica Bermejo Abellán</span>
+      </footer>
 
     </div>
   );

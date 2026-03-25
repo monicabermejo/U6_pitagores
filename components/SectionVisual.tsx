@@ -58,6 +58,94 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
       animate={{ opacity: 1, y: 0 }}
       className="space-y-8"
     >
+      {/* ANATOMY BOX */}
+      <div className="bg-teal-50 border-2 border-teal-300 rounded-2xl p-6 shadow-sm">
+        <div className="flex items-center gap-2 mb-5">
+          <span className="text-2xl">🔍</span>
+          <h3 className="font-black text-teal-800 text-lg">
+            {lang === 'ca' ? 'Anatomia del triangle rectangle' : 'Anatomía del triángulo rectángulo'}
+          </h3>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center gap-6">
+          {/* SVG diagram */}
+          <div className="flex-shrink-0">
+            <svg viewBox="0 0 260 160" className="w-72 h-44 mx-auto">
+              {/* Triangle fill */}
+              <polygon points="30,130 30,20 215,130" fill="rgba(20,184,166,0.08)" stroke="none"/>
+
+              {/* Catet vertical (a) — blue */}
+              <line x1="30" y1="20" x2="30" y2="130" stroke="#2563eb" strokeWidth="3" strokeLinecap="round"/>
+              {/* Catet horitzontal (b) — blue */}
+              <line x1="30" y1="130" x2="215" y2="130" stroke="#2563eb" strokeWidth="3" strokeLinecap="round"/>
+              {/* Hipotenusa (c) — red */}
+              <line x1="30" y1="20" x2="215" y2="130" stroke="#dc2626" strokeWidth="3.5" strokeLinecap="round"/>
+
+              {/* Right angle marker */}
+              <polyline points="30,118 42,118 42,130" fill="none" stroke="#374151" strokeWidth="2"/>
+
+              {/* Label: catet a (vertical) */}
+              <text textAnchor="middle" fill="#2563eb" fontWeight="bold" fontSize="11" transform="translate(14,75) rotate(-90)">catet a</text>
+
+              {/* Label: catet b (horizontal) */}
+              <text x="122" y="148" fontSize="11" fill="#2563eb" fontWeight="bold" textAnchor="middle">catet b</text>
+
+              {/* Label: hipotenusa c (along diagonal) */}
+              <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="11" transform="translate(126,68) rotate(31)">hipotenusa c</text>
+
+              {/* 90° label */}
+              <text x="47" y="126" fontSize="9" fill="#374151" fontWeight="bold">90°</text>
+
+              {/* Angle α at top vertex */}
+              <path d="M 30,40 Q 46,36 42,52" fill="none" stroke="#059669" strokeWidth="1.5"/>
+              <text x="44" y="48" fontSize="10" fill="#059669" fontWeight="bold">α</text>
+
+              {/* Angle β at right vertex */}
+              <path d="M 200,130 Q 195,116 183,122" fill="none" stroke="#059669" strokeWidth="1.5"/>
+              <text x="179" y="118" fontSize="10" fill="#059669" fontWeight="bold">β</text>
+            </svg>
+          </div>
+
+          {/* Legend */}
+          <div className="space-y-3 text-sm">
+            <div className="flex items-start gap-3">
+              <span className="w-3 h-3 rounded-full bg-red-500 flex-shrink-0 mt-0.5"></span>
+              <div>
+                <span className="font-bold text-red-700">{lang === 'ca' ? 'Hipotenusa (c)' : 'Hipotenusa (c)'}</span>
+                <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'El costat més llarg. Sempre oposat a l\'angle recte.' : 'El lado más largo. Siempre opuesto al ángulo recto.'}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0 mt-0.5"></span>
+              <div>
+                <span className="font-bold text-blue-700">{lang === 'ca' ? 'Catets (a i b)' : 'Catetos (a y b)'}</span>
+                <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'Els dos costats que formen l\'angle recte.' : 'Los dos lados que forman el ángulo recto.'}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="w-3 h-3 rounded-full bg-gray-700 flex-shrink-0 mt-0.5"></span>
+              <div>
+                <span className="font-bold text-gray-700">{lang === 'ca' ? 'Angle recte (90°)' : 'Ángulo recto (90°)'}</span>
+                <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'Marcat pel quadradet. On es troben els dos catets.' : 'Marcado por el cuadradito. Donde se unen los catetos.'}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0 mt-0.5"></span>
+              <div>
+                <span className="font-bold text-emerald-700">{lang === 'ca' ? 'Angles aguts (α i β)' : 'Ángulos agudos (α y β)'}</span>
+                <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'Sempre menors de 90°. Els tres angles sumen 180°.' : 'Siempre menores de 90°. Los tres ángulos suman 180°.'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5 text-center bg-teal-100 rounded-xl py-2 px-4">
+          <span className="text-teal-800 font-bold text-sm italic">
+            {lang === 'ca' ? '✏️ Relació fonamental: a² + b² = c²  (Teorema de Pitàgores)' : '✏️ Relación fundamental: a² + b² = c²  (Teorema de Pitágoras)'}
+          </span>
+        </div>
+      </div>
+
       {/* TIP BOX */}
       <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-6 shadow-sm">
         <div className="flex items-center gap-2 mb-4">

@@ -187,8 +187,13 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
 
       {/* Calculation Guide */}
       <div className="bg-blue-50/50 border border-blue-100 rounded-xl p-6">
-        <h4 className="text-center font-bold text-gray-800 text-lg mb-6">{TEXTS.s3_guide_title[lang]}</h4>
-        
+        <h4 className="text-center font-bold text-gray-800 text-lg mb-2">{TEXTS.s3_guide_title[lang]}</h4>
+        <p className="text-center text-sm text-gray-500 italic mb-6">
+          {lang === 'ca'
+            ? 'En qualsevol triangle rectangle, el quadrat de la hipotenusa és igual a la suma dels quadrats dels dos catets.'
+            : 'En cualquier triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los dos catetos.'}
+        </p>
+
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* Hypotenuse Box - Green */}
           <div className="bg-white border-2 border-green-500 rounded-xl p-6 flex flex-col items-center shadow-sm relative">
