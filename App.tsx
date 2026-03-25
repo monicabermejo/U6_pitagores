@@ -249,7 +249,7 @@ const App: React.FC = () => {
              onClick={() => setActiveSection(6)}
              className={`px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-1 transition-all ${activeSection === 6 ? 'bg-violet-600 text-white scale-105 shadow-md' : 'bg-violet-100 text-violet-800'}`}
            >
-             🚀 {lang === 'ca' ? 'Resum Express' : 'Resumen Exprés'}
+             🚀 {lang === 'ca' ? 'Resum' : 'Resumen'}
            </button>
         </div>
 
