@@ -126,7 +126,13 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               {t('🔍 Trobar la HIPOTENUSA (h)', '🔍 Encontrar la HIPOTENUSA (h)', lang)}
             </div>
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-green-200 mb-3">
-              <div className="text-2xl font-black font-mono text-green-700">h = √(c₁² + c₂²)</div>
+              <div className="text-2xl font-black font-mono text-green-700 flex items-center justify-center">
+                <span>h =&nbsp;</span>
+                <span className="inline-flex items-end">
+                  <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                  <span className="border-t-2 border-green-700" style={{ paddingLeft: '2px', paddingRight: '3px' }}>c₁² + c₂²</span>
+                </span>
+              </div>
             </div>
             <div className="space-y-1 text-sm text-green-800">
               <div className="flex items-start gap-2"><span className="font-bold">1.</span><span>{t('Eleva al quadrat els dos catets', 'Eleva al cuadrado los dos catetos', lang)}</span></div>
@@ -144,7 +150,13 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               {t('🔍 Trobar un CATET (c₁ o c₂)', '🔍 Encontrar un CATETO (c₁ o c₂)', lang)}
             </div>
             <div className="bg-white rounded-lg px-4 py-3 text-center border border-orange-200 mb-3">
-              <div className="text-2xl font-black font-mono text-orange-700">c₁ = √(h² − c₂²)</div>
+              <div className="text-2xl font-black font-mono text-orange-700 flex items-center justify-center">
+                <span>c₁ =&nbsp;</span>
+                <span className="inline-flex items-end">
+                  <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                  <span className="border-t-2 border-orange-700" style={{ paddingLeft: '2px', paddingRight: '3px' }}>h² − c₂²</span>
+                </span>
+              </div>
             </div>
             <div className="space-y-1 text-sm text-orange-800">
               <div className="flex items-start gap-2"><span className="font-bold">1.</span><span>{t('Eleva al quadrat la hipotenusa i el catet conegut', 'Eleva al cuadrado la hipotenusa y el cateto conocido', lang)}</span></div>
