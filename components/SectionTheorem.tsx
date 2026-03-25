@@ -7,45 +7,35 @@ import { trackAnswer } from '../utils/trackAnswer';
 
 export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLocked, studentEmail, sessionId }) => {
   const [openHistory, setOpenHistory] = useState<string | null>(null);
-  const [drillScore, setDrillScore] = useState(0);
-  const [hasChecked, setHasChecked] = useState(false);
+  const [checkedProblems, setCheckedProblems] = useState<Record<string, boolean>>({});
 
   // Drill answers: 5, 6, 13, 5, 10, 12 | 17, 24, 41, 12, 25, 15
   const [inputs, setInputs] = useState({ q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', q11: '', q12: '' });
 
   if (isLocked) return null;
 
-  const checkDrill = () => {
-    const answers: { id: string; correct: number; type: string }[] = [
-      { id: 'q1',  correct: 5,  type: 'h' }, { id: 'q2',  correct: 6,  type: 'c' },
-      { id: 'q3',  correct: 13, type: 'h' }, { id: 'q4',  correct: 5,  type: 'c' },
-      { id: 'q5',  correct: 10, type: 'h' }, { id: 'q6',  correct: 12, type: 'c' },
-      { id: 'q7',  correct: 17, type: 'h' }, { id: 'q8',  correct: 24, type: 'c' },
-      { id: 'q9',  correct: 41, type: 'h' }, { id: 'q10', correct: 12, type: 'c' },
-      { id: 'q11', correct: 25, type: 'h' }, { id: 'q12', correct: 15, type: 'c' },
-    ];
-    let score = 0;
-    answers.forEach(({ id, correct, type }) => {
-      const val = parseFloat(inputs[id as keyof typeof inputs]);
-      const isCorrect = val === correct;
-      if (isCorrect) score++;
-      trackAnswer({
-        email: studentEmail,
-        questionId: `theorem_drill_${id}`,
-        questionText: type === 'h'
-          ? (lang === 'ca' ? `Drill teorema – troba la hipotenusa (${id})` : `Drill teorema – encuentra la hipotenusa (${id})`)
-          : (lang === 'ca' ? `Drill teorema – troba el catet (${id})` : `Drill teorema – encuentra el cateto (${id})`),
-        userAnswer: isNaN(val) ? '' : val,
-        correctAnswer: correct,
-        isCorrect,
-        section: 'theorem',
-        lang,
-        sessionId,
-      });
+  const checkOne = (p: { id: string; ans: number; type: string }) => {
+    const val = parseFloat(inputs[p.id as keyof typeof inputs]);
+    const isCorrect = val === p.ans;
+    trackAnswer({
+      email: studentEmail,
+      questionId: `theorem_drill_${p.id}`,
+      questionText: p.type === 'h'
+        ? (lang === 'ca' ? `Drill teorema – troba la hipotenusa (${p.id})` : `Drill teorema – encuentra la hipotenusa (${p.id})`)
+        : (lang === 'ca' ? `Drill teorema – troba el catet (${p.id})` : `Drill teorema – encuentra el cateto (${p.id})`),
+      userAnswer: isNaN(val) ? '' : val,
+      correctAnswer: p.ans,
+      isCorrect,
+      section: 'theorem',
+      lang,
+      sessionId,
     });
-    setDrillScore(score);
-    setHasChecked(true);
+    setCheckedProblems(prev => ({ ...prev, [p.id]: true }));
   };
+
+  const drillScore = problems.filter(p =>
+    checkedProblems[p.id] && parseFloat(inputs[p.id as keyof typeof inputs]) === p.ans
+  ).length;
 
   const problems = [
     { id: 'q1', num: 1, tex: <>c<sub>1</sub> = 3, c<sub>2</sub> = 4.</>, type: 'h', ans: 5 },
@@ -224,57 +214,72 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         <h4 className="font-bold text-xl text-blue-500 mb-4">{TEXTS.s3_practice_title[lang]}</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
            {problems.map((p) => {
+             const isChecked = checkedProblems[p.id];
              const val = parseFloat(inputs[p.id as keyof typeof inputs]);
              const isCorrect = val === p.ans;
              const isFilled = inputs[p.id as keyof typeof inputs] !== '';
-             
+
              let inputStyle = "border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200";
-             if (hasChecked && isFilled) {
-               inputStyle = isCorrect 
-                  ? "border-green-500 bg-green-50 text-green-900 font-bold" 
-                  : "border-red-300 bg-red-50 text-red-900 font-bold";
+             if (isChecked && isFilled) {
+               inputStyle = isCorrect
+                 ? "border-green-500 bg-green-50 text-green-900 font-bold"
+                 : "border-red-300 bg-red-50 text-red-900 font-bold";
              }
 
              return (
                <div key={p.id} className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col h-full">
-                  <div className="mb-4">
-                    <span className="font-bold text-lg text-gray-800 mr-2">{p.num}.</span>
-                    <span className="math-font text-xl">{p.tex}</span>
-                  </div>
-                  <div className="mb-4 text-gray-800">
-                    {p.type === 'h' ? TEXTS.s3_find_h[lang] : TEXTS.s3_find_c[lang]}
-                  </div>
-                  <input 
-                    type="number"
-                    className={`border rounded p-2 w-32 transition-colors outline-none ${inputStyle}`}
-                    value={inputs[p.id as keyof typeof inputs]}
-                    onChange={(e) => {
-                      setInputs({...inputs, [p.id]: e.target.value});
-                      setHasChecked(false); // Reset check state on edit so user knows to re-check
-                    }}
-                  />
+                 <div className="mb-4">
+                   <span className="font-bold text-lg text-gray-800 mr-2">{p.num}.</span>
+                   <span className="math-font text-xl">{p.tex}</span>
+                 </div>
+                 <div className="mb-3 text-gray-800">
+                   {p.type === 'h' ? TEXTS.s3_find_h[lang] : TEXTS.s3_find_c[lang]}
+                 </div>
+                 <input
+                   type="number"
+                   className={`border rounded p-2 w-32 transition-colors outline-none ${inputStyle}`}
+                   value={inputs[p.id as keyof typeof inputs]}
+                   onChange={(e) => {
+                     setInputs({ ...inputs, [p.id]: e.target.value });
+                     setCheckedProblems(prev => { const n = { ...prev }; delete n[p.id]; return n; });
+                   }}
+                 />
+                 <div className="mt-3 flex flex-col gap-1">
+                   <button
+                     disabled={!isFilled}
+                     onClick={() => checkOne(p)}
+                     className={`w-fit px-4 py-1.5 rounded-lg font-bold text-sm transition-all ${
+                       isFilled
+                         ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer'
+                         : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                     }`}
+                   >
+                     {lang === 'ca' ? 'Comprova' : 'Comprobar'}
+                   </button>
+                   {isChecked && (
+                     <p className={`text-sm font-bold ${isCorrect ? 'text-green-600' : 'text-red-500'}`}>
+                       {isCorrect
+                         ? (lang === 'ca' ? '✓ Correcte!' : '✓ ¡Correcto!')
+                         : (lang === 'ca' ? `✗ La resposta és ${p.ans}` : `✗ La respuesta es ${p.ans}`)}
+                     </p>
+                   )}
+                 </div>
                </div>
              );
            })}
         </div>
         
-        <div className="mt-8 flex flex-col items-center gap-2">
-            <button 
-              onClick={checkDrill} 
-              className="bg-blue-500 text-white px-8 py-3 rounded-lg font-bold shadow-md hover:bg-blue-600 transition-all text-lg"
-            >
-              {TEXTS.s3_check_all[lang]}
-            </button>
-            {hasChecked && drillScore < 12 && (
-              <p className="text-red-500 font-bold animate-pulse">
-                {lang === 'ca' ? `Tens ${drillScore} de 12 correctes.` : `Tienes ${drillScore} de 12 correctas.`}
-              </p>
-            )}
-            {hasChecked && drillScore === 12 && (
-              <p className="text-green-500 font-bold animate-bounce">
-                {lang === 'ca' ? "Perfecte! Tot correcte." : "¡Perfecto! Todo correcto."}
-              </p>
-            )}
+        <div className="mt-6 flex flex-col items-center gap-2">
+          {drillScore > 0 && drillScore < 12 && (
+            <p className="text-gray-500 text-sm">
+              {lang === 'ca' ? `${drillScore} de 12 correctes` : `${drillScore} de 12 correctas`}
+            </p>
+          )}
+          {drillScore === 12 && (
+            <p className="text-green-500 font-bold animate-bounce">
+              {lang === 'ca' ? '🎉 Perfecte! Tot correcte.' : '🎉 ¡Perfecto! Todo correcto.'}
+            </p>
+          )}
         </div>
       </div>
 
