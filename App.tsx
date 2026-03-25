@@ -218,12 +218,12 @@ const App: React.FC = () => {
       <main className="max-w-4xl mx-auto px-4 pt-8">
         
         {/* Navigation / Progress Map */}
-        <div className="flex overflow-x-auto pb-6 gap-3 mb-6 no-scrollbar">
+        <div className="flex flex-wrap gap-2 mb-6">
            {sections.map((sec) => (
              <button 
                key={sec.id}
                onClick={() => level >= sec.id && setActiveSection(sec.id)}
-               className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
+               className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-all whitespace-nowrap ${
                  activeSection === sec.id 
                    ? 'bg-indigo-600 text-white shadow-lg scale-105' 
                    : level >= sec.id 
