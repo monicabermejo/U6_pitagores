@@ -7,6 +7,7 @@ import { SectionVisual } from './components/SectionVisual';
 import { SectionTheorem } from './components/SectionTheorem';
 import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
+import { SectionSummary } from './components/SectionSummary';
 import { Lock, Unlock, RefreshCw, Globe, ChevronRight } from 'lucide-react';
 
 /** Genera un ID de sessió curt i aleatori */
@@ -243,6 +244,13 @@ const App: React.FC = () => {
                ⭐ Expert
              </button>
            )}
+           {/* Summary Badge — always visible */}
+           <button
+             onClick={() => setActiveSection(6)}
+             className={`px-4 py-2 rounded-full font-bold text-sm shadow-sm flex items-center gap-1 transition-all ${activeSection === 6 ? 'bg-violet-600 text-white scale-105 shadow-md' : 'bg-violet-100 text-violet-800'}`}
+           >
+             🚀 {lang === 'ca' ? 'Resum Express' : 'Resumen Exprés'}
+           </button>
         </div>
 
         {/* Active Section Content */}
@@ -269,6 +277,13 @@ const App: React.FC = () => {
           {activeSection === 5 && (
              <div key={`expert-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <SectionExpert lang={lang} studentEmail={studentEmail} sessionId={sessionId} />
+             </div>
+          )}
+
+          {/* Summary — always visible */}
+          {activeSection === 6 && (
+             <div key={`summary-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <SectionSummary lang={lang} />
              </div>
           )}
         </div>
