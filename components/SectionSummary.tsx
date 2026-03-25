@@ -87,11 +87,7 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
               {/* hypotenuse label */}
               <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="13"
                 transform="translate(111,64) rotate(33)">h</text>
-              {/* squares sketch */}
-              <rect x="37" y="125" width="20" height="20" fill="rgba(37,99,235,0.12)" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="3 2" />
-              <text x="47" y="140" fontSize="8" fill="#2563eb" textAnchor="middle">c₂²</text>
-              <rect x="5" y="15" width="20" height="20" fill="rgba(37,99,235,0.12)" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="3 2" />
-              <text x="15" y="30" fontSize="8" fill="#2563eb" textAnchor="middle">c₁²</text>
+
             </svg>
           </div>
 
