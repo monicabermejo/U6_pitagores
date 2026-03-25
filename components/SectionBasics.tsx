@@ -567,19 +567,16 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="70" height="80" viewBox="0 0 90 110">
+                  <svg width="80" height="70" viewBox="-18 0 108 90">
                      {[['#e53e3e','#3182ce','#ed8936'],['#f7fafc','#ecc94b','#48bb78'],['#3182ce','#e53e3e','#f7fafc']]
                        .map((row, ri) => row.map((color, ci) => (
                          <rect key={`${ri}-${ci}`} x={ci*30} y={ri*30} width="30" height="30" fill={color} stroke="black" strokeWidth="2"/>
                        )))}
-                     {/* dimension line for small square side (bottom-left cell = x:0 y:60 w:30 h:30) */}
-                     {/* bracket: left tick + top tick + label */}
-                     <line x1="0" y1="60" x2="0" y2="90" stroke="#374151" strokeWidth="1.5"/>
-                     <line x1="0" y1="60" x2="6" y2="60" stroke="#374151" strokeWidth="1.5"/>
-                     <line x1="0" y1="90" x2="6" y2="90" stroke="#374151" strokeWidth="1.5"/>
-                     <text x="8" y="77" fontSize="9" fill="#374151" dominantBaseline="middle">1.5</text>
-                     {/* label under bottom-left cell */}
-                     <text x="15" y="103" textAnchor="middle" fontSize="9" fill="#374151">1.2</text>
+                     {/* dimension bracket left of bottom-left cell */}
+                     <line x1="-8" y1="60" x2="-8" y2="90" stroke="#374151" strokeWidth="2"/>
+                     <line x1="-8" y1="60" x2="-2" y2="60" stroke="#374151" strokeWidth="2"/>
+                     <line x1="-8" y1="90" x2="-2" y2="90" stroke="#374151" strokeWidth="2"/>
+                     <text x="-14" y="77" fontSize="9" fill="#374151" dominantBaseline="middle" textAnchor="middle">1.5</text>
                   </svg>
                   <p className="text-[10px] font-semibold text-gray-700 text-center leading-tight">
                     {lang === 'ca' ? 'Calcula P i A d\'una cara d\'aquest cub de Rubik' : 'Calcula P y A de una cara de este cubo de Rubik'}
