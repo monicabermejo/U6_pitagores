@@ -204,24 +204,33 @@ function doGet(e) {
 /**
  * Executa des de l'editor d'Apps Script (▶ Run) o des del menú personalitzat.
  * Llegeix els grups únics de "Participants" (columna D) i crea:
- *   · Resum_<grup>     → QUERY sobre Resum_alumnes filtrat per grup
- *   · Respostes_<grup> → QUERY sobre Respostes filtrat per grup
+ *   · Resum_<grup>     → dades de Resum_alumnes filtrades per grup (col C)
+ *   · Respostes_<grup> → dades de Respostes filtrades per grup (col D)
  *
- * Si el full ja existeix, no el sobreescriu (per seguretat).
+ * Escriu les dades directament (sense fórmules) per evitar problemes de locale.
+ * Si el full ja existeix, l'esborra i el recrea amb les dades actualitzades.
  */
 function crearFullsPerGrup() {
   var ss    = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(SHEET_AUTHORIZED);
-  var data  = sheet.getRange("D2:D" + sheet.getLastRow()).getValues();
+  var partData = sheet.getRange("D2:D" + sheet.getLastRow()).getValues();
 
   // Recollir grups únics (ignorant buits)
   var grups = {};
-  for (var i = 0; i < data.length; i++) {
-    var g = String(data[i][0]).trim();
+  for (var i = 0; i < partData.length; i++) {
+    var g = String(partData[i][0]).trim();
     if (g && g !== "undefined" && g !== "null") grups[g] = true;
   }
 
   var grupList = Object.keys(grups).sort();
+
+  // Llegir dades font una sola vegada
+  var sheetResum = ss.getSheetByName(SHEET_SUMMARY);
+  var resumAll   = sheetResum.getDataRange().getValues();
+
+  var sheetResp  = ss.getSheetByName(SHEET_RESPONSES);
+  var respAll    = sheetResp.getDataRange().getValues();
+
   var creats = [];
 
   for (var j = 0; j < grupList.length; j++) {
@@ -229,31 +238,53 @@ function crearFullsPerGrup() {
 
     // ── Resum ──
     var nomResum = "Resum_" + grup;
-    if (!ss.getSheetByName(nomResum)) {
-      var sResum = ss.insertSheet(nomResum);
-      sResum.getRange("A1").setFormula(
-        '=QUERY(Resum_alumnes!A:I, "SELECT * WHERE C = \'' + grup + '\'", 1)'
-      );
-      sResum.setTabColor("#6d28d9"); // violet
-      creats.push(nomResum);
+    var existResum = ss.getSheetByName(nomResum);
+    if (existResum) ss.deleteSheet(existResum);
+    var sResum = ss.insertSheet(nomResum);
+
+    // Filtrar per columna C (índex 2) = Grup
+    var resumRows = [resumAll[0]]; // capçalera
+    for (var r = 1; r < resumAll.length; r++) {
+      if (String(resumAll[r][2]).trim() === grup) {
+        resumRows.push(resumAll[r]);
+      }
     }
+    if (resumRows.length > 1) {
+      sResum.getRange(1, 1, resumRows.length, resumRows[0].length).setValues(resumRows);
+    } else {
+      sResum.getRange(1, 1, 1, resumAll[0].length).setValues([resumAll[0]]);
+      sResum.getRange(2, 1).setValue("(Cap alumne en aquest grup encara)");
+    }
+    sResum.setTabColor("#6d28d9");
+    creats.push(nomResum);
 
     // ── Respostes ──
     var nomResp = "Respostes_" + grup;
-    if (!ss.getSheetByName(nomResp)) {
-      var sResp = ss.insertSheet(nomResp);
-      sResp.getRange("A1").setFormula(
-        '=QUERY(Respostes!A:L, "SELECT * WHERE D = \'' + grup + '\'", 1)'
-      );
-      sResp.setTabColor("#0284c7"); // sky
-      creats.push(nomResp);
+    var existResp = ss.getSheetByName(nomResp);
+    if (existResp) ss.deleteSheet(existResp);
+    var sResp = ss.insertSheet(nomResp);
+
+    // Filtrar per columna D (índex 3) = Grup
+    var respRows = [respAll[0]]; // capçalera
+    for (var r = 1; r < respAll.length; r++) {
+      if (String(respAll[r][3]).trim() === grup) {
+        respRows.push(respAll[r]);
+      }
     }
+    if (respRows.length > 1) {
+      sResp.getRange(1, 1, respRows.length, respRows[0].length).setValues(respRows);
+    } else {
+      sResp.getRange(1, 1, 1, respAll[0].length).setValues([respAll[0]]);
+      sResp.getRange(2, 1).setValue("(Cap resposta en aquest grup encara)");
+    }
+    sResp.setTabColor("#0284c7");
+    creats.push(nomResp);
   }
 
   if (creats.length > 0) {
-    SpreadsheetApp.getUi().alert("Fulls creats: " + creats.join(", "));
+    SpreadsheetApp.getUi().alert("Fulls creats/actualitzats: " + creats.join(", "));
   } else {
-    SpreadsheetApp.getUi().alert("Tots els fulls per grup ja existien. No s'ha creat res.");
+    SpreadsheetApp.getUi().alert("No s'han trobat grups a la pestanya Participants.");
   }
 }
 
@@ -264,6 +295,6 @@ function crearFullsPerGrup() {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("📐 Pitàgores")
-    .addItem("Crear fulls per grup", "crearFullsPerGrup")
+    .addItem("Crear / actualitzar fulls per grup", "crearFullsPerGrup")
     .addToUi();
 }
