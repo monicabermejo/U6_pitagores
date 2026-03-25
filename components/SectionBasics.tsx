@@ -526,9 +526,9 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                {/* Q1: Square */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 0 100 100">
+                  <svg width="60" height="60" viewBox="0 -12 100 112">
                     <rect x="20" y="20" width="60" height="60" fill="white" stroke="#4b5563" strokeWidth="3"/>
-                    <text x="50" y="55" textAnchor="middle" fontSize="16">5</text>
+                    <text x="50" y="12" textAnchor="middle" fontSize="14" fill="#374151" fontWeight="bold">5</text>
                   </svg>
                   <label className="text-xs font-bold text-gray-500 uppercase">Quadrat</label>
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
@@ -538,10 +538,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q2: Triangle */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 0 100 100">
+                  <svg width="60" height="60" viewBox="0 0 100 110">
                     <polygon points="10,90 90,90 50,20" fill="white" stroke="#4b5563" strokeWidth="3"/>
                     <line x1="50" y1="20" x2="50" y2="90" stroke="red" strokeDasharray="3"/>
-                    <text x="50" y="98" textAnchor="middle" fontSize="10">6</text>
+                    <text x="50" y="106" textAnchor="middle" fontSize="10">6</text>
                     <text x="55" y="60" fill="red" fontSize="10">4</text>
                     <text x="80" y="50" fontSize="10">5</text>
                   </svg>
@@ -568,13 +568,14 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
                   <svg width="60" height="60" viewBox="0 0 90 90">
-                     {/* 3x3 Grid */}
-                     {[0,30,60].map(y => [0,30,60].map(x => (
-                       <rect key={x+y} x={x} y={y} width="30" height="30" fill={x===30 && y===30 ? 'yellow' : 'white'} stroke="black" strokeWidth="2"/>
-                     )))}
-                     <text x="45" y="48" fontSize="8" textAnchor="middle">1.5</text>
+                     {[['#e53e3e','#3182ce','#ed8936'],['#f7fafc','#ecc94b','#48bb78'],['#3182ce','#e53e3e','#f7fafc']]
+                       .map((row, ri) => row.map((color, ci) => (
+                         <rect key={`${ri}-${ci}`} x={ci*30} y={ri*30} width="30" height="30" fill={color} stroke="black" strokeWidth="2"/>
+                       )))}
                   </svg>
-                  <label className="text-xs font-bold text-gray-500 uppercase text-center">Rubik (Cara Total)</label>
+                  <p className="text-[10px] font-semibold text-gray-700 text-center leading-tight">
+                    {lang === 'ca' ? 'Calcula P i A d\'una cara d\'aquest cub de Rubik' : 'Calcula P y A de una cara de este cubo de Rubik'}
+                  </p>
                   <p className="text-[10px] text-gray-600 mb-1">1.5 = costat quadrat petit</p>
                   <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                   <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
@@ -582,13 +583,13 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q5: Yield */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 0 100 100">
+                  <svg width="60" height="60" viewBox="0 -14 100 114">
                      <polygon points="10,10 90,10 50,90" fill="white" stroke="red" strokeWidth="5"/>
-                     <text x="50" y="30" textAnchor="middle" fontSize="10">60 cm</text>
-                     <line x1="50" y1="10" x2="50" y2="90" stroke="black" strokeDasharray="2"/>
-                     <text x="55" y="60" fontSize="10">h=52</text>
+                     <text x="50" y="3" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#374151">60 cm</text>
+                     <line x1="50" y1="10" x2="50" y2="90" stroke="red" strokeDasharray="3"/>
+                     <text x="55" y="60" fontSize="10" fill="red" fontWeight="bold">52</text>
                   </svg>
-                  <label className="text-xs font-bold text-gray-500 uppercase text-center">Senyal</label>
+                  <label className="text-xs font-bold text-gray-500 uppercase text-center">Cediu el Pas</label>
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
                   <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                   <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
