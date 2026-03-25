@@ -350,17 +350,12 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
               </tbody>
             </table>
           </div>
-          <div className="bg-indigo-50 border-t border-indigo-200 px-4 py-2 flex flex-wrap items-center gap-2 text-xs text-indigo-800">
-            <span className="text-indigo-600 font-black text-base">★</span>
-            <span className="flex-1">{lang === 'ca' ? 'En aquest tema treballarem tots els triangles rectangles, tant isòsceles com escalens!' : '¡En este tema trabajaremos todos los triángulos rectángulos, tanto isósceles como escalenos!'}</span>
-            <span className="text-gray-400">{lang === 'ca' ? '— = impossible' : '— = imposible'}</span>
-          </div>
         </div>
       </div>
 
       {/* 2. WARNING */}
       <div className="bg-yellow-100 border-l-8 border-yellow-500 p-6 rounded-r-lg shadow-md flex items-start gap-4">
-         <AlertTriangle className="text-yellow-600 w-12 h-12 flex-shrink-0" />
+         <span className="text-4xl flex-shrink-0">⭐</span>
          <div>
             <h4 className="font-black text-yellow-800 text-lg uppercase">{TEXTS.s1_warning_title[lang]}</h4>
             <p className="text-yellow-900 font-medium">{TEXTS.s1_warning_text[lang]}</p>
