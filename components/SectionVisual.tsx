@@ -94,15 +94,15 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
               {/* Label h (hypotenuse) */}
               <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="12" transform="translate(118,63) rotate(31)">h</text>
 
-              {/* Angle α at A(30,20): arc from point on AB to point on AC, inside triangle */}
-              {/* Point on AB at d=13: (30, 33). Point on AC at d=13: (41, 27) */}
-              <path d="M 30,33 A 13,13 0 0,1 41,27" fill="none" stroke="#059669" strokeWidth="1.8"/>
-              <text x="45" y="38" fontSize="11" fill="#059669" fontWeight="bold">α</text>
+              {/* Angle α at A(30,20) — arc centered at A, sweep=0 (CCW screen), from AB to AC */}
+              {/* on AB at d=16: (30,36) · on AC at d=16: (44,28) */}
+              <path d="M 30,36 A 16,16 0 0,0 44,28" fill="none" stroke="#059669" strokeWidth="1.8"/>
+              <text x="45" y="46" fontSize="12" fill="#059669" fontWeight="bold">α</text>
 
-              {/* Angle β at C(215,130): arc from point on CB to point on CA, inside triangle */}
-              {/* Point on CB at d=13: (202, 130). Point on CA at d=13: (204, 123) */}
-              <path d="M 202,130 A 13,13 0 0,0 204,123" fill="none" stroke="#059669" strokeWidth="1.8"/>
-              <text x="190" y="122" fontSize="11" fill="#059669" fontWeight="bold">β</text>
+              {/* Angle β at C(215,130) — arc centered at C, sweep=1 (CW screen), from CB to CA */}
+              {/* on CB at d=16: (199,130) · on CA at d=16: (201,122) */}
+              <path d="M 199,130 A 16,16 0 0,1 201,122" fill="none" stroke="#059669" strokeWidth="1.8"/>
+              <text x="181" y="119" fontSize="12" fill="#059669" fontWeight="bold">β</text>
             </svg>
           </div>
 
