@@ -299,8 +299,32 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
           </p>
           <div className="space-y-1 text-sm text-sky-900">
             <div><span className="font-bold">1.</span> {t('Catets: alçada = 15 m, base = 8 m. Busquem la hipotenusa (cable).', 'Catetos: altura = 15 m, base = 8 m. Buscamos la hipotenusa (cable).', lang)}</div>
-            <div><span className="font-bold">2.</span> c = √(15² + 8²) = √(225 + 64) = √289</div>
-            <div><span className="font-bold">3.</span> √289 = <span className="font-black text-sky-700 text-base">17 m</span></div>
+            <div className="flex flex-wrap items-end gap-x-0.5">
+              <span className="font-bold">2.</span>
+              <span> c =</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>15² + 8²</span>
+              </span>
+              <span>=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>225 + 64</span>
+              </span>
+              <span>=</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>289</span>
+              </span>
+            </div>
+            <div className="flex flex-wrap items-end gap-x-0.5">
+              <span className="font-bold">3.</span>
+              <span className="inline-flex items-end">
+                <span style={{ fontSize: '1.4em', lineHeight: 1 }}>√</span>
+                <span className="border-t-2 border-sky-800" style={{ paddingLeft: '3px', paddingRight: '3px' }}>289</span>
+              </span>
+              <span>= <span className="font-black text-sky-700 text-base">17 m</span></span>
+            </div>
           </div>
         </div>
       </section>
