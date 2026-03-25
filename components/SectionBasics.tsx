@@ -231,10 +231,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <table className="w-full text-xs text-center">
               <thead>
                 <tr className="bg-indigo-50">
-                  <th className="px-3 py-2 text-left text-gray-500 font-bold"></th>
-                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'tots &lt; 90°' : 'todos &lt; 90°'}</span></th>
-                  <th className="px-2 py-2 bg-indigo-600 text-white font-black rounded-t">{TEXTS.s1_right[lang]}<br/><span className="font-normal text-indigo-200">{lang === 'ca' ? 'un = 90° ★' : 'uno = 90° ★'}</span></th>
-                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un &gt; 90°' : 'uno &gt; 90°'}</span></th>
+                  <th className="px-3 py-2 text-left text-gray-500 font-bold w-24"></th>
+                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'tots < 90°' : 'todos < 90°'}</span></th>
+                  <th className="px-2 py-2 bg-indigo-600 text-white font-black">{TEXTS.s1_right[lang]}<br/><span className="font-normal text-indigo-200">{lang === 'ca' ? 'un = 90° ★' : 'uno = 90° ★'}</span></th>
+                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un > 90°' : 'uno > 90°'}</span></th>
                 </tr>
               </thead>
               <tbody>
