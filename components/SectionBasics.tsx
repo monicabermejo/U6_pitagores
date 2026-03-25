@@ -215,24 +215,36 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
         <div className="mt-6 border border-gray-200 rounded-xl overflow-hidden">
           <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
             <p className="text-xs font-black text-gray-500 uppercase tracking-widest text-center">
-              {lang === 'ca' ? 'Totes les combinacions possibles' : 'Todas las combinaciones posibles'}
+              {lang === 'ca' ? '7 combinacions possibles (de 9 teòriques)' : '7 combinaciones posibles (de 9 teóricas)'}
             </p>
           </div>
+
+          {/* Why only 7 */}
+          <div className="bg-blue-50 border-b border-blue-100 px-4 py-3 text-xs text-blue-800">
+            <span className="font-bold">💡 {lang === 'ca' ? 'Per què no 9?' : '¿Por qué no 9?'} </span>
+            {lang === 'ca'
+              ? 'El triangle equilàter té tots els angles iguals: 180º ÷ 3 = 60º. Com que 60º < 90º, sempre és acutangle. És impossible que sigui rectangle o obtusangle.'
+              : 'El triángulo equilátero tiene todos los ángulos iguales: 180° ÷ 3 = 60°. Como 60° < 90°, siempre es acutángulo. Es imposible que sea rectángulo u obtusángulo.'}
+          </div>
+
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-center">
               <thead>
                 <tr className="bg-indigo-50">
-                  <th className="px-3 py-2 text-left text-gray-500 font-bold w-28"></th>
-                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}</th>
-                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_right[lang]}</th>
-                  <th className="px-3 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}</th>
+                  <th className="px-3 py-2 text-left text-gray-500 font-bold"></th>
+                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_acute[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'tots &lt; 90°' : 'todos &lt; 90°'}</span></th>
+                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_right[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un = 90°' : 'uno = 90°'}</span></th>
+                  <th className="px-2 py-2 text-indigo-700 font-bold">{TEXTS.s1_obtuse[lang]}<br/><span className="font-normal text-gray-400">{lang === 'ca' ? 'un &gt; 90°' : 'uno &gt; 90°'}</span></th>
                 </tr>
               </thead>
               <tbody>
                 {/* Equilateral row */}
                 <tr className="border-t border-gray-100">
-                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_equilateral[lang]}</td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-3 font-bold text-left text-indigo-700 whitespace-nowrap">
+                    {TEXTS.s1_equilateral[lang]}
+                    <div className="font-normal text-gray-400 mt-0.5">{lang === 'ca' ? '3 costats =':'3 lados ='}</div>
+                  </td>
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="30,6 54,54 6,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
@@ -241,15 +253,29 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                         <circle cx="42" cy="34" r="1.5" fill="#4f46e5"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">60°, 60°, 60°</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2 bg-gray-50 text-gray-300 text-lg font-bold align-middle">—</td>
-                  <td className="px-3 py-2 bg-gray-50 text-gray-300 text-lg font-bold align-middle">—</td>
+                  <td className="px-2 py-3 bg-gray-100">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-gray-300 text-2xl font-bold">—</span>
+                      <span className="text-gray-400 leading-tight text-center">{lang === 'ca' ? 'impossible' : 'imposible'}</span>
+                    </div>
+                  </td>
+                  <td className="px-2 py-3 bg-gray-100">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-gray-300 text-2xl font-bold">—</span>
+                      <span className="text-gray-400 leading-tight text-center">{lang === 'ca' ? 'impossible' : 'imposible'}</span>
+                    </div>
+                  </td>
                 </tr>
                 {/* Isosceles row */}
                 <tr className="border-t border-gray-100">
-                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_isosceles[lang]}</td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-3 font-bold text-left text-indigo-700 whitespace-nowrap">
+                    {TEXTS.s1_isosceles[lang]}
+                    <div className="font-normal text-gray-400 mt-0.5">{lang === 'ca' ? '2 costats =':'2 lados ='}</div>
+                  </td>
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="30,8 50,54 10,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
@@ -257,9 +283,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                         <line x1="39" y1="31" x2="45" y2="31" stroke="red" strokeWidth="1.5"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">70°, 70°, 40°</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2 bg-yellow-50 border border-yellow-200 rounded">
+                  <td className="px-2 py-3 bg-yellow-50 border-x border-yellow-200">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="10,10 10,54 54,54" fill="rgba(234,179,8,0.15)" stroke="#ca8a04" strokeWidth="2"/>
@@ -268,9 +295,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                         <line x1="32" y1="57" x2="32" y2="51" stroke="red" strokeWidth="1.5"/>
                       </svg>
                       <span className="text-yellow-500 font-black text-sm">★</span>
+                      <span className="text-gray-400">90°, 45°, 45°</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="6,54 43,54 50,12" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
@@ -279,36 +307,43 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                         <path d="M 35,54 A 8,8 0 0,1 37,47" fill="none" stroke="#374151" strokeWidth="1.3"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">120°, 30°, 30°</span>
                     </div>
                   </td>
                 </tr>
                 {/* Scalene row */}
                 <tr className="border-t border-gray-100">
-                  <td className="px-3 py-2 font-bold text-left text-indigo-700">{TEXTS.s1_scalene[lang]}</td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-3 font-bold text-left text-indigo-700 whitespace-nowrap">
+                    {TEXTS.s1_scalene[lang]}
+                    <div className="font-normal text-gray-400 mt-0.5">{lang === 'ca' ? 'cap costat =':'ningún lado ='}</div>
+                  </td>
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="20,8 54,54 6,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">80°, 60°, 40°</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="10,10 10,54 52,54" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
                         <rect x="10" y="44" width="10" height="10" fill="none" stroke="#4f46e5" strokeWidth="1.5"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">90°, 60°, 30°</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2">
+                  <td className="px-2 py-3">
                     <div className="flex flex-col items-center gap-1">
                       <svg viewBox="0 0 60 60" className="w-10 h-10">
                         <polygon points="6,54 46,54 54,14" fill="rgba(99,102,241,0.1)" stroke="#4f46e5" strokeWidth="2"/>
                         <path d="M 33,54 A 8,8 0 0,1 36,47" fill="none" stroke="#374151" strokeWidth="1.3"/>
                       </svg>
                       <span className="text-green-600 font-bold">✓</span>
+                      <span className="text-gray-400">120°, 40°, 20°</span>
                     </div>
                   </td>
                 </tr>
