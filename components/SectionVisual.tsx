@@ -68,41 +68,41 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-6">
-          {/* SVG diagram */}
+          {/* SVG diagram — vèrtexs: A(30,20) dalt, B(30,130) angle recte, C(215,130) dreta */}
           <div className="flex-shrink-0">
             <svg viewBox="0 0 260 160" className="w-72 h-44 mx-auto">
               {/* Triangle fill */}
               <polygon points="30,130 30,20 215,130" fill="rgba(20,184,166,0.08)" stroke="none"/>
 
-              {/* Catet vertical (a) — blue */}
+              {/* Catet 1 — vertical — blue */}
               <line x1="30" y1="20" x2="30" y2="130" stroke="#2563eb" strokeWidth="3" strokeLinecap="round"/>
-              {/* Catet horitzontal (b) — blue */}
+              {/* Catet 2 — horitzontal — blue */}
               <line x1="30" y1="130" x2="215" y2="130" stroke="#2563eb" strokeWidth="3" strokeLinecap="round"/>
-              {/* Hipotenusa (c) — red */}
+              {/* Hipotenusa h — red */}
               <line x1="30" y1="20" x2="215" y2="130" stroke="#dc2626" strokeWidth="3.5" strokeLinecap="round"/>
 
-              {/* Right angle marker */}
+              {/* Right angle marker at B(30,130) */}
               <polyline points="30,118 42,118 42,130" fill="none" stroke="#374151" strokeWidth="2"/>
+              <text x="44" y="126" fontSize="9" fill="#374151" fontWeight="bold">90°</text>
 
-              {/* Label: catet a (vertical) */}
-              <text textAnchor="middle" fill="#2563eb" fontWeight="bold" fontSize="11" transform="translate(14,75) rotate(-90)">catet a</text>
+              {/* Label c₁ (vertical leg) */}
+              <text textAnchor="middle" fill="#2563eb" fontWeight="bold" fontSize="12" transform="translate(14,75) rotate(-90)">c₁</text>
 
-              {/* Label: catet b (horizontal) */}
-              <text x="122" y="148" fontSize="11" fill="#2563eb" fontWeight="bold" textAnchor="middle">catet b</text>
+              {/* Label c₂ (horizontal leg) */}
+              <text x="122" y="148" fontSize="12" fill="#2563eb" fontWeight="bold" textAnchor="middle">c₂</text>
 
-              {/* Label: hipotenusa c (along diagonal) */}
-              <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="11" transform="translate(126,68) rotate(31)">hipotenusa c</text>
+              {/* Label h (hypotenuse) */}
+              <text textAnchor="middle" fill="#dc2626" fontWeight="bold" fontSize="12" transform="translate(118,63) rotate(31)">h</text>
 
-              {/* 90° label */}
-              <text x="47" y="126" fontSize="9" fill="#374151" fontWeight="bold">90°</text>
+              {/* Angle α at A(30,20): arc from point on AB to point on AC, inside triangle */}
+              {/* Point on AB at d=13: (30, 33). Point on AC at d=13: (41, 27) */}
+              <path d="M 30,33 A 13,13 0 0,1 41,27" fill="none" stroke="#059669" strokeWidth="1.8"/>
+              <text x="45" y="38" fontSize="11" fill="#059669" fontWeight="bold">α</text>
 
-              {/* Angle α at top vertex */}
-              <path d="M 30,40 Q 46,36 42,52" fill="none" stroke="#059669" strokeWidth="1.5"/>
-              <text x="44" y="48" fontSize="10" fill="#059669" fontWeight="bold">α</text>
-
-              {/* Angle β at right vertex */}
-              <path d="M 200,130 Q 195,116 183,122" fill="none" stroke="#059669" strokeWidth="1.5"/>
-              <text x="179" y="118" fontSize="10" fill="#059669" fontWeight="bold">β</text>
+              {/* Angle β at C(215,130): arc from point on CB to point on CA, inside triangle */}
+              {/* Point on CB at d=13: (202, 130). Point on CA at d=13: (204, 123) */}
+              <path d="M 202,130 A 13,13 0 0,0 204,123" fill="none" stroke="#059669" strokeWidth="1.8"/>
+              <text x="190" y="122" fontSize="11" fill="#059669" fontWeight="bold">β</text>
             </svg>
           </div>
 
@@ -111,14 +111,14 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="flex items-start gap-3">
               <span className="w-3 h-3 rounded-full bg-red-500 flex-shrink-0 mt-0.5"></span>
               <div>
-                <span className="font-bold text-red-700">{lang === 'ca' ? 'Hipotenusa (c)' : 'Hipotenusa (c)'}</span>
+                <span className="font-bold text-red-700">{lang === 'ca' ? 'Hipotenusa (h)' : 'Hipotenusa (h)'}</span>
                 <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'El costat més llarg. Sempre oposat a l\'angle recte.' : 'El lado más largo. Siempre opuesto al ángulo recto.'}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span className="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0 mt-0.5"></span>
               <div>
-                <span className="font-bold text-blue-700">{lang === 'ca' ? 'Catets (a i b)' : 'Catetos (a y b)'}</span>
+                <span className="font-bold text-blue-700">{lang === 'ca' ? 'Catets (c₁ i c₂)' : 'Catetos (c₁ y c₂)'}</span>
                 <p className="text-gray-600 text-xs mt-0.5">{lang === 'ca' ? 'Els dos costats que formen l\'angle recte.' : 'Los dos lados que forman el ángulo recto.'}</p>
               </div>
             </div>
@@ -137,12 +137,6 @@ export const SectionVisual: React.FC<SectionProps> = ({ lang, onComplete, isLock
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-5 text-center bg-teal-100 rounded-xl py-2 px-4">
-          <span className="text-teal-800 font-bold text-sm italic">
-            {lang === 'ca' ? '✏️ Relació fonamental: a² + b² = c²  (Teorema de Pitàgores)' : '✏️ Relación fundamental: a² + b² = c²  (Teorema de Pitágoras)'}
-          </span>
         </div>
       </div>
 
