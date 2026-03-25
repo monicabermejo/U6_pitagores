@@ -576,7 +576,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                      <line x1="-8" y1="60" x2="-8" y2="90" stroke="#374151" strokeWidth="2"/>
                      <line x1="-8" y1="60" x2="-2" y2="60" stroke="#374151" strokeWidth="2"/>
                      <line x1="-8" y1="90" x2="-2" y2="90" stroke="#374151" strokeWidth="2"/>
-                     <text x="-14" y="77" fontSize="9" fill="#374151" dominantBaseline="middle" textAnchor="middle">1.5</text>
+                     <text x="-17" y="77" fontSize="9" fill="#374151" dominantBaseline="middle" textAnchor="middle">1.5</text>
                   </svg>
                   <p className="text-[10px] font-semibold text-gray-700 text-center leading-tight">
                     {lang === 'ca' ? 'Calcula P i A d\'una cara d\'aquest cub de Rubik' : 'Calcula P y A de una cara de este cubo de Rubik'}
