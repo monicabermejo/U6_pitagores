@@ -147,11 +147,37 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
            />
          </button>
          {activityOpen && (
-           <div className="px-8 pb-8 space-y-4 text-purple-800 text-lg">
-             <p className="flex gap-3"><span className="font-black bg-purple-200 text-purple-800 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span> {TEXTS.s4_activity_p1[lang]}</p>
-             <p className="flex gap-3"><span className="font-black bg-purple-200 text-purple-800 w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span> {TEXTS.s4_activity_p2[lang]}</p>
-             <p className="flex gap-3"><span className="font-black bg-purple-200 text-purple-800 w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span> {TEXTS.s4_activity_p3[lang]}</p>
-             <p className="flex gap-3"><span className="font-black bg-purple-200 text-purple-800 w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span> {TEXTS.s4_activity_p4[lang]}</p>
+           <div className="px-8 pb-8 space-y-6 text-purple-800">
+             {/* Fase 1 */}
+             <div className="bg-white/60 rounded-lg p-5 border border-purple-100">
+               <div className="flex items-center justify-between mb-2">
+                 <p className="font-bold text-lg">{TEXTS.s4_activity_p1_title[lang]}</p>
+                 <span className="text-sm font-semibold bg-purple-200 text-purple-700 px-3 py-1 rounded-full">{TEXTS.s4_activity_p1_time[lang]}</span>
+               </div>
+               <p className="text-base leading-relaxed">{TEXTS.s4_activity_p1[lang]}</p>
+             </div>
+             {/* Fase 2 */}
+             <div className="bg-white/60 rounded-lg p-5 border border-purple-100">
+               <div className="flex items-center justify-between mb-2">
+                 <p className="font-bold text-lg">{TEXTS.s4_activity_p2_title[lang]}</p>
+                 <span className="text-sm font-semibold bg-purple-200 text-purple-700 px-3 py-1 rounded-full">{TEXTS.s4_activity_p2_time[lang]}</span>
+               </div>
+               <p className="text-base leading-relaxed">{TEXTS.s4_activity_p2[lang]}</p>
+             </div>
+             {/* Fase 3 */}
+             <div className="bg-white/60 rounded-lg p-5 border border-purple-100">
+               <p className="font-bold text-lg mb-2">{TEXTS.s4_activity_p3_title[lang]}</p>
+               <p className="text-base leading-relaxed">{TEXTS.s4_activity_p3[lang]}</p>
+             </div>
+             {/* Avaluació */}
+             <div className="bg-purple-100/80 rounded-lg p-5 border border-purple-200">
+               <p className="font-bold text-lg mb-3">{TEXTS.s4_activity_eval_title[lang]}</p>
+               <ul className="space-y-2 text-base">
+                 <li className="flex gap-2"><span>🧩</span> {TEXTS.s4_activity_eval1[lang]}</li>
+                 <li className="flex gap-2"><span>🎙️</span> {TEXTS.s4_activity_eval2[lang]}</li>
+                 <li className="flex gap-2"><span>✍️</span> {TEXTS.s4_activity_eval3[lang]}</li>
+               </ul>
+             </div>
            </div>
          )}
       </div>

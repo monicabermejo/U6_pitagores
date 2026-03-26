@@ -123,11 +123,19 @@ export const TEXTS: Translations = {
   s3_check_all: { ca: "Comprovar Tot", es: "Comprobar Todo" },
 
   // Section 4 Activity
-  s4_activity_title: { ca: "🌟 Activitat Avaluable: Sigueu els Professors!", es: "🌟 Actividad Evaluable: ¡Sed los Profesores!" },
-  s4_activity_p1: { ca: "Fase 1: Parelles. Cadascú inventa 1 problema i el company el resol.", es: "Fase 1: Parejas. Cada uno inventa 1 problema y el compañero lo resuelve." },
-  s4_activity_p2: { ca: "Fase 2: Grups de 4. Trieu el millor problema dels 4.", es: "Fase 2: Grupos de 4. Elegid el mejor problema de los 4." },
-  s4_activity_p3: { ca: "Fase 3: Preparació. Poliu l'enunciat i la solució.", es: "Fase 3: Preparación. Pulid el enunciado y la solución." },
-  s4_activity_p4: { ca: "Fase 4: Pissarra. Sortiu a explicar-lo com a professors: plantegeu, pregunteu a la classe i resoleu pas a pas.", es: "Fase 4: Pizarra. Salid a explicarlo como profesores: plantead, preguntad a la clase y resolved paso a paso." },
+  s4_activity_title: { ca: "🌟 Activitat Avaluable: Crea el Teu Problema!", es: "🌟 Actividad Evaluable: ¡Crea Tu Problema!" },
+  s4_activity_p1_title: { ca: "🤝 Fase 1 — Creació en parella", es: "🤝 Fase 1 — Creación en pareja" },
+  s4_activity_p1: { ca: "Inventeu un problema original de Pitàgores entre els dos. Podeu usar la IA per guanyar creativitat! Ha d'incloure enunciat complet i resolució amb tot el procediment pas a pas.", es: "Inventad un problema original de Pitágoras entre los dos. ¡Podéis usar la IA para ganar creatividad! Debe incluir enunciado completo y resolución con todo el procedimiento paso a paso." },
+  s4_activity_p1_time: { ca: "⏱️ 30 minuts", es: "⏱️ 30 minutos" },
+  s4_activity_p2_title: { ca: "🔀 Fase 2 — Intercanvi en grup de 4", es: "🔀 Fase 2 — Intercambio en grupo de 4" },
+  s4_activity_p2: { ca: "Ajunteu-vos amb una altra parella. Intercanvieu els problemes, expliqueu-vos-els mútuament i trieu el més original dels dos per presentar a classe.", es: "Juntaos con otra pareja. Intercambiad los problemas, explicáoslos mutuamente y elegid el más original de los dos para presentar en clase." },
+  s4_activity_p2_time: { ca: "⏱️ 15 minuts", es: "⏱️ 15 minutos" },
+  s4_activity_p3_title: { ca: "🎤 Fase 3 — Presentació i entrega", es: "🎤 Fase 3 — Presentación y entrega" },
+  s4_activity_p3: { ca: "Prepareu la presentació oral per al proper dia: exposeu el problema a la resta de la classe. Entregueu també el problema ben presentat a mà (enunciat + resolució).", es: "Preparad la presentación oral para el próximo día: exponed el problema al resto de la clase. Entregad también el problema bien presentado a mano (enunciado + resolución)." },
+  s4_activity_eval_title: { ca: "📋 Què s'avaluarà?", es: "📋 ¿Qué se evaluará?" },
+  s4_activity_eval1: { ca: "El problema: originalitat, dificultat adequada i que estigui ben plantejat", es: "El problema: originalidad, dificultad adecuada y que esté bien planteado" },
+  s4_activity_eval2: { ca: "La presentació oral: claredat, seguretat i que tota la classe ho entengui", es: "La presentación oral: claridad, seguridad y que toda la clase lo entienda" },
+  s4_activity_eval3: { ca: "L'entrega escrita: netedat, procediment complet i resultat correcte", es: "La entrega escrita: limpieza, procedimiento completo y resultado correcto" },
 
   // EXTENSION: EXPERT LEVEL
   ext_desc: { 
