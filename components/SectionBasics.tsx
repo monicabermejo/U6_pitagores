@@ -550,7 +550,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                {/* Q1: Square */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 -12 100 112">
+                  <svg width="90" height="90" viewBox="0 -12 100 112">
                     <rect x="20" y="20" width="60" height="60" fill="white" stroke="#4b5563" strokeWidth="3"/>
                     <text x="50" y="12" textAnchor="middle" fontSize="14" fill="#374151" fontWeight="bold">5</text>
                   </svg>
@@ -562,7 +562,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q2: Triangle */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 0 100 110">
+                  <svg width="90" height="90" viewBox="0 0 100 110">
                     <polygon points="10,90 90,90 50,20" fill="white" stroke="#4b5563" strokeWidth="3"/>
                     <line x1="50" y1="20" x2="50" y2="90" stroke="red" strokeDasharray="3"/>
                     <text x="50" y="106" textAnchor="middle" fontSize="10">6</text>
@@ -577,7 +577,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q3: Circle */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 0 100 100">
+                  <svg width="90" height="90" viewBox="0 0 100 100">
                      <circle cx="50" cy="50" r="40" fill="white" stroke="#4b5563" strokeWidth="3"/>
                      {/* Diameter Line */}
                      <line x1="10" y1="50" x2="90" y2="50" stroke="blue" strokeWidth="2"/>
@@ -594,7 +594,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="80" height="70" viewBox="-22 0 112 90">
+                  <svg width="100" height="90" viewBox="-22 0 112 90">
                      {[['#e53e3e','#3182ce','#ed8936'],['#f7fafc','#ecc94b','#48bb78'],['#3182ce','#e53e3e','#f7fafc']]
                        .map((row, ri) => row.map((color, ci) => (
                          <rect key={`${ri}-${ci}`} x={ci*30} y={ri*30} width="30" height="30" fill={color} stroke="black" strokeWidth="2"/>
