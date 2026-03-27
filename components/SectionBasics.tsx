@@ -614,7 +614,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q5: Yield */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="60" height="60" viewBox="0 -14 100 114">
+                  <svg width="90" height="90" viewBox="0 -14 100 114">
                      <polygon points="10,10 90,10 50,90" fill="white" stroke="red" strokeWidth="5"/>
                      <text x="50" y="3" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#374151">60 cm</text>
                      <line x1="50" y1="10" x2="50" y2="90" stroke="red" strokeDasharray="3"/>
@@ -628,7 +628,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
 
                {/* Q6: Estel (cometa en forma de rombe) — D=8, d=6, l=5 */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="70" height="80" viewBox="0 0 100 130">
+                  <svg width="100" height="115" viewBox="0 0 100 130">
                      {/* Rombe colorit */}
                      <polygon points="50,5 85,45 50,85 15,45" fill="#fbbf24" stroke="#b45309" strokeWidth="2.5" />
                      {/* Decoració interior: franges de color */}
