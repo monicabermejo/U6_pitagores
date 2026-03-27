@@ -653,7 +653,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                      <path d="M48,112 Q43,109 45,115 Q47,118 48,112" fill="#60a5fa" />
                   </svg>
                   <label className="text-xs font-bold text-gray-500 uppercase text-center">
-                     {lang === 'ca' ? 'Estel (cometa)' : 'Cometa'}
+                     {lang === 'ca' ? 'Estel' : 'Cometa'}
                   </label>
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
                   <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q6p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
