@@ -7,6 +7,18 @@ export const TEXTS: Translations = {
   welcome_title: { ca: "Benvinguts a l'Aventura!", es: "¡Bienvenidos a la Aventura!" },
   welcome_desc: { ca: "Esteu preparats per resoldre el repte i convertir-vos en experts?", es: "¿Estáis preparados para resolver el reto y convertiros en expertos?" },
   start_btn: { ca: "Comencem! 🚀", es: "¡Empecemos! 🚀" },
+
+  // Unlock question (Secció 0)
+  unlock_title: { ca: "🔓 Pregunta de Desbloqueig", es: "🔓 Pregunta de Desbloqueo" },
+  unlock_subtitle: { ca: "Respon correctament per desbloquejar el dossier!", es: "¡Responde correctamente para desbloquear el dossier!" },
+  unlock_question: { ca: "Qui era Pitàgores de Samos?", es: "¿Quién era Pitágoras de Samos?" },
+  unlock_a: { ca: "🍕 L'inventor de la pizza", es: "🍕 El inventor de la pizza" },
+  unlock_b: { ca: "📐 Un matemàtic grec famós", es: "📐 Un matemático griego famoso" },
+  unlock_c: { ca: "🧙 Un mag de Hogwarts", es: "🧙 Un mago de Hogwarts" },
+  unlock_d: { ca: "🎸 El cantant d'un grup de rock", es: "🎸 El cantante de un grupo de rock" },
+  unlock_wrong: { ca: "Hmm... segur? 😄 Torna-ho a provar!", es: "Hmm... ¿seguro? 😄 ¡Inténtalo de nuevo!" },
+  unlock_correct: { ca: "Exacte! 🎉 Benvingut/da al dossier!", es: "¡Exacto! 🎉 ¡Bienvenido/a al dossier!" },
+
   section_1_title: { ca: "1️⃣ Recordatori", es: "1️⃣ Recordatorio" },
   section_2_title: { ca: "2️⃣ Identificació Visual", es: "2️⃣ Identificación Visual" },
   section_3_title: { ca: "3️⃣ El Teorema", es: "3️⃣ El Teorema" },

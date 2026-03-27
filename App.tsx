@@ -8,6 +8,7 @@ import { SectionTheorem } from './components/SectionTheorem';
 import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
 import { SectionSummary } from './components/SectionSummary';
+import { trackAnswer } from './utils/trackAnswer';
 import { RefreshCw, Globe } from 'lucide-react';
 
 /** Genera un ID de sessió curt i aleatori */
@@ -28,6 +29,9 @@ const App: React.FC = () => {
   const [validating, setValidating] = useState(false);
   const [unauthorized, setUnauthorized] = useState(false);
   const [sessionId] = useState<string>(generateSessionId);
+  const [unlocked, setUnlocked] = useState(false);
+  const [unlockAnswer, setUnlockAnswer] = useState<string | null>(null);
+  const [unlockFeedback, setUnlockFeedback] = useState<'correct' | 'incorrect' | null>(null);
   // Prevents flash of email screen before localStorage is read
   const [ready, setReady] = useState(false);
 
@@ -44,6 +48,8 @@ const App: React.FC = () => {
     if (savedLang) setLang(savedLang as Language);
     const savedEmail = localStorage.getItem('pythagoras_email');
     if (savedEmail) setStudentEmail(savedEmail);
+    const savedUnlocked = localStorage.getItem('pythagoras_unlocked');
+    if (savedUnlocked === 'true') setUnlocked(true);
     setReady(true);
   }, []);
 
@@ -73,6 +79,7 @@ const App: React.FC = () => {
       localStorage.removeItem('pythagoras_level');
       localStorage.removeItem('pythagoras_lang');
       localStorage.removeItem('pythagoras_email');
+      localStorage.removeItem('pythagoras_unlocked');
       
       // 2. Reset all states to default
       setLang('ca');
@@ -81,6 +88,9 @@ const App: React.FC = () => {
       setStarted(false);
       setStudentEmail('');
       setEmailInput('');
+      setUnlocked(false);
+      setUnlockAnswer(null);
+      setUnlockFeedback(null);
       
       // 3. Force full re-render of components (clears inputs and chat)
       setSessionKey(prev => prev + 1); 
@@ -126,6 +136,47 @@ const App: React.FC = () => {
   // Wait until localStorage has been read to avoid showing the email screen
   // briefly even when a saved email exists
   if (!ready) return null;
+
+  // ── Pantalla de desbloqueig (després del login, abans del contingut) ──
+  const handleUnlockAnswer = (option: string) => {
+    setUnlockAnswer(option);
+    const isCorrect = option === 'b';
+    if (isCorrect) {
+      setUnlockFeedback('correct');
+      trackAnswer({
+        email: studentEmail,
+        questionId: 'unlock_trivia',
+        questionText: TEXTS.unlock_question[lang],
+        userAnswer: TEXTS[`unlock_${option}`][lang],
+        correctAnswer: TEXTS.unlock_b[lang],
+        isCorrect: true,
+        section: 'desbloqueig',
+        lang,
+        sessionId,
+      });
+      setTimeout(() => {
+        setUnlocked(true);
+        localStorage.setItem('pythagoras_unlocked', 'true');
+      }, 1500);
+    } else {
+      setUnlockFeedback('incorrect');
+      trackAnswer({
+        email: studentEmail,
+        questionId: 'unlock_trivia',
+        questionText: TEXTS.unlock_question[lang],
+        userAnswer: TEXTS[`unlock_${option}`][lang],
+        correctAnswer: TEXTS.unlock_b[lang],
+        isCorrect: false,
+        section: 'desbloqueig',
+        lang,
+        sessionId,
+      });
+      setTimeout(() => {
+        setUnlockFeedback(null);
+        setUnlockAnswer(null);
+      }, 1200);
+    }
+  };
 
   if (!studentEmail) {
     return (
@@ -174,6 +225,50 @@ const App: React.FC = () => {
               : TEXTS.start_btn[lang]}
           </button>
           
+          <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
+            <Globe size={16} /> {lang === 'ca' ? 'Canviar a Castellano' : 'Canviar a Català'}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (studentEmail && !unlocked) {
+    const options = ['a', 'b', 'c', 'd'] as const;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full text-center space-y-6">
+          <div className="text-6xl mb-2">🔓</div>
+          <h2 className="text-2xl font-black text-gray-800">{TEXTS.unlock_title[lang]}</h2>
+          <p className="text-gray-500">{TEXTS.unlock_subtitle[lang]}</p>
+          <p className="text-lg font-bold text-indigo-900">{TEXTS.unlock_question[lang]}</p>
+
+          <div className="space-y-3 text-left">
+            {options.map((opt) => (
+              <button
+                key={opt}
+                onClick={() => !unlockFeedback && handleUnlockAnswer(opt)}
+                disabled={!!unlockFeedback}
+                className={`w-full text-left px-4 py-3 rounded-xl border-2 font-semibold transition-all ${
+                  unlockAnswer === opt && unlockFeedback === 'correct'
+                    ? 'border-green-400 bg-green-50 text-green-800 scale-105'
+                    : unlockAnswer === opt && unlockFeedback === 'incorrect'
+                    ? 'border-red-400 bg-red-50 text-red-700 animate-shake'
+                    : 'border-gray-200 hover:border-indigo-400 hover:bg-indigo-50 text-gray-700'
+                } disabled:cursor-default`}
+              >
+                {TEXTS[`unlock_${opt}`][lang]}
+              </button>
+            ))}
+          </div>
+
+          {unlockFeedback === 'correct' && (
+            <p className="text-green-600 font-bold text-lg animate-bounce">{TEXTS.unlock_correct[lang]}</p>
+          )}
+          {unlockFeedback === 'incorrect' && (
+            <p className="text-red-500 font-bold">{TEXTS.unlock_wrong[lang]}</p>
+          )}
+
           <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
             <Globe size={16} /> {lang === 'ca' ? 'Canviar a Castellano' : 'Canviar a Català'}
           </button>
