@@ -66,21 +66,23 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
     // Q3: Circle DIAMETER=10 -> r=5. P=2*pi*5=31.41, A=pi*25=78.54
     // Q4: Rubik small=1.5 -> Side=4.5. P=18, A=20.25
     // Q5: Yield s=60, h=52. P=180, A=1560
+    // Q6: Kite (rombe) D=8, d=6, l=5. P=20, A=24
 
     const q1ok = eq(apAnswers['q1p'], 20) && eq(apAnswers['q1a'], 25);
     const q2ok = eq(apAnswers['q2p'], 16) && eq(apAnswers['q2a'], 12);
     const q3ok = eq(apAnswers['q3p'], 31.4) && eq(apAnswers['q3a'], 78.5); 
     const q4ok = eq(apAnswers['q4p'], 18) && eq(apAnswers['q4a'], 20.25);
     const q5ok = eq(apAnswers['q5p'], 180) && eq(apAnswers['q5a'], 1560);
+    const q6ok = eq(apAnswers['q6p'], 20) && eq(apAnswers['q6a'], 24);
 
-    if (q1ok && q2ok && q3ok && q4ok && q5ok) {
+    if (q1ok && q2ok && q3ok && q4ok && q5ok && q6ok) {
         setApFeedback(true);
         trackAnswer({
           email: studentEmail,
           questionId: 'basics_area_perimeter',
           questionText: lang === 'ca'
-            ? 'Exercici àrea i perímetre (5 figures)'
-            : 'Ejercicio área y perímetro (5 figuras)',
+            ? 'Exercici àrea i perímetre (6 figures)'
+            : 'Ejercicio área y perímetro (6 figuras)',
           userAnswer: 'tot correcte',
           correctAnswer: 'tot correcte',
           isCorrect: true,
@@ -93,10 +95,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
           email: studentEmail,
           questionId: 'basics_area_perimeter',
           questionText: lang === 'ca'
-            ? 'Exercici àrea i perímetre (5 figures)'
-            : 'Ejercicio área y perímetro (5 figuras)',
+            ? 'Exercici àrea i perímetre (6 figures)'
+            : 'Ejercicio área y perímetro (6 figuras)',
           userAnswer: JSON.stringify(apAnswers),
-          correctAnswer: 'q1p:20,q1a:25,q2p:16,q2a:12,q3p:31.4,q3a:78.5,q4p:18,q4a:20.25,q5p:180,q5a:1560',
+          correctAnswer: 'q1p:20,q1a:25,q2p:16,q2a:12,q3p:31.4,q3a:78.5,q4p:18,q4a:20.25,q5p:180,q5a:1560,q6p:20,q6a:24',
           isCorrect: false,
           section: 'basics',
           lang,
@@ -469,7 +471,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
         </div>
 
         {/* Formulas Visuals */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
            {/* Square */}
            <div className="border rounded-xl p-4 flex flex-col items-center hover:shadow-md transition-shadow">
               <h5 className="font-bold text-gray-700 mb-2">{TEXTS.s1_sq_title[lang]}</h5>
@@ -512,6 +514,27 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                  <div className="font-bold text-xs mt-1 text-indigo-600">π ≈ 3.1416</div>
               </div>
            </div>
+
+           {/* Rhombus */}
+           <div className="border rounded-xl p-4 flex flex-col items-center hover:shadow-md transition-shadow">
+              <h5 className="font-bold text-gray-700 mb-2">{TEXTS.s1_rom_title[lang]}</h5>
+              <svg width="80" height="80" viewBox="0 0 100 100" className="mb-3">
+                 {/* Rombe */}
+                 <polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="black" strokeWidth="2" />
+                 {/* Diagonal major (vertical) */}
+                 <line x1="50" y1="10" x2="50" y2="90" stroke="#e53e3e" strokeWidth="1.5" strokeDasharray="4" />
+                 {/* Diagonal menor (horitzontal) */}
+                 <line x1="10" y1="50" x2="90" y2="50" stroke="#3182ce" strokeWidth="1.5" strokeDasharray="4" />
+                 <text x="52" y="50" fill="#e53e3e" fontSize="11" dominantBaseline="middle">D</text>
+                 <text x="50" y="62" fill="#3182ce" fontSize="11" textAnchor="middle">d</text>
+                 {/* Costat amb etiqueta */}
+                 <text x="72" y="28" fontSize="10" fill="black">l</text>
+              </svg>
+              <div className="text-sm bg-gray-50 w-full p-2 rounded text-center">
+                 <div className="font-mono">P = 4 · l</div>
+                 <div className="font-mono">A = (D · d) / 2</div>
+              </div>
+           </div>
         </div>
 
         {/* Drill Section */}
@@ -519,11 +542,12 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="flex justify-between items-center mb-6">
               <h4 className="font-bold text-gray-800">{TEXTS.s1_drill_ap_title[lang]}</h4>
               <span className={`px-3 py-1 rounded-full text-xs font-bold ${apFeedback ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-                 {apFeedback ? TEXTS.completed[lang] : '0/5'}
+                 {apFeedback ? TEXTS.completed[lang] : '0/6'}
               </span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {/* Fila 1: Quadrat, Triangle, Cercle */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                {/* Q1: Square */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
                   <svg width="60" height="60" viewBox="0 -12 100 112">
@@ -564,7 +588,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                   <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q3p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                   <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q3a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                </div>
+            </div>
 
+            {/* Fila 2: Rubik, Senyal, Estel */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
                   <svg width="80" height="70" viewBox="-22 0 112 90">
@@ -597,6 +624,40 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
                   <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                   <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+               </div>
+
+               {/* Q6: Estel (cometa en forma de rombe) — D=8, d=6, l=5 */}
+               <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
+                  <svg width="70" height="80" viewBox="0 0 100 130">
+                     {/* Rombe colorit */}
+                     <polygon points="50,5 85,45 50,85 15,45" fill="#fbbf24" stroke="#b45309" strokeWidth="2.5" />
+                     {/* Decoració interior: franges de color */}
+                     <polygon points="50,5 67,25 50,45 33,25" fill="#f87171" stroke="#b45309" strokeWidth="1" />
+                     <polygon points="33,25 50,45 15,45" fill="#60a5fa" stroke="#b45309" strokeWidth="1" />
+                     <polygon points="67,25 85,45 50,45" fill="#34d399" stroke="#b45309" strokeWidth="1" />
+                     <polygon points="50,45 85,45 50,85 15,45" fill="#a78bfa" stroke="#b45309" strokeWidth="1" />
+                     {/* Diagonals */}
+                     <line x1="50" y1="5" x2="50" y2="85" stroke="#b45309" strokeWidth="1" strokeDasharray="3" />
+                     <line x1="15" y1="45" x2="85" y2="45" stroke="#b45309" strokeWidth="1" strokeDasharray="3" />
+                     {/* Cotes */}
+                     <text x="52" y="48" fontSize="9" fill="#374151" fontWeight="bold">D=8</text>
+                     <text x="50" y="96" textAnchor="middle" fontSize="9" fill="#374151" fontWeight="bold">d=6</text>
+                     {/* Costat */}
+                     <text x="72" y="22" fontSize="9" fill="#374151" fontWeight="bold">l=5</text>
+                     {/* Cordill */}
+                     <line x1="50" y1="85" x2="55" y2="100" stroke="#78716c" strokeWidth="1.5" />
+                     <line x1="55" y1="100" x2="48" y2="112" stroke="#78716c" strokeWidth="1.5" />
+                     <line x1="48" y1="112" x2="54" y2="125" stroke="#78716c" strokeWidth="1.5" />
+                     {/* Llaços del cordill */}
+                     <path d="M55,100 Q60,97 58,103 Q56,106 55,100" fill="#f87171" />
+                     <path d="M48,112 Q43,109 45,115 Q47,118 48,112" fill="#60a5fa" />
+                  </svg>
+                  <label className="text-xs font-bold text-gray-500 uppercase text-center">
+                     {lang === 'ca' ? 'Estel (cometa)' : 'Cometa'}
+                  </label>
+                  <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
+                  <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q6p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                  <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q6a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
                </div>
             </div>
 

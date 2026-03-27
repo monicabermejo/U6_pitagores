@@ -69,6 +69,7 @@ export const TEXTS: Translations = {
   s1_sq_title: { ca: "Quadrat", es: "Cuadrado" },
   s1_tri_title: { ca: "Triangle", es: "Triángulo" },
   s1_cir_title: { ca: "Cercle", es: "Círculo" },
+  s1_rom_title: { ca: "Rombe", es: "Rombo" },
 
   s1_drill_ap_title: { ca: "Drill: Calcula Perímetre (P) i Àrea (A)", es: "Drill: Calcula Perímetro (P) y Área (A)" },
   s1_drill_stm: { ca: "Calcula l'Àrea i el Perímetre", es: "Calcula el Área y el Perímetro" },

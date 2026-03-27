@@ -22,7 +22,7 @@
 | Triangle amb tots els costats ≠     | **Escalè**        |
 | Triangle amb tres costats marcats = | **Equilàter**     |
 
-### 1C · Drill Àrea i Perímetre — 5 figures
+### 1C · Drill Àrea i Perímetre — 6 figures (2 files × 3)
 
 | #  | Figura                                | Perímetre (P)    | Àrea (A)              |
 |----|---------------------------------------|------------------|-----------------------|
@@ -31,6 +31,7 @@
 | Q3 | Cercle — diàmetre = 10 (r = 5)       | **P ≈ 31.4**     | **A ≈ 78.5**          |
 | Q4 | Rubik (quadrat cara total) — costat = 4.5 | **P = 18**  | **A = 20.25**         |
 | Q5 | Senyal triangular — c=60, h=52        | **P = 180**      | **A = 1 560**         |
+| Q6 | Estel (cometa rombe) — D=8, d=6, l=5  | **P = 20**       | **A = 24**            |
 
 ### 1D · Arrels Quadrades — 3 preguntes
 
