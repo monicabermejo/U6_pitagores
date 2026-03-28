@@ -525,8 +525,8 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                  <line x1="50" y1="10" x2="50" y2="90" stroke="#e53e3e" strokeWidth="1.5" strokeDasharray="4" />
                  {/* Diagonal menor (horitzontal) */}
                  <line x1="10" y1="50" x2="90" y2="50" stroke="#3182ce" strokeWidth="1.5" strokeDasharray="4" />
-                 <text x="52" y="50" fill="#e53e3e" fontSize="11" dominantBaseline="middle">D</text>
-                 <text x="50" y="62" fill="#3182ce" fontSize="11" textAnchor="middle">d</text>
+                 <text x="54" y="40" fill="#e53e3e" fontSize="11" dominantBaseline="middle">D</text>
+                 <text x="38" y="62" fill="#3182ce" fontSize="11" textAnchor="middle">d</text>
                  {/* Costat amb etiqueta */}
                  <text x="72" y="28" fontSize="10" fill="black">l</text>
               </svg>
