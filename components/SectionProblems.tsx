@@ -150,18 +150,12 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
            <div className="px-8 pb-8 space-y-6 text-purple-800">
              {/* Fase 1 */}
              <div className="bg-white/60 rounded-lg p-5 border border-purple-100">
-               <div className="flex items-center justify-between mb-2">
-                 <p className="font-bold text-lg">{TEXTS.s4_activity_p1_title[lang]}</p>
-                 <span className="text-sm font-semibold bg-purple-200 text-purple-700 px-3 py-1 rounded-full">{TEXTS.s4_activity_p1_time[lang]}</span>
-               </div>
+               <p className="font-bold text-lg mb-2">{TEXTS.s4_activity_p1_title[lang]}</p>
                <p className="text-base leading-relaxed">{TEXTS.s4_activity_p1[lang]}</p>
              </div>
              {/* Fase 2 */}
              <div className="bg-white/60 rounded-lg p-5 border border-purple-100">
-               <div className="flex items-center justify-between mb-2">
-                 <p className="font-bold text-lg">{TEXTS.s4_activity_p2_title[lang]}</p>
-                 <span className="text-sm font-semibold bg-purple-200 text-purple-700 px-3 py-1 rounded-full">{TEXTS.s4_activity_p2_time[lang]}</span>
-               </div>
+               <p className="font-bold text-lg mb-2">{TEXTS.s4_activity_p2_title[lang]}</p>
                <p className="text-base leading-relaxed">{TEXTS.s4_activity_p2[lang]}</p>
              </div>
              {/* Fase 3 */}
