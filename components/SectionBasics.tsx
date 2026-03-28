@@ -594,7 +594,7 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                {/* Q4: Rubik */}
                <div className="bg-gray-50 p-3 rounded-lg flex flex-col items-center gap-2 border border-gray-200 text-center">
-                  <svg width="100" height="90" viewBox="-22 0 112 90">
+                  <svg width="100" height="105" viewBox="-22 -15 112 105">
                      {[['#e53e3e','#3182ce','#ed8936'],['#f7fafc','#ecc94b','#48bb78'],['#3182ce','#e53e3e','#f7fafc']]
                        .map((row, ri) => row.map((color, ci) => (
                          <rect key={`${ri}-${ci}`} x={ci*30} y={ri*30} width="30" height="30" fill={color} stroke="black" strokeWidth="2"/>
@@ -623,8 +623,10 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                   </svg>
                   <label className="text-xs font-bold text-gray-500 uppercase text-center">Cediu el Pas</label>
                   <p className="text-[10px] text-gray-600 mb-1">{TEXTS.s1_drill_stm[lang]}</p>
-                  <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
-                  <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                  <div className="mt-auto w-full flex flex-col gap-2">
+                    <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                    <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q5a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                  </div>
                </div>
 
                {/* Q6: Estel (cometa en forma de rombe) — D=8, d=6, l=5 */}
