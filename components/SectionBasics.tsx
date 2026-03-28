@@ -605,11 +605,12 @@ export const SectionBasics: React.FC<SectionProps> = ({ lang, onComplete, isLock
                      <line x1="-8" y1="90" x2="-2" y2="90" stroke="#374151" strokeWidth="2"/>
                      <text x="-17" y="77" fontSize="9" fill="#374151" dominantBaseline="middle" textAnchor="middle">1.5</text>
                   </svg>
-                  <p className="text-[10px] font-semibold text-gray-700 text-center leading-tight">
-                    {lang === 'ca' ? 'Calcula P i A d\'una cara d\'aquest cub de Rubik' : 'Calcula P y A de una cara de este cubo de Rubik'}
-                  </p>
-                  <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
-                  <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                  <label className="text-xs font-bold text-gray-500 uppercase">Cub de Rubik</label>
+                  <p className="text-[10px] text-gray-600 mb-1">{lang === 'ca' ? 'Calcula P i A d\'una cara' : 'Calcula P y A de una cara'}</p>
+                  <div className="mt-auto w-full flex flex-col gap-2">
+                    <input placeholder="P" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4p: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                    <input placeholder="A" type="number" disabled={apFeedback} onChange={(e) => setApAnswers({...apAnswers, q4a: e.target.value})} className={`w-full border rounded p-1 text-center font-bold text-sm ${apFeedback ? 'bg-green-100 text-green-800' : ''}`}/>
+                  </div>
                </div>
 
                {/* Q5: Yield */}
