@@ -210,7 +210,7 @@ export const SectionSummary: React.FC<{ lang: Lang }> = ({ lang }) => {
       {/* ── 3. TERNES PITAGÒRIQUES A MEMORITZAR ──────────────────────────── */}
       <section className="bg-white border-2 border-purple-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-black text-purple-800 mb-1 flex items-center gap-2">
-          <span>🧠</span> {t('3. Ternes a memoritzar', '3. Ternas a memorizar', lang)}
+          <span>🧠</span> {t('3. Ternes útils per a memoritzar', '3. Ternas útiles para memorizar', lang)}
         </h3>
         <p className="text-gray-500 text-sm italic mb-4">
           {t(
