@@ -153,31 +153,17 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
       unit: "cm", ans: 50, tol: 0.05,
     },
     {
-      id: 'ch6', num: 6,
-      title: { ca: "El trapezi isòsceles", es: "El trapecio isósceles" },
+      id: 'ch9', num: 6,
+      title: { ca: "Del perímetre a la diagonal", es: "Del perímetro a la diagonal" },
       statement: {
-        ca: (<>
-          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
-            {/* Trapezoid: base major 22, base menor 12, height 12 — proportional */}
-            {/* base major from x=10 to x=170 (160px ≈ 22u), base menor centred: offset 40px each side */}
-            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
-            {/* Left side */}
-            {/* Right side */}
-          </svg>
-          Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.
-        </>),
-        es: (<>
-          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
-            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
-          </svg>
-          Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.
-        </>),
+        ca: <>Un rectangle té un perímetre de <strong>28 cm</strong> i la seva base mesura <strong>8 cm</strong>. Calcula quant fa la seva <strong>diagonal</strong>.</>,
+        es: <>Un rectángulo tiene un perímetro de <strong>28 cm</strong> y su base mide <strong>8 cm</strong>. Calcula cuánto mide su <strong>diagonal</strong>.</>
       },
       hint: {
-        ca: "Si dibuixes les alçades, als extrems del trapezi es formen dos petits triangles rectangles.",
-        es: "Si dibujas las alturas, en los extremos del trapecio se forman dos pequeños triángulos rectángulos."
+        ca: "Amb el perímetre i la base pots trobar l'altura del rectangle.",
+        es: "Con el perímetro y la base puedes encontrar la altura del rectángulo."
       },
-      unit: "cm", ans: 60, tol: 0.05,
+      unit: "cm", ans: 10, tol: 0.05,
     },
     {
       id: 'ch7', num: 7,
@@ -263,24 +249,51 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
       unit: "cm", ans: 24, tol: 0.05,
     },
     {
-      id: 'ch9', num: 9,
-      title: { ca: "Del perímetre a la diagonal", es: "Del perímetro a la diagonal" },
+      id: 'ch6', num: 9,
+      title: { ca: "El trapezi isòsceles", es: "El trapecio isósceles" },
       statement: {
-        ca: <>Un rectangle té un perímetre de <strong>28 cm</strong> i la seva base mesura <strong>8 cm</strong>. Calcula quant fa la seva <strong>diagonal</strong>.</>,
-        es: <>Un rectángulo tiene un perímetro de <strong>28 cm</strong> y su base mide <strong>8 cm</strong>. Calcula cuánto mide su <strong>diagonal</strong>.</>
+        ca: (<>
+          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
+            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
+          </svg>
+          Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.
+        </>),
+        es: (<>
+          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
+            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
+          </svg>
+          Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.
+        </>),
       },
       hint: {
-        ca: "Amb el perímetre i la base pots trobar l'altura del rectangle.",
-        es: "Con el perímetro y la base puedes encontrar la altura del rectángulo."
+        ca: "Si dibuixes les alçades, als extrems del trapezi es formen dos petits triangles rectangles.",
+        es: "Si dibujas las alturas, en los extremos del trapecio se forman dos pequeños triángulos rectángulos."
       },
-      unit: "cm", ans: 10, tol: 0.05,
+      unit: "cm", ans: 60, tol: 0.05,
     },
     {
       id: 'ch10', num: 10,
       title: { ca: "Figura composta: Rectangle + Triangle", es: "Figura compuesta: Rectángulo + Triángulo" },
       statement: {
-        ca: <>Una figura formada per un rectangle (<strong>base 8 cm, altura 3 cm</strong>) amb un triangle isòsceles al damunt. L'altura total de la figura és <strong>6 cm</strong>. Calcula la longitud dels <strong>costats iguals del triangle</strong>.</>,
-        es: <>Una figura formada por un rectángulo (<strong>base 8 cm, altura 3 cm</strong>) con un triángulo isósceles encima. La altura total de la figura es <strong>6 cm</strong>. Calcula la longitud de los <strong>lados iguales del triángulo</strong>.</>
+        ca: (<>
+          <svg viewBox="0 0 120 160" width="90" height="120" className="float-right ml-3 mb-1">
+            {/* Rectangle: base 8u → 80px wide, height 3u → 50px, bottom at y=140 */}
+            <rect x="20" y="90" width="80" height="50" fill="#dbeafe" stroke="#2563eb" strokeWidth="2"/>
+            {/* Isosceles triangle on top: base same as rectangle (x=20 to x=100), apex at x=60 y=10 */}
+            <polygon points="60,10 20,90 100,90" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
+            {/* Dashed height of triangle from apex to base midpoint */}
+            <line x1="60" y1="10" x2="60" y2="90" stroke="#9333ea" strokeWidth="1.5" strokeDasharray="4,3"/>
+          </svg>
+          Una figura formada per un rectangle (<strong>base 8 cm, altura 3 cm</strong>) amb un triangle isòsceles al damunt. L'altura total de la figura és <strong>6 cm</strong>. Calcula la longitud dels <strong>costats iguals del triangle</strong>.
+        </>),
+        es: (<>
+          <svg viewBox="0 0 120 160" width="90" height="120" className="float-right ml-3 mb-1">
+            <rect x="20" y="90" width="80" height="50" fill="#dbeafe" stroke="#2563eb" strokeWidth="2"/>
+            <polygon points="60,10 20,90 100,90" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
+            <line x1="60" y1="10" x2="60" y2="90" stroke="#9333ea" strokeWidth="1.5" strokeDasharray="4,3"/>
+          </svg>
+          Una figura formada por un rectángulo (<strong>base 8 cm, altura 3 cm</strong>) con un triángulo isósceles encima. La altura total de la figura es <strong>6 cm</strong>. Calcula la longitud de los <strong>lados iguales del triángulo</strong>.
+        </>),
       },
       hint: {
         ca: "Resta l'altura del rectangle a l'altura total per trobar l'altura del triangle.",
