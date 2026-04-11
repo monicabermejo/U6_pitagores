@@ -12,6 +12,11 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
   // Drill answers: 5, 6, 13, 5, 10, 12 | 17, 24, 41, 12, 25, 15
   const [inputs, setInputs] = useState({ q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', q11: '', q12: '' });
 
+  // Challenge (hidden) section state
+  const [showChallenge, setShowChallenge] = useState(false);
+  const [challengeInputs, setChallengeInputs] = useState<Record<string, string>>({});
+  const [challengeChecked, setChallengeChecked] = useState<Record<string, boolean>>({});
+
   if (isLocked) return null;
 
   const checkOne = (p: { id: string; ans: number; type: string }) => {
@@ -51,6 +56,168 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
   const drillScore = problems.filter(p =>
     checkedProblems[p.id] && parseFloat(inputs[p.id as keyof typeof inputs]) === p.ans
   ).length;
+
+  // ── Challenge problems (hidden until revealed) ──────────────────────────
+  const checkChallenge = (id: string, exactAns: number, tol: number, title: string) => {
+    const val = parseFloat(challengeInputs[id] || '');
+    const isCorrect = !isNaN(val) && Math.abs(val - exactAns) <= tol;
+    trackAnswer({
+      email: studentEmail,
+      questionId: `theorem_challenge_${id}`,
+      questionText: title,
+      userAnswer: isNaN(val) ? '' : val,
+      correctAnswer: Math.round(exactAns * 100) / 100,
+      isCorrect,
+      section: 'theorem',
+      lang,
+      sessionId,
+    });
+    setChallengeChecked(prev => ({ ...prev, [id]: true }));
+  };
+
+  interface ChallengeItem {
+    id: string;
+    num: number;
+    title: { ca: string; es: string };
+    statement: { ca: React.ReactNode; es: React.ReactNode };
+    hint: { ca: string; es: string };
+    unit: string;
+    ans: number;
+    tol: number;
+  }
+
+  const challengeProblems: ChallengeItem[] = [
+    {
+      id: 'ch1', num: 1,
+      title: { ca: "L'alçada del triangle equilàter", es: "La altura del triángulo equilátero" },
+      statement: {
+        ca: <>Un triangle equilàter té els tres costats iguals que mesuren <strong>12 cm</strong> cadascun. Calcula la seva <strong>alçada</strong> (en cm).</>,
+        es: <>Un triángulo equilátero tiene los tres lados iguales que miden <strong>12 cm</strong> cada uno. Calcula su <strong>altura</strong> (en cm).</>
+      },
+      hint: {
+        ca: "L'alçada divideix el triangle equilàter en dos triangles rectangles iguals, partint la base exactament per la meitat. La hipotenusa és el costat (12 cm) i un catet és la meitat de la base (6 cm).",
+        es: "La altura divide el triángulo en dos triángulos rectángulos iguales, partiendo la base exactamente por la mitad. La hipotenusa es el lado (12 cm) y un cateto es la mitad de la base (6 cm)."
+      },
+      unit: "cm", ans: Math.sqrt(108), tol: 0.05,
+    },
+    {
+      id: 'ch2', num: 2,
+      title: { ca: "El rombe i la seva àrea", es: "El rombo y su área" },
+      statement: {
+        ca: <>L'àrea d'un rombe és de <strong>96 cm²</strong> i la seva diagonal major fa <strong>16 cm</strong>. Calcula la longitud del <strong>costat del rombe</strong>.</>,
+        es: <>El área de un rombo es de <strong>96 cm²</strong> y su diagonal mayor mide <strong>16 cm</strong>. Calcula la longitud del <strong>lado del rombo</strong>.</>
+      },
+      hint: {
+        ca: "Troba la diagonal menor: Àrea = (d₁ × d₂) / 2. Les diagonals es tallen pel mig: el costat és la hipotenusa i els catets són les semidiagonals.",
+        es: "Encuentra la diagonal menor: Área = (d₁ × d₂) / 2. Las diagonales se cortan por la mitad: el lado es la hipotenusa y los catetos son las semidiagonales."
+      },
+      unit: "cm", ans: 10, tol: 0.05,
+    },
+    {
+      id: 'ch3', num: 3,
+      title: { ca: "El quadrat des de la diagonal", es: "El cuadrado desde la diagonal" },
+      statement: {
+        ca: <>La diagonal d'un quadrat fa exactament <strong>10 cm</strong>. Calcula quant mesura el <strong>costat d'aquest quadrat</strong> (en cm).</>,
+        es: <>La diagonal de un cuadrado mide exactamente <strong>10 cm</strong>. Calcula cuánto mide el <strong>lado de este cuadrado</strong> (en cm).</>
+      },
+      hint: {
+        ca: "Com que és un quadrat, els dos catets del triangle rectangle que es forma són exactament iguals. Si el costat val l, aleshores l² + l² = 10².",
+        es: "Como es un cuadrado, los dos catetos del triángulo rectángulo que se forma son exactamente iguales. Si el lado vale l, entonces l² + l² = 10²."
+      },
+      unit: "cm", ans: Math.sqrt(50), tol: 0.05,
+    },
+    {
+      id: 'ch4', num: 4,
+      title: { ca: "L'àrea del triangle isòsceles", es: "El área del triángulo isósceles" },
+      statement: {
+        ca: <>Un triangle isòsceles té una base de <strong>16 cm</strong> i els dos costats iguals mesuren <strong>10 cm</strong> cadascun. Calcula l'<strong>àrea total</strong> del triangle (en cm²).</>,
+        es: <>Un triángulo isósceles tiene una base de <strong>16 cm</strong> y los dos lados iguales miden <strong>10 cm</strong> cada uno. Calcula el <strong>área total</strong> del triángulo (en cm²).</>
+      },
+      hint: {
+        ca: "L'alçada divideix la base en dues meitats (8 cm cada part). Tens un triangle rectangle amb hipotenusa = 10 cm i catet = 8 cm. Calcula l'alçada i aplica: Àrea = (base × alçada) / 2.",
+        es: "La altura divide la base en dos mitades (8 cm cada parte). Tienes un triángulo rectángulo con hipotenusa = 10 cm y cateto = 8 cm. Calcula la altura y aplica: Área = (base × altura) / 2."
+      },
+      unit: "cm²", ans: 48, tol: 0.05,
+    },
+    {
+      id: 'ch5', num: 5,
+      title: { ca: "La diagonal del rectangle", es: "La diagonal del rectángulo" },
+      statement: {
+        ca: <>Un rectangle té una àrea de <strong>1200 cm²</strong> i la seva base mesura <strong>40 cm</strong>. Calcula la longitud de la seva <strong>diagonal</strong>.</>,
+        es: <>Un rectángulo tiene un área de <strong>1200 cm²</strong> y su base mide <strong>40 cm</strong>. Calcula la longitud de su <strong>diagonal</strong>.</>
+      },
+      hint: {
+        ca: "Primer, troba l'altura amb: Àrea = base × altura. Després, la diagonal és la hipotenusa del triangle rectangle format per la base i l'altura.",
+        es: "Primero, encuentra la altura con: Área = base × altura. Luego, la diagonal es la hipotenusa del triángulo rectángulo formado por la base y la altura."
+      },
+      unit: "cm", ans: 50, tol: 0.05,
+    },
+    {
+      id: 'ch6', num: 6,
+      title: { ca: "El trapezi isòsceles", es: "El trapecio isósceles" },
+      statement: {
+        ca: <>Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.</>,
+        es: <>Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.</>
+      },
+      hint: {
+        ca: "Dibuixa les alçades des de la base menor: es formen dos triangles rectangles als extrems. La diferència de bases és (22 − 12) = 10 cm; cada triangle té base 5 cm i alçada 12 cm. Calcula el costat lateral i suma tots els costats.",
+        es: "Dibuja las alturas desde la base menor: se forman dos triángulos rectángulos en los extremos. La diferencia de bases es (22 − 12) = 10 cm; cada triángulo tiene base 5 cm y altura 12 cm. Calcula el lado lateral y suma todos los lados."
+      },
+      unit: "cm", ans: 60, tol: 0.05,
+    },
+    {
+      id: 'ch7', num: 7,
+      title: { ca: "L'apotema de l'hexàgon", es: "La apotema del hexágono" },
+      statement: {
+        ca: <>Un hexàgon regular es divideix en 6 triangles equilàters. Calcula l'<strong>apotema</strong> (l'alçada d'un d'aquests triangles) d'un hexàgon de <strong>costat 8 cm</strong> (en cm).</>,
+        es: <>Un hexágono regular se divide en 6 triángulos equiláteros. Calcula la <strong>apotema</strong> (la altura de uno de esos triángulos) de un hexágono con <strong>lado de 8 cm</strong> (en cm).</>
+      },
+      hint: {
+        ca: "L'apotema és l'alçada d'un triangle equilàter de costat 8 cm. L'alçada divideix la base (8 cm) en dues meitats (4 cm); la hipotenusa és el costat (8 cm).",
+        es: "La apotema es la altura de un triángulo equilátero de lado 8 cm. La altura divide la base (8 cm) en dos mitades (4 cm); la hipotenusa es el lado (8 cm)."
+      },
+      unit: "cm", ans: 4 * Math.sqrt(3), tol: 0.05,
+    },
+    {
+      id: 'ch8', num: 8,
+      title: { ca: "La corda i la circumferència", es: "La cuerda y la circunferencia" },
+      statement: {
+        ca: <>Dins d'una circumferència de <strong>radi 13 cm</strong> hi ha dibuixada una corda. La distància des del centre fins al mig de la corda és de <strong>5 cm</strong>. Quina és la <strong>longitud total de la corda</strong>?</>,
+        es: <>Dentro de una circunferencia de <strong>radio 13 cm</strong> hay una cuerda. La distancia desde el centro hasta el punto medio de la cuerda es de <strong>5 cm</strong>. ¿Cuál es la <strong>longitud total de la cuerda</strong>?</>
+      },
+      hint: {
+        ca: "Dibuixa el radi fins a un extrem de la corda: és la hipotenusa (13 cm). La distància del centre al mig de la corda (5 cm) és un catet. Calcula la semilongitud i dobla-la.",
+        es: "Dibuja el radio hasta un extremo de la cuerda: es la hipotenusa (13 cm). La distancia del centro al punto medio de la cuerda (5 cm) es un cateto. Calcula la semilongitud y duplícala."
+      },
+      unit: "cm", ans: 24, tol: 0.05,
+    },
+    {
+      id: 'ch9', num: 9,
+      title: { ca: "Del perímetre a la diagonal", es: "Del perímetro a la diagonal" },
+      statement: {
+        ca: <>Un rectangle té un perímetre de <strong>28 cm</strong> i la seva base mesura <strong>8 cm</strong>. Calcula quant fa la seva <strong>diagonal</strong>.</>,
+        es: <>Un rectángulo tiene un perímetro de <strong>28 cm</strong> y su base mide <strong>8 cm</strong>. Calcula cuánto mide su <strong>diagonal</strong>.</>
+      },
+      hint: {
+        ca: "Perímetre = 2 × (base + altura). Troba l'altura i aplica el teorema de Pitàgores per calcular la diagonal.",
+        es: "Perímetro = 2 × (base + altura). Encuentra la altura y aplica el teorema de Pitágoras para calcular la diagonal."
+      },
+      unit: "cm", ans: 10, tol: 0.05,
+    },
+    {
+      id: 'ch10', num: 10,
+      title: { ca: "Figura composta: Rectangle + Triangle", es: "Figura compuesta: Rectángulo + Triángulo" },
+      statement: {
+        ca: <>Una figura formada per un rectangle (<strong>base 8 cm, altura 3 cm</strong>) amb un triangle isòsceles al damunt. L'altura total de la figura és <strong>6 cm</strong>. Calcula la longitud dels <strong>costats iguals del triangle</strong>.</>,
+        es: <>Una figura formada por un rectángulo (<strong>base 8 cm, altura 3 cm</strong>) con un triángulo isósceles encima. La altura total de la figura es <strong>6 cm</strong>. Calcula la longitud de los <strong>lados iguales del triángulo</strong>.</>
+      },
+      hint: {
+        ca: "Resta l'altura del rectangle a l'altura total per trobar l'altura del triangle: 6 − 3 = 3 cm. La base del triangle és 8 cm (igual que el rectangle), per tant la meitat és 4 cm.",
+        es: "Resta la altura del rectángulo a la altura total para encontrar la altura del triángulo: 6 − 3 = 3 cm. La base del triángulo es 8 cm (igual que el rectángulo), por tanto la mitad es 4 cm."
+      },
+      unit: "cm", ans: 5, tol: 0.05,
+    },
+  ];
 
   return (
     <motion.div 
@@ -281,6 +448,109 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
             </p>
           )}
         </div>
+      </div>
+
+      {/* ── Challenge: hidden extra battery ── */}
+      <div className="mt-4">
+        <button
+          onClick={() => setShowChallenge(v => !v)}
+          className="w-full py-4 px-6 rounded-xl border-2 border-amber-400 bg-amber-50 hover:bg-amber-100 transition-colors text-amber-900 font-bold text-lg flex items-center justify-center gap-3"
+        >
+          <span className="text-2xl">🏆</span>
+          {lang === 'ca'
+            ? 'Ja has acabat? Tens ganes de posar-te a prova?'
+            : '¿Ya has terminado? ¿Tienes ganas de ponerte a prueba?'}
+          {showChallenge ? <ChevronUp className="ml-2 text-amber-600" /> : <ChevronDown className="ml-2 text-amber-600" />}
+        </button>
+
+        <AnimatePresence>
+          {showChallenge && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="mt-6 space-y-6">
+                <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                  <p className="text-amber-800 font-semibold">
+                    {lang === 'ca'
+                      ? '⚠️ Aquests exercicis requereixen pensar en diversos passos. Accepta fins a ±0.05 d\'error en els arrodoniments.'
+                      : '⚠️ Estos ejercicios requieren pensar en varios pasos. Se acepta hasta ±0.05 de error en los redondeos.'}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {challengeProblems.map((p) => {
+                    const isChecked = challengeChecked[p.id];
+                    const val = parseFloat(challengeInputs[p.id] || '');
+                    const isCorrect = !isNaN(val) && Math.abs(val - p.ans) <= p.tol;
+                    const isFilled = (challengeInputs[p.id] || '') !== '';
+
+                    let inputStyle = "border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200";
+                    if (isChecked && isFilled) {
+                      inputStyle = isCorrect
+                        ? "border-green-500 bg-green-50 text-green-900 font-bold"
+                        : "border-red-300 bg-red-50 text-red-900 font-bold";
+                    }
+
+                    return (
+                      <div key={p.id} className="bg-white p-6 rounded-lg border border-amber-200 shadow-sm flex flex-col h-full">
+                        <h5 className="font-bold text-amber-700 text-base mb-3">
+                          {p.num}. {p.title[lang]}
+                        </h5>
+                        <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                          {p.statement[lang]}
+                        </p>
+                        <details className="mb-4 text-sm">
+                          <summary className="cursor-pointer text-indigo-600 font-semibold hover:text-indigo-800 select-none">
+                            💡 {lang === 'ca' ? 'Pista' : 'Pista'}
+                          </summary>
+                          <p className="mt-2 italic text-gray-500 pl-3 border-l-2 border-indigo-200">
+                            {p.hint[lang]}
+                          </p>
+                        </details>
+                        <div className="mt-auto">
+                          <div className="flex items-center gap-2 mb-2">
+                            <input
+                              type="number"
+                              step="0.01"
+                              className={`border rounded p-2 w-32 transition-colors outline-none ${inputStyle}`}
+                              value={challengeInputs[p.id] || ''}
+                              onChange={(e) => {
+                                setChallengeInputs(prev => ({ ...prev, [p.id]: e.target.value }));
+                                setChallengeChecked(prev => { const n = { ...prev }; delete n[p.id]; return n; });
+                              }}
+                            />
+                            <span className="text-gray-500 text-sm">{p.unit}</span>
+                          </div>
+                          <button
+                            disabled={!isFilled}
+                            onClick={() => checkChallenge(p.id, p.ans, p.tol, p.title[lang])}
+                            className={`px-4 py-1.5 rounded-lg font-bold text-sm transition-all ${
+                              isFilled
+                                ? 'bg-amber-500 text-white hover:bg-amber-600 cursor-pointer'
+                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                            }`}
+                          >
+                            {lang === 'ca' ? 'Comprova' : 'Comprobar'}
+                          </button>
+                          {isChecked && (
+                            <p className={`mt-1 text-sm font-bold ${isCorrect ? 'text-green-600' : 'text-red-500'}`}>
+                              {isCorrect
+                                ? (lang === 'ca' ? '✓ Correcte!' : '✓ ¡Correcto!')
+                                : (lang === 'ca' ? '✗ Revisa el càlcul i torna-ho a intentar.' : '✗ Revisa el cálculo e inténtalo de nuevo.')}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="flex justify-center pt-8">

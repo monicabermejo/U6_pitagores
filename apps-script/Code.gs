@@ -200,6 +200,29 @@ function doGet(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+// ── Capçaleres estàndard (s'afegeixen si falten) ────────────────────────────
+var HEADER_RESPONSES = ["Timestamp", "Email", "Nom", "Grup", "Secció", "ID pregunta", "Pregunta", "Resposta alumne", "Resposta correcta", "Correcte?", "Idioma", "Sessió"];
+var HEADER_SUMMARY   = ["Email", "Nom", "Grup", "Total", "Correctes", "Incorrectes", "% Èxit", "Última activitat", "Seccions"];
+
+/**
+ * Assegura que la fulla tinui capçalera. Si la fila 1 no conté el text
+ * esperat a la primera cel·la, insereix la capçalera al davant.
+ */
+function ensureHeader(sheet, expectedHeader) {
+  if (!sheet || sheet.getLastRow() === 0) {
+    // Full completament buit → escriure capçalera
+    sheet.appendRow(expectedHeader);
+    return;
+  }
+  var firstCell = String(sheet.getRange(1, 1).getValue()).trim().toLowerCase();
+  var expected  = String(expectedHeader[0]).trim().toLowerCase();
+  if (firstCell !== expected) {
+    // La fila 1 és dades, no capçalera → inserir-la
+    sheet.insertRowBefore(1);
+    sheet.getRange(1, 1, 1, expectedHeader.length).setValues([expectedHeader]);
+  }
+}
+
 // ── Crear fulls filtrats per grup ───────────────────────────────────────────
 /**
  * Executa des de l'editor d'Apps Script (▶ Run) o des del menú personalitzat.
@@ -209,46 +232,85 @@ function doGet(e) {
  *
  * Escriu les dades directament (sense fórmules) per evitar problemes de locale.
  * Si el full ja existeix, l'esborra i el recrea amb les dades actualitzades.
+ * Comparacions normalitzades (trim + toLowerCase) per evitar falsos negatius.
  */
 function crearFullsPerGrup() {
   var ss    = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(SHEET_AUTHORIZED);
-  var partData = sheet.getRange("D2:D" + sheet.getLastRow()).getValues();
 
-  // Recollir grups únics (ignorant buits)
+  // 0. Assegurar capçaleres a les fulles font
+  var sheetResum = ss.getSheetByName(SHEET_SUMMARY);
+  var sheetResp  = ss.getSheetByName(SHEET_RESPONSES);
+  ensureHeader(sheetResum, HEADER_SUMMARY);
+  ensureHeader(sheetResp, HEADER_RESPONSES);
+
+  // 1. Construir mapa email → grup des de Participants (font de veritat)
+  var partAll = sheet.getRange(1, 1, sheet.getLastRow(), 4).getValues();
+  var emailToGrup = {};
   var grups = {};
-  for (var i = 0; i < partData.length; i++) {
-    var g = String(partData[i][0]).trim();
-    if (g && g !== "undefined" && g !== "null") grups[g] = true;
+  var grupOriginal = {};
+  for (var i = 1; i < partAll.length; i++) {
+    var email = String(partAll[i][0]).trim().toLowerCase();
+    var g     = String(partAll[i][3]).trim();
+    if (email && g && g !== "undefined" && g !== "null") {
+      emailToGrup[email] = g;
+      var key = g.toLowerCase();
+      grups[key] = true;
+      grupOriginal[key] = g;
+    }
   }
 
-  var grupList = Object.keys(grups).sort();
+  var grupKeys = Object.keys(grups).sort();
+  Logger.log("Grups: " + JSON.stringify(grupKeys));
 
-  // Llegir dades font una sola vegada
-  var sheetResum = ss.getSheetByName(SHEET_SUMMARY);
-  var resumAll   = sheetResum.getDataRange().getValues();
+  // 2. Llegir dades font
+  var resumAll = sheetResum.getDataRange().getValues();
+  var respAll  = sheetResp.getDataRange().getValues();
+  Logger.log("Resum: " + resumAll.length + " files | Respostes: " + respAll.length + " files");
 
-  var sheetResp  = ss.getSheetByName(SHEET_RESPONSES);
-  var respAll    = sheetResp.getDataRange().getValues();
+  // 3. Pre-classificar files per grup usant el mapa email→grup
+  //    (ignora la columna "Grup" guardada, que pot ser "Sense grup")
+  var resumByGrup = {};
+  var respByGrup  = {};
+  for (var k = 0; k < grupKeys.length; k++) {
+    resumByGrup[grupKeys[k]] = [resumAll[0]]; // capçalera
+    respByGrup[grupKeys[k]]  = [respAll[0]];
+  }
 
+  // Resum: email a col 0 (índex 0)
+  for (var r = 1; r < resumAll.length; r++) {
+    var email = String(resumAll[r][0]).trim().toLowerCase();
+    var g = emailToGrup[email];
+    if (g) {
+      var key = g.toLowerCase();
+      if (resumByGrup[key]) resumByGrup[key].push(resumAll[r]);
+    }
+  }
+
+  // Respostes: email a col 1 (índex 1)
+  for (var r = 1; r < respAll.length; r++) {
+    var email = String(respAll[r][1]).trim().toLowerCase();
+    var g = emailToGrup[email];
+    if (g) {
+      var key = g.toLowerCase();
+      if (respByGrup[key]) respByGrup[key].push(respAll[r]);
+    }
+  }
+
+  // 4. Crear pestanyes per grup
   var creats = [];
-
-  for (var j = 0; j < grupList.length; j++) {
-    var grup = grupList[j];
+  for (var j = 0; j < grupKeys.length; j++) {
+    var grupNorm = grupKeys[j];
+    var grupDisp = grupOriginal[grupNorm];
 
     // ── Resum ──
-    var nomResum = "Resum_" + grup;
+    var nomResum = "Resum_" + grupDisp;
     var existResum = ss.getSheetByName(nomResum);
     if (existResum) ss.deleteSheet(existResum);
     var sResum = ss.insertSheet(nomResum);
 
-    // Filtrar per columna C (índex 2) = Grup
-    var resumRows = [resumAll[0]]; // capçalera
-    for (var r = 1; r < resumAll.length; r++) {
-      if (String(resumAll[r][2]).trim() === grup) {
-        resumRows.push(resumAll[r]);
-      }
-    }
+    var resumRows = resumByGrup[grupNorm];
+    Logger.log(nomResum + ": " + (resumRows.length - 1) + " alumnes");
     if (resumRows.length > 1) {
       sResum.getRange(1, 1, resumRows.length, resumRows[0].length).setValues(resumRows);
     } else {
@@ -259,18 +321,13 @@ function crearFullsPerGrup() {
     creats.push(nomResum);
 
     // ── Respostes ──
-    var nomResp = "Respostes_" + grup;
+    var nomResp = "Respostes_" + grupDisp;
     var existResp = ss.getSheetByName(nomResp);
     if (existResp) ss.deleteSheet(existResp);
     var sResp = ss.insertSheet(nomResp);
 
-    // Filtrar per columna D (índex 3) = Grup
-    var respRows = [respAll[0]]; // capçalera
-    for (var r = 1; r < respAll.length; r++) {
-      if (String(respAll[r][3]).trim() === grup) {
-        respRows.push(respAll[r]);
-      }
-    }
+    var respRows = respByGrup[grupNorm];
+    Logger.log(nomResp + ": " + (respRows.length - 1) + " respostes");
     if (respRows.length > 1) {
       sResp.getRange(1, 1, respRows.length, respRows[0].length).setValues(respRows);
     } else {
@@ -289,6 +346,50 @@ function crearFullsPerGrup() {
 }
 
 /**
+ * Diagnòstic complet: escriu els resultats a una pestanya "Diagnòstic"
+ * perquè sigui fàcil veure què passa sense haver de consultar els logs.
+ * Executa amb ▶ Run → diagnose
+ */
+function diagnose() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  Logger.log("=== INICI DIAGNÒSTIC ===");
+  Logger.log("Nom spreadsheet: " + ss.getName());
+
+  var sheets = ss.getSheets();
+  for (var i = 0; i < sheets.length; i++) {
+    Logger.log("Pestanya: '" + sheets[i].getName() + "' | lastRow=" + sheets[i].getLastRow() + " | lastCol=" + sheets[i].getLastColumn());
+  }
+
+  var p = ss.getSheetByName(SHEET_AUTHORIZED);
+  if (p) {
+    Logger.log("Participants fila 1: " + JSON.stringify(p.getRange(1, 1, 1, 4).getValues()[0]));
+    if (p.getLastRow() >= 2) Logger.log("Participants fila 2: " + JSON.stringify(p.getRange(2, 1, 1, 4).getValues()[0]));
+  } else {
+    Logger.log("❌ Pestanya Participants NO trobada");
+  }
+
+  var r = ss.getSheetByName(SHEET_RESPONSES);
+  if (r) {
+    Logger.log("Respostes fila 1: " + JSON.stringify(r.getRange(1, 1, 1, Math.min(r.getLastColumn(), 5)).getValues()[0]));
+    if (r.getLastRow() >= 2) Logger.log("Respostes fila 2 col D (grup): '" + r.getRange(2, 4).getValue() + "'");
+    if (r.getFilter()) Logger.log("⚠️ Respostes té FILTRE ACTIU");
+  } else {
+    Logger.log("❌ Pestanya Respostes NO trobada");
+  }
+
+  var s = ss.getSheetByName(SHEET_SUMMARY);
+  if (s) {
+    Logger.log("Resum fila 1: " + JSON.stringify(s.getRange(1, 1, 1, Math.min(s.getLastColumn(), 5)).getValues()[0]));
+    if (s.getLastRow() >= 2) Logger.log("Resum fila 2 col C (grup): '" + s.getRange(2, 3).getValue() + "'");
+    if (s.getFilter()) Logger.log("⚠️ Resum té FILTRE ACTIU");
+  } else {
+    Logger.log("❌ Pestanya Resum_alumnes NO trobada");
+  }
+
+  Logger.log("=== FI DIAGNÒSTIC ===");
+}
+
+/**
  * Afegeix un menú personalitzat "Pitàgores" al full de càlcul
  * perquè el professor pugui executar la creació de fulls fàcilment.
  */
@@ -296,5 +397,6 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("📐 Pitàgores")
     .addItem("Crear / actualitzar fulls per grup", "crearFullsPerGrup")
+    .addItem("Diagnòstic", "diagnose")
     .addToUi();
 }
