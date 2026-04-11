@@ -160,6 +160,23 @@ Contingut: Històries de la Germandat Pitagòrica (acordió), demostració visua
 | `theorem_drill_q11` | c₁ = 7, c₂ = 24               | h       | **25**   |
 | `theorem_drill_q12` | h = 39, c = 36                 | c       | **15**   |
 
+**Repte Ocult — 10 problemes multi-pas (optatiu, per als qui acaben aviat):**
+
+> S'activa prement el botó "Ja has acabat? Tens ganes de posar-te a prova?" que apareix amagat sota el drill. Accepta ±0.05 d'error i demana el resultat amb dos decimals.
+
+| ID                         | Títol                              | Resposta |
+|----------------------------|------------------------------------|----------|
+| `theorem_challenge_ch1`    | L'alçada del triangle equilàter    | ≈ 10.39  |
+| `theorem_challenge_ch2`    | El rombe i la seva àrea            | 10       |
+| `theorem_challenge_ch3`    | El quadrat des de la diagonal      | ≈ 7.07   |
+| `theorem_challenge_ch4`    | L'àrea del triangle isòsceles      | 48       |
+| `theorem_challenge_ch5`    | La diagonal del rectangle          | 50       |
+| `theorem_challenge_ch6`    | El trapezi isòsceles               | 60       |
+| `theorem_challenge_ch7`    | L'apotema de l'hexàgon             | ≈ 6.93   |
+| `theorem_challenge_ch8`    | La corda i la circumferència       | 24       |
+| `theorem_challenge_ch9`    | Del perímetre a la diagonal        | 10       |
+| `theorem_challenge_ch10`   | Figura composta (Rectangle + Triangle) | 5    |
+
 ---
 
 ### Secció 4 — Problemes Reals (`SectionProblems.tsx`)

@@ -72,6 +72,41 @@
 
 ---
 
+## SECCIÓ 3 (Extra) · Repte Ocult — 10 problemes multi-pas
+
+> Apareix amagat sota el botó **"Ja has acabat? Tens ganes de posar-te a prova?"**  
+> Accepta ±0.05 d'error. L'alumne ha de donar el resultat amb dos decimals.
+
+| ID de tracking              | Títol                              | Resposta     | Unitat |
+|-----------------------------|------------------------------------|--------------|--------|
+| `theorem_challenge_ch1`     | L'alçada del triangle equilàter    | **≈ 10.39**  | cm     |
+| `theorem_challenge_ch2`     | El rombe i la seva àrea            | **10**       | cm     |
+| `theorem_challenge_ch3`     | El quadrat des de la diagonal      | **≈ 7.07**   | cm     |
+| `theorem_challenge_ch4`     | L'àrea del triangle isòsceles      | **48**       | cm²    |
+| `theorem_challenge_ch5`     | La diagonal del rectangle          | **50**       | cm     |
+| `theorem_challenge_ch6`     | El trapezi isòsceles               | **60**       | cm     |
+| `theorem_challenge_ch7`     | L'apotema de l'hexàgon             | **≈ 6.93**   | cm     |
+| `theorem_challenge_ch8`     | La corda i la circumferència       | **24**       | cm     |
+| `theorem_challenge_ch9`     | Del perímetre a la diagonal        | **10**       | cm     |
+| `theorem_challenge_ch10`    | Figura composta (Rectangle + Triangle) | **5**    | cm     |
+
+### Raonament de cada problema
+
+| # | Passos clau |
+|---|-------------|
+| 1 | Alçada = √(12² − 6²) = √108 ≈ 10.39 |
+| 2 | d₂ = (2 × 96) / 16 = 12 → semidiagonals 8 i 6 → costat = √(8² + 6²) = 10 |
+| 3 | l² + l² = 10² → l = √50 ≈ 7.07 |
+| 4 | h = √(10² − 8²) = 6 → Àrea = (16 × 6) / 2 = 48 |
+| 5 | Altura = 1200 / 40 = 30 → diagonal = √(40² + 30²) = 50 |
+| 6 | Diferència bases = 10 → cada triangle: catet = 5, h = 12 → costat = 13 → P = 22 + 12 + 13 + 13 = 60 |
+| 7 | Apotema = √(8² − 4²) = √48 = 4√3 ≈ 6.93 |
+| 8 | Semilongitud = √(13² − 5²) = 12 → total = 24 |
+| 9 | Altura = 28/2 − 8 = 6 → diagonal = √(8² + 6²) = 10 |
+| 10 | Altura triangle = 6 − 3 = 3 → semi-base = 4 → costat = √(4² + 3²) = 5 |
+
+---
+
 ## SECCIÓ 4 · Problemes Reals — 14 problemes contextualitzats
 
 | ID   | Enunciat (resum)                                  | Busca       | **R** | Unit |
