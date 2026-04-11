@@ -156,8 +156,22 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
       id: 'ch6', num: 6,
       title: { ca: "El trapezi isòsceles", es: "El trapecio isósceles" },
       statement: {
-        ca: <>Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.</>,
-        es: <>Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.</>
+        ca: (<>
+          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
+            {/* Trapezoid: base major 22, base menor 12, height 12 — proportional */}
+            {/* base major from x=10 to x=170 (160px ≈ 22u), base menor centred: offset 40px each side */}
+            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
+            {/* Left side */}
+            {/* Right side */}
+          </svg>
+          Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.
+        </>),
+        es: (<>
+          <svg viewBox="0 0 180 120" width="140" height="93" className="float-right ml-3 mb-1">
+            <polygon points="10,100 170,100 130,20 50,20" fill="#fef9c3" stroke="#b45309" strokeWidth="2"/>
+          </svg>
+          Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.
+        </>),
       },
       hint: {
         ca: "Si dibuixes les alçades, als extrems del trapezi es formen dos petits triangles rectangles.",
@@ -169,8 +183,45 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
       id: 'ch7', num: 7,
       title: { ca: "L'apotema de l'hexàgon", es: "La apotema del hexágono" },
       statement: {
-        ca: <>Un hexàgon regular es divideix en 6 triangles equilàters. Calcula l'<strong>apotema</strong> (l'alçada d'un d'aquests triangles) d'un hexàgon de <strong>costat 8 cm</strong> (en cm).</>,
-        es: <>Un hexágono regular se divide en 6 triángulos equiláteros. Calcula la <strong>apotema</strong> (la altura de uno de esos triángulos) de un hexágono con <strong>lado de 8 cm</strong> (en cm).</>
+        ca: (<>
+          <svg viewBox="0 0 160 160" width="130" height="130" className="float-right ml-3 mb-1">
+            {/* Hexagon regular, centred at 80,80, radius 62 */}
+            {/* Vertices at 30° steps: top-right, right, bottom-right, bottom-left, left, top-left */}
+            {/* 0°=top: (80,18) then clockwise */}
+            <polygon
+              points="80,18 134,50 134,110 80,142 26,110 26,50"
+              fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"
+            />
+            {/* One triangle highlighted: centre→top-right→right */}
+            <polygon
+              points="80,80 134,50 134,110"
+              fill="#bbf7d0" stroke="#15803d" strokeWidth="1.5" strokeDasharray="5,3"
+            />
+            {/* Apotema: centre to midpoint of right side (midpoint of (134,50)-(134,110) = (134,80)) */}
+            <line x1="80" y1="80" x2="134" y2="80" stroke="#dc2626" strokeWidth="2" strokeDasharray="5,3"/>
+            {/* Right angle mark at apotema foot */}
+            <rect x="127" y="80" width="7" height="7" fill="none" stroke="#dc2626" strokeWidth="1.5"/>
+            {/* Centre dot */}
+            <circle cx="80" cy="80" r="3" fill="#15803d"/>
+          </svg>
+          Un hexàgon regular es divideix en 6 triangles equilàters. Calcula l'<strong>apotema</strong> (l'alçada d'un d'aquests triangles) d'un hexàgon de <strong>costat 8 cm</strong> (en cm).
+        </>),
+        es: (<>
+          <svg viewBox="0 0 160 160" width="130" height="130" className="float-right ml-3 mb-1">
+            <polygon
+              points="80,18 134,50 134,110 80,142 26,110 26,50"
+              fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"
+            />
+            <polygon
+              points="80,80 134,50 134,110"
+              fill="#bbf7d0" stroke="#15803d" strokeWidth="1.5" strokeDasharray="5,3"
+            />
+            <line x1="80" y1="80" x2="134" y2="80" stroke="#dc2626" strokeWidth="2" strokeDasharray="5,3"/>
+            <rect x="127" y="80" width="7" height="7" fill="none" stroke="#dc2626" strokeWidth="1.5"/>
+            <circle cx="80" cy="80" r="3" fill="#15803d"/>
+          </svg>
+          Un hexágono regular se divide en 6 triángulos equiláteros. Calcula la <strong>apotema</strong> (la altura de uno de esos triángulos) de un hexágono con <strong>lado de 8 cm</strong> (en cm).
+        </>),
       },
       hint: {
         ca: "L'apotema és l'alçada d'un dels sis triangles equilàters que formen l'hexàgon.",
