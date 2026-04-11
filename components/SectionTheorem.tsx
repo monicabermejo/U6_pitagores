@@ -263,10 +263,10 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
             <line x1="50" y1="20" x2="50" y2="100" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="5,3"/>
             {/* Right height — dashed */}
             <line x1="130" y1="20" x2="130" y2="100" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="5,3"/>
-            {/* Right-angle mark left */}
-            <rect x="50" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
-            {/* Right-angle mark right */}
-            <rect x="122" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            {/* Right-angle mark left — inside left triangle */}
+            <rect x="42" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            {/* Right-angle mark right — inside right triangle */}
+            <rect x="130" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
           </svg>
           Un trapezi isòsceles té una base major de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> i una alçada de <strong>12 cm</strong>. Calcula el seu <strong>perímetre total</strong>.
         </>),
@@ -277,8 +277,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
             <polygon points="10,100 170,100 130,20 50,20" fill="none" stroke="#b45309" strokeWidth="2"/>
             <line x1="50" y1="20" x2="50" y2="100" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="5,3"/>
             <line x1="130" y1="20" x2="130" y2="100" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="5,3"/>
-            <rect x="50" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
-            <rect x="122" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            <rect x="42" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            <rect x="130" y="92" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
           </svg>
           Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.
         </>),
