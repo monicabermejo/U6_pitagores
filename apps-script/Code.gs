@@ -45,10 +45,23 @@ function doPost(e) {
     var studentName  = getStudentName(email);
     var studentGroup = getStudentGroup(email);
 
-    // 5. Escribir la respuesta en la hoja de Respostes
+    // 5. Deduplicar: si ja hi ha una resposta CORRECTA per aquest email+questionId, no tornar a comptar
     var ss       = SpreadsheetApp.getActiveSpreadsheet();
     var sheetRes = ss.getSheetByName(SHEET_RESPONSES);
+    if (data.isCorrect) {
+      var existing = sheetRes.getDataRange().getValues();
+      for (var j = 1; j < existing.length; j++) {
+        if (String(existing[j][1]).trim().toLowerCase() === email &&
+            String(existing[j][5]).trim() === String(data.questionId).trim() &&
+            String(existing[j][9]).trim() === "SÍ") {
+          // Resposta correcta ja enregistrada → no duplicar
+          output.setContent(JSON.stringify({ ok: true, message: "Ja enregistrada." }));
+          return output;
+        }
+      }
+    }
 
+    // 6. Escriure la resposta a la hoja de Respostes
     sheetRes.appendRow([
       new Date(),                          // Timestamp
       email,                               // Email
@@ -64,7 +77,7 @@ function doPost(e) {
       String(data.sessionId || "")        // ID sessió
     ]);
 
-    // 6. Actualizar el resum (upsert per alumne)
+    // 7. Actualizar el resum (upsert per alumne)
     updateSummary(email, studentName, studentGroup, data.isCorrect, data.section);
 
     output.setContent(JSON.stringify({ ok: true, message: "Resposta enregistrada." }));
@@ -180,8 +193,10 @@ function updateSummary(email, studentName, studentGroup, isCorrect, section) {
   ]);
 }
 
-// ── GET: health check i validació d'email ───────────────────────────────────
+// ── GET: health check, validació d'email i progrés ────────────────────────
 function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
   // ?action=validate&email=xxx → comprova si l'email és a Participants
   if (e && e.parameter && e.parameter.action === "validate") {
     var email = String(e.parameter.email || "").trim().toLowerCase();
@@ -192,6 +207,34 @@ function doGet(e) {
     }
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true, authorized: isAuthorized(email) }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // ?action=progress&email=xxx → retorna les seccions completades per l'alumne
+  if (e && e.parameter && e.parameter.action === "progress") {
+    var email = String(e.parameter.email || "").trim().toLowerCase();
+    if (!email || !isAuthorized(email)) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: false, error: "Unauthorized" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    var sheetSum = ss.getSheetByName(SHEET_SUMMARY);
+    var data = sheetSum.getDataRange().getValues();
+    for (var i = 1; i < data.length; i++) {
+      if (String(data[i][0]).trim().toLowerCase() === email) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            ok: true,
+            sections: String(data[i][8] || ""),
+            total:    data[i][3] || 0,
+            correct:  data[i][4] || 0
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    // Alumne sense dades encara
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true, sections: "", total: 0, correct: 0 }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 

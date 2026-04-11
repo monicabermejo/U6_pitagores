@@ -122,6 +122,44 @@ const App: React.FC = () => {
           setValidating(false);
           return;
         }
+
+        // Recuperar progrés del servidor per si localStorage s'ha esborrat
+        try {
+          const progRes = await fetch(
+            `${APPS_SCRIPT_URL}?action=progress&email=${encodeURIComponent(trimmed)}`
+          );
+          const prog = await progRes.json();
+          if (prog.ok && prog.sections) {
+            // Mapeig secció → nivell mínim assolit
+            const sectionLevelMap: Record<string, number> = {
+              'desbloqueig': 1,
+              'basics': 2,
+              'visual': 3,
+              'theorem': 4,
+              'problems': 5,
+            };
+            let maxLevel = 1;
+            let hasUnlocked = false;
+            prog.sections.split(',').forEach((s: string) => {
+              const sec = s.trim();
+              if (sec === 'desbloqueig') hasUnlocked = true;
+              const lev = sectionLevelMap[sec];
+              if (lev && lev > maxLevel) maxLevel = lev;
+            });
+            // Restaurar només si el servidor té més progrés que localStorage
+            const savedLevel = parseInt(localStorage.getItem('pythagoras_level') || '1');
+            if (maxLevel > savedLevel) {
+              setLevel(maxLevel);
+              localStorage.setItem('pythagoras_level', maxLevel.toString());
+            }
+            if (hasUnlocked) {
+              setUnlocked(true);
+              localStorage.setItem('pythagoras_unlocked', 'true');
+            }
+          }
+        } catch {
+          // Si falla, continuem amb el progrés local
+        }
       } catch {
         // Si falla la xarxa, el servidor rebutjarà igualment els no autoritzats
       }
