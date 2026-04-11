@@ -329,15 +329,19 @@ const App: React.FC = () => {
                {sec.title}
              </button>
            ))}
-           {/* Expert Level Badge */}
-           {level > 4 && (
-             <button 
-                onClick={() => setActiveSection(5)}
-                className={`px-3 py-1.5 rounded-full font-bold text-xs shadow-sm transition-all ${activeSection === 5 ? 'bg-yellow-400 text-yellow-900 scale-105 shadow-md' : 'bg-yellow-100 text-yellow-800'}`}
-             >
-               ⭐ Expert
-             </button>
-           )}
+           {/* Expert Level Badge — always visible */}
+           <button 
+              onClick={() => level > 4 && setActiveSection(5)}
+              className={`px-3 py-1.5 rounded-full font-bold text-xs shadow-sm transition-all whitespace-nowrap ${
+                activeSection === 5
+                  ? 'bg-yellow-400 text-yellow-900 scale-105 shadow-md'
+                  : level > 4
+                    ? 'bg-yellow-100 text-yellow-800'
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              }`}
+           >
+              ⭐ {TEXTS.section_ext_title[lang]}
+           </button>
            {/* Summary Badge — always visible */}
            <button
              onClick={() => setActiveSection(6)}
