@@ -95,8 +95,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un triángulo equilátero tiene los tres lados iguales que miden <strong>12 cm</strong> cada uno. Calcula su <strong>altura</strong> (en cm).</>
       },
       hint: {
-        ca: "L'alçada divideix el triangle equilàter en dos triangles rectangles iguals, partint la base exactament per la meitat. La hipotenusa és el costat (12 cm) i un catet és la meitat de la base (6 cm).",
-        es: "La altura divide el triángulo en dos triángulos rectángulos iguales, partiendo la base exactamente por la mitad. La hipotenusa es el lado (12 cm) y un cateto es la mitad de la base (6 cm)."
+        ca: "L'alçada divideix el triangle equilàter en dos triangles rectangles iguals.",
+        es: "La altura divide el triángulo equilátero en dos triángulos rectángulos iguales."
       },
       unit: "cm", ans: Math.sqrt(108), tol: 0.05,
     },
@@ -108,8 +108,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>El área de un rombo es de <strong>96 cm²</strong> y su diagonal mayor mide <strong>16 cm</strong>. Calcula la longitud del <strong>lado del rombo</strong>.</>
       },
       hint: {
-        ca: "Troba la diagonal menor: Àrea = (d₁ × d₂) / 2. Les diagonals es tallen pel mig: el costat és la hipotenusa i els catets són les semidiagonals.",
-        es: "Encuentra la diagonal menor: Área = (d₁ × d₂) / 2. Las diagonales se cortan por la mitad: el lado es la hipotenusa y los catetos son las semidiagonales."
+        ca: "Les diagonals d'un rombe es creuen exactament per la meitat.",
+        es: "Las diagonales de un rombo se cruzan exactamente por la mitad."
       },
       unit: "cm", ans: 10, tol: 0.05,
     },
@@ -121,8 +121,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>La diagonal de un cuadrado mide exactamente <strong>10 cm</strong>. Calcula cuánto mide el <strong>lado de este cuadrado</strong> (en cm).</>
       },
       hint: {
-        ca: "Com que és un quadrat, els dos catets del triangle rectangle que es forma són exactament iguals. Si el costat val l, aleshores l² + l² = 10².",
-        es: "Como es un cuadrado, los dos catetos del triángulo rectángulo que se forma son exactamente iguales. Si el lado vale l, entonces l² + l² = 10²."
+        ca: "La diagonal d'un quadrat forma dos triangles rectangles on els dos catets són iguals.",
+        es: "La diagonal de un cuadrado forma dos triángulos rectángulos donde los dos catetos son iguales."
       },
       unit: "cm", ans: Math.sqrt(50), tol: 0.05,
     },
@@ -134,8 +134,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un triángulo isósceles tiene una base de <strong>16 cm</strong> y los dos lados iguales miden <strong>10 cm</strong> cada uno. Calcula el <strong>área total</strong> del triángulo (en cm²).</>
       },
       hint: {
-        ca: "L'alçada divideix la base en dues meitats (8 cm cada part). Tens un triangle rectangle amb hipotenusa = 10 cm i catet = 8 cm. Calcula l'alçada i aplica: Àrea = (base × alçada) / 2.",
-        es: "La altura divide la base en dos mitades (8 cm cada parte). Tienes un triángulo rectángulo con hipotenusa = 10 cm y cateto = 8 cm. Calcula la altura y aplica: Área = (base × altura) / 2."
+        ca: "L'alçada d'un triangle isòsceles cau just al mig de la base.",
+        es: "La altura de un triángulo isósceles cae justo en la mitad de la base."
       },
       unit: "cm²", ans: 48, tol: 0.05,
     },
@@ -147,8 +147,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un rectángulo tiene un área de <strong>1200 cm²</strong> y su base mide <strong>40 cm</strong>. Calcula la longitud de su <strong>diagonal</strong>.</>
       },
       hint: {
-        ca: "Primer, troba l'altura amb: Àrea = base × altura. Després, la diagonal és la hipotenusa del triangle rectangle format per la base i l'altura.",
-        es: "Primero, encuentra la altura con: Área = base × altura. Luego, la diagonal es la hipotenusa del triángulo rectángulo formado por la base y la altura."
+        ca: "La diagonal d'un rectangle és la hipotenusa del triangle rectangle que formen la base i l'altura.",
+        es: "La diagonal de un rectángulo es la hipotenusa del triángulo rectángulo que forman la base y la altura."
       },
       unit: "cm", ans: 50, tol: 0.05,
     },
@@ -160,8 +160,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un trapecio isósceles tiene una base mayor de <strong>22 cm</strong>, una base menor de <strong>12 cm</strong> y una altura de <strong>12 cm</strong>. Calcula su <strong>perímetro total</strong>.</>
       },
       hint: {
-        ca: "Dibuixa les alçades des de la base menor: es formen dos triangles rectangles als extrems. La diferència de bases és (22 − 12) = 10 cm; cada triangle té base 5 cm i alçada 12 cm. Calcula el costat lateral i suma tots els costats.",
-        es: "Dibuja las alturas desde la base menor: se forman dos triángulos rectángulos en los extremos. La diferencia de bases es (22 − 12) = 10 cm; cada triángulo tiene base 5 cm y altura 12 cm. Calcula el lado lateral y suma todos los lados."
+        ca: "Si dibuixes les alçades, als extrems del trapezi es formen dos petits triangles rectangles.",
+        es: "Si dibujas las alturas, en los extremos del trapecio se forman dos pequeños triángulos rectángulos."
       },
       unit: "cm", ans: 60, tol: 0.05,
     },
@@ -173,8 +173,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un hexágono regular se divide en 6 triángulos equiláteros. Calcula la <strong>apotema</strong> (la altura de uno de esos triángulos) de un hexágono con <strong>lado de 8 cm</strong> (en cm).</>
       },
       hint: {
-        ca: "L'apotema és l'alçada d'un triangle equilàter de costat 8 cm. L'alçada divideix la base (8 cm) en dues meitats (4 cm); la hipotenusa és el costat (8 cm).",
-        es: "La apotema es la altura de un triángulo equilátero de lado 8 cm. La altura divide la base (8 cm) en dos mitades (4 cm); la hipotenusa es el lado (8 cm)."
+        ca: "L'apotema és l'alçada d'un dels sis triangles equilàters que formen l'hexàgon.",
+        es: "La apotema es la altura de uno de los seis triángulos equiláteros que forman el hexágono."
       },
       unit: "cm", ans: 4 * Math.sqrt(3), tol: 0.05,
     },
@@ -186,8 +186,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Dentro de una circunferencia de <strong>radio 13 cm</strong> hay una cuerda. La distancia desde el centro hasta el punto medio de la cuerda es de <strong>5 cm</strong>. ¿Cuál es la <strong>longitud total de la cuerda</strong>?</>
       },
       hint: {
-        ca: "Dibuixa el radi fins a un extrem de la corda: és la hipotenusa (13 cm). La distància del centre al mig de la corda (5 cm) és un catet. Calcula la semilongitud i dobla-la.",
-        es: "Dibuja el radio hasta un extremo de la cuerda: es la hipotenusa (13 cm). La distancia del centro al punto medio de la cuerda (5 cm) es un cateto. Calcula la semilongitud y duplícala."
+        ca: "El radi que va del centre fins a un extrem de la corda és la hipotenusa.",
+        es: "El radio que va del centro hasta un extremo de la cuerda es la hipotenusa."
       },
       unit: "cm", ans: 24, tol: 0.05,
     },
@@ -199,8 +199,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Un rectángulo tiene un perímetro de <strong>28 cm</strong> y su base mide <strong>8 cm</strong>. Calcula cuánto mide su <strong>diagonal</strong>.</>
       },
       hint: {
-        ca: "Perímetre = 2 × (base + altura). Troba l'altura i aplica el teorema de Pitàgores per calcular la diagonal.",
-        es: "Perímetro = 2 × (base + altura). Encuentra la altura y aplica el teorema de Pitágoras para calcular la diagonal."
+        ca: "Amb el perímetre i la base pots trobar l'altura del rectangle.",
+        es: "Con el perímetro y la base puedes encontrar la altura del rectángulo."
       },
       unit: "cm", ans: 10, tol: 0.05,
     },
@@ -212,8 +212,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
         es: <>Una figura formada por un rectángulo (<strong>base 8 cm, altura 3 cm</strong>) con un triángulo isósceles encima. La altura total de la figura es <strong>6 cm</strong>. Calcula la longitud de los <strong>lados iguales del triángulo</strong>.</>
       },
       hint: {
-        ca: "Resta l'altura del rectangle a l'altura total per trobar l'altura del triangle: 6 − 3 = 3 cm. La base del triangle és 8 cm (igual que el rectangle), per tant la meitat és 4 cm.",
-        es: "Resta la altura del rectángulo a la altura total para encontrar la altura del triángulo: 6 − 3 = 3 cm. La base del triángulo es 8 cm (igual que el rectángulo), por tanto la mitad es 4 cm."
+        ca: "Resta l'altura del rectangle a l'altura total per trobar l'altura del triangle.",
+        es: "Resta la altura del rectángulo a la altura total para encontrar la altura del triángulo."
       },
       unit: "cm", ans: 5, tol: 0.05,
     },
@@ -475,8 +475,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
                 <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
                   <p className="text-amber-800 font-semibold">
                     {lang === 'ca'
-                      ? '⚠️ Aquests exercicis requereixen pensar en diversos passos. Accepta fins a ±0.05 d\'error en els arrodoniments.'
-                      : '⚠️ Estos ejercicios requieren pensar en varios pasos. Se acepta hasta ±0.05 de error en los redondeos.'}
+                      ? '⚠️ Aquests exercicis requereixen pensar en diversos passos. Dóna el resultat amb dos decimals.'
+                      : '⚠️ Estos ejercicios requieren pensar en varios pasos. Da el resultado con dos decimales.'}
                   </p>
                 </div>
 
