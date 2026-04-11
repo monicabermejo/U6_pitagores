@@ -12,6 +12,8 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
   // Pagination to keep it clean
   const [page, setPage] = useState(0);
   const [activityOpen, setActivityOpen] = useState(false);
+  const [examplesOpen, setExamplesOpen] = useState(true);
+  const [exReveal, setExReveal] = useState<{ [k: string]: boolean }>({});
 
   if (isLocked) return null;
 
@@ -44,6 +46,151 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
+      {/* ── EXEMPLES GUIATS ─────────────────────────────────────────── */}
+      <div className="bg-indigo-50 border-2 border-indigo-200 rounded-2xl overflow-hidden shadow-sm">
+        <button
+          onClick={() => setExamplesOpen(o => !o)}
+          className="w-full flex items-center justify-between p-6 text-left hover:bg-indigo-100 transition-colors"
+        >
+          <h3 className="text-xl font-bold text-indigo-900">
+            {lang === 'ca' ? '🧑‍🏫 Exemples guiats — Resolem junts!' : '🧑‍🏫 Ejemplos guiados — ¡Resolvemos juntos!'}
+          </h3>
+          <ChevronDown
+            size={22}
+            className={`text-indigo-600 transition-transform duration-300 ${examplesOpen ? 'rotate-180' : ''}`}
+          />
+        </button>
+        {examplesOpen && (
+          <div className="px-6 pb-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+
+            {/* Exemple 1: Rectangle 3×4, diagonal = 5 */}
+            <div className="bg-white rounded-xl p-5 border border-indigo-100 flex flex-col items-center text-center">
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">{lang === 'ca' ? 'Exemple 1' : 'Ejemplo 1'}</span>
+              <svg width="160" height="130" viewBox="0 0 160 130">
+                {/* Rectangle */}
+                <rect x="20" y="20" width="80" height="60" fill="none" stroke="#4b5563" strokeWidth="2.5" rx="2"/>
+                {/* Right angle marker */}
+                <rect x="20" y="68" width="12" height="12" fill="none" stroke="#4b5563" strokeWidth="1.5"/>
+                {/* Diagonal */}
+                <line x1="20" y1="80" x2="100" y2="20" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="6"/>
+                {/* Labels */}
+                <text x="60" y="96" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#374151">4 cm</text>
+                <text x="8" y="52" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#374151">3 cm</text>
+                <text x="68" y="44" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#6366f1">?</text>
+              </svg>
+              <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+                {lang === 'ca'
+                  ? 'Un rectangle fa 3 cm d\'alt i 4 cm d\'ample. Quant mesura la diagonal?'
+                  : 'Un rectángulo mide 3 cm de alto y 4 cm de ancho. ¿Cuánto mide la diagonal?'}
+              </p>
+              <button
+                onClick={() => setExReveal(r => ({ ...r, ex1: true }))}
+                className={`text-sm font-bold px-4 py-1.5 rounded-full transition-colors ${exReveal.ex1 ? 'bg-green-100 text-green-700' : 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200'}`}
+              >
+                {exReveal.ex1 ? (lang === 'ca' ? '✓ Resolució' : '✓ Resolución') : (lang === 'ca' ? 'Mostra la resolució' : 'Muestra la resolución')}
+              </button>
+              {exReveal.ex1 && (
+                <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
+                  <p className="font-mono text-indigo-800">c² = 3² + 4²</p>
+                  <p className="font-mono text-indigo-800">c² = 9 + 16 = 25</p>
+                  <p className="font-mono text-indigo-800">c = √25 = <strong>5 cm</strong></p>
+                </div>
+              )}
+            </div>
+
+            {/* Exemple 2: Arbre 6m, ombra 8m, distància = 10 */}
+            <div className="bg-white rounded-xl p-5 border border-indigo-100 flex flex-col items-center text-center">
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">{lang === 'ca' ? 'Exemple 2' : 'Ejemplo 2'}</span>
+              <svg width="160" height="130" viewBox="0 0 180 140">
+                {/* Ground */}
+                <line x1="10" y1="120" x2="170" y2="120" stroke="#9ca3af" strokeWidth="1.5"/>
+                {/* Tree trunk */}
+                <rect x="25" y="40" width="10" height="80" fill="#92400e" rx="2"/>
+                {/* Tree canopy */}
+                <ellipse cx="30" cy="35" rx="20" ry="18" fill="#22c55e" opacity="0.8"/>
+                {/* Height arrow */}
+                <line x1="15" y1="40" x2="15" y2="120" stroke="#e53e3e" strokeWidth="2"/>
+                <text x="8" y="83" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#e53e3e" transform="rotate(-90, 8, 83)">6 m</text>
+                {/* Shadow */}
+                <line x1="35" y1="120" x2="140" y2="120" stroke="#fbbf24" strokeWidth="4" opacity="0.5"/>
+                <text x="88" y="135" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#92400e">8 m</text>
+                {/* Hypotenuse */}
+                <line x1="30" y1="40" x2="140" y2="120" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="6"/>
+                <text x="95" y="72" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#6366f1">?</text>
+                {/* Right angle */}
+                <rect x="35" y="108" width="10" height="10" fill="none" stroke="#4b5563" strokeWidth="1.5"/>
+              </svg>
+              <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+                {lang === 'ca'
+                  ? 'Un arbre fa 6 m d\'alt. La seva ombra mesura 8 m. Quant mesura la distància de la copa a la punta de l\'ombra?'
+                  : 'Un árbol mide 6 m de alto. Su sombra mide 8 m. ¿Cuánto mide la distancia de la copa a la punta de la sombra?'}
+              </p>
+              <button
+                onClick={() => setExReveal(r => ({ ...r, ex2: true }))}
+                className={`text-sm font-bold px-4 py-1.5 rounded-full transition-colors ${exReveal.ex2 ? 'bg-green-100 text-green-700' : 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200'}`}
+              >
+                {exReveal.ex2 ? (lang === 'ca' ? '✓ Resolució' : '✓ Resolución') : (lang === 'ca' ? 'Mostra la resolució' : 'Muestra la resolución')}
+              </button>
+              {exReveal.ex2 && (
+                <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
+                  <p className="font-mono text-indigo-800">c² = 6² + 8²</p>
+                  <p className="font-mono text-indigo-800">c² = 36 + 64 = 100</p>
+                  <p className="font-mono text-indigo-800">c = √100 = <strong>10 m</strong></p>
+                </div>
+              )}
+            </div>
+
+            {/* Exemple 3: Parc 5×12, drecera = 13 */}
+            <div className="bg-white rounded-xl p-5 border border-indigo-100 flex flex-col items-center text-center">
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">{lang === 'ca' ? 'Exemple 3' : 'Ejemplo 3'}</span>
+              <svg width="160" height="130" viewBox="0 0 180 130">
+                {/* Park (rectangle) */}
+                <rect x="20" y="20" width="120" height="80" fill="#dcfce7" stroke="#22c55e" strokeWidth="2" rx="4"/>
+                {/* Trees decorative */}
+                <circle cx="50" cy="50" r="6" fill="#16a34a" opacity="0.4"/>
+                <circle cx="100" cy="40" r="5" fill="#16a34a" opacity="0.3"/>
+                <circle cx="75" cy="70" r="7" fill="#16a34a" opacity="0.3"/>
+                {/* Walk path (two sides) */}
+                <line x1="20" y1="100" x2="20" y2="20" stroke="#4b5563" strokeWidth="2.5"/>
+                <line x1="20" y1="20" x2="140" y2="20" stroke="#4b5563" strokeWidth="2.5"/>
+                {/* Diagonal shortcut */}
+                <line x1="20" y1="100" x2="140" y2="20" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="6"/>
+                {/* Labels */}
+                <text x="8" y="63" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#374151">5 m</text>
+                <text x="80" y="14" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#374151">12 m</text>
+                <text x="90" y="72" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#6366f1">?</text>
+                {/* Right angle */}
+                <rect x="20" y="20" width="10" height="10" fill="none" stroke="#4b5563" strokeWidth="1.5"/>
+                {/* Person icon at start */}
+                <circle cx="20" cy="106" r="4" fill="#6366f1"/>
+                {/* Flag at end */}
+                <line x1="140" y1="20" x2="140" y2="8" stroke="#e53e3e" strokeWidth="1.5"/>
+                <polygon points="140,8 152,12 140,16" fill="#e53e3e"/>
+              </svg>
+              <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+                {lang === 'ca'
+                  ? 'Un parc rectangular fa 5 m d\'ample i 12 m de llarg. Si tallem per la diagonal, quant mesura la drecera?'
+                  : 'Un parque rectangular mide 5 m de ancho y 12 m de largo. Si cortamos por la diagonal, ¿cuánto mide el atajo?'}
+              </p>
+              <button
+                onClick={() => setExReveal(r => ({ ...r, ex3: true }))}
+                className={`text-sm font-bold px-4 py-1.5 rounded-full transition-colors ${exReveal.ex3 ? 'bg-green-100 text-green-700' : 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200'}`}
+              >
+                {exReveal.ex3 ? (lang === 'ca' ? '✓ Resolució' : '✓ Resolución') : (lang === 'ca' ? 'Mostra la resolució' : 'Muestra la resolución')}
+              </button>
+              {exReveal.ex3 && (
+                <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
+                  <p className="font-mono text-indigo-800">c² = 5² + 12²</p>
+                  <p className="font-mono text-indigo-800">c² = 25 + 144 = 169</p>
+                  <p className="font-mono text-indigo-800">c = √169 = <strong>13 m</strong></p>
+                </div>
+              )}
+            </div>
+
+          </div>
+        )}
+      </div>
+
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden min-h-[400px] flex flex-col">
         {/* Progress Bar */}
         <div className="h-2 bg-gray-100 w-full">

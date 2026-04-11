@@ -99,11 +99,11 @@ export const TEXTS: Translations = {
   
   // Section 3 History Extended
   s3_header: { ca: "🏛️ Pitàgores: Mite i Llegenda", es: "🏛️ Pitágoras: Mito y Leyenda" },
-  s3_desc: { ca: "La Germandat Pitagòrica era una mena de 'secta' matemàtica. Tenien normes molt estranyes i secrets perillosos. Fes clic per descobrir-los.", es: "La Hermandad Pitagórica era una especie de 'secta' matemática. Tenían normas muy extrañas y secretos peligrosos. Haz clic para descubrirlos." },
+  s3_desc: { ca: "La Germandat Pitagòrica era una mena de fraternitat mística on les matemàtiques eren la seva religió. Tenien normes molt estranyes i secrets perillosos. Fes clic per descobrir-los.", es: "La Hermandad Pitagórica era una especie de fraternidad mística donde las matemáticas eran su religión. Tenían normas muy extrañas y secretos peligrosos. Haz clic para descubrirlos." },
   
   s3_h1_subtitle: { ca: "La Prohibició Sagrada", es: "La Prohibición Sagrada" },
   s3_h1_text: { 
-    ca: "Els pitagòrics eren vegetarians, però tenien una norma estricta: \"No mengis faves!\". Creien que les faves contenien les ànimes dels morts o que s'assemblaven massa als éssers humans. La llegenda diu que Pitàgores va morir perquè, fugint d'uns enemics, es va trobar un camp de faves i es va negar a creuar-lo per no trepitjar-las, i allà el van atrapar.", 
+    ca: "Els pitagòrics eren vegetarians, però tenien una norma estricta: \"No mengis faves!\". Creien que les faves contenien les ànimes dels morts o que s'assemblaven massa als éssers humans. La llegenda diu que Pitàgores va morir perquè, fugint d'uns enemics, es va trobar un camp de faves i es va negar a creuar-lo per no trepitjar-les, i allà el van atrapar.", 
     es: "Los pitagóricos eran vegetarianos, pero tenían una norma estricta: \"¡No comas habas!\". Creían que las habas contenían las almas de los muertos o que se parecían demasiado a los seres humanos. La leyenda dice que Pitágoras murió porque, huyendo de unos enemigos, se encontró un campo de habas y se negó a cruzarlo para no pisarlas, y allí lo atraparon." 
   },
   
