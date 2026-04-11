@@ -184,25 +184,14 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
       statement: {
         ca: (<>
           <svg viewBox="0 0 160 160" width="130" height="130" className="float-right ml-3 mb-1">
-            {/* Circle */}
             <circle cx="80" cy="80" r="60" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2"/>
-            {/* Chord: from (20,110) to (140,110) — horizontal for clarity */}
             <line x1="26" y1="110" x2="134" y2="110" stroke="#1d4ed8" strokeWidth="2.5"/>
-            {/* Perpendicular from center to midpoint of chord */}
             <line x1="80" y1="80" x2="80" y2="110" stroke="#dc2626" strokeWidth="2" strokeDasharray="5,3"/>
-            {/* Radius to right endpoint of chord */}
             <line x1="80" y1="80" x2="134" y2="110" stroke="#16a34a" strokeWidth="2"/>
-            {/* Right-angle mark at midpoint */}
             <rect x="80" y="103" width="7" height="7" fill="none" stroke="#dc2626" strokeWidth="1.5"/>
-            {/* Center dot */}
             <circle cx="80" cy="80" r="3" fill="#1d4ed8"/>
-            {/* Labels */}
-            <text x="84" y="98" fontSize="11" fill="#dc2626" fontWeight="bold">5</text>
-            <text x="108" y="97" fontSize="11" fill="#16a34a" fontWeight="bold">13</text>
-            <text x="65" y="125" fontSize="11" fill="#1d4ed8" fontWeight="bold">corda</text>
-            <text x="72" y="75" fontSize="10" fill="#1d4ed8">O</text>
           </svg>
-          Dins d'una circumferència de <strong>radi 13 cm</strong> hi ha dibuixada una corda. La distància des del centre fins al mig de la corda és de <strong>5 cm</strong>. Quina és la <strong>longitud total de la corda</strong>?
+          Dins d'una circumferència de <strong style={{color:'#16a34a'}}>radi</strong> 13 cm hi ha dibuixada una <strong style={{color:'#1d4ed8'}}>corda</strong>. La <strong style={{color:'#dc2626'}}>distància</strong> des del centre fins al mig de la corda és de <strong>5 cm</strong>. Quina és la <strong>longitud total de la corda</strong>?
         </>),
         es: (<>
           <svg viewBox="0 0 160 160" width="130" height="130" className="float-right ml-3 mb-1">
@@ -212,12 +201,8 @@ export const SectionTheorem: React.FC<SectionProps> = ({ lang, onComplete, isLoc
             <line x1="80" y1="80" x2="134" y2="110" stroke="#16a34a" strokeWidth="2"/>
             <rect x="80" y="103" width="7" height="7" fill="none" stroke="#dc2626" strokeWidth="1.5"/>
             <circle cx="80" cy="80" r="3" fill="#1d4ed8"/>
-            <text x="84" y="98" fontSize="11" fill="#dc2626" fontWeight="bold">5</text>
-            <text x="108" y="97" fontSize="11" fill="#16a34a" fontWeight="bold">13</text>
-            <text x="63" y="125" fontSize="11" fill="#1d4ed8" fontWeight="bold">cuerda</text>
-            <text x="72" y="75" fontSize="10" fill="#1d4ed8">O</text>
           </svg>
-          Dentro de una circunferencia de <strong>radio 13 cm</strong> hay una cuerda. La distancia desde el centro hasta el punto medio de la cuerda es de <strong>5 cm</strong>. ¿Cuál es la <strong>longitud total de la cuerda</strong>?
+          Dentro de una circunferencia de <strong style={{color:'#16a34a'}}>radio</strong> 13 cm hay una <strong style={{color:'#1d4ed8'}}>cuerda</strong>. La <strong style={{color:'#dc2626'}}>distancia</strong> desde el centro hasta el punto medio de la cuerda es de <strong>5 cm</strong>. ¿Cuál es la <strong>longitud total de la cuerda</strong>?
         </>),
       },
       hint: {
