@@ -63,7 +63,7 @@ App.tsx                    → Estat global, flux de navegació, email gate
 │   ├── SectionBasics.tsx  → Secció 1: Recordatori (triangles, àrea, arrels)
 │   ├── SectionVisual.tsx  → Secció 2: Identificació visual (SVG interactiu)
 │   ├── SectionTheorem.tsx → Secció 3: El Teorema (història, drill 12 càlculs)
-│   ├── SectionProblems.tsx→ Secció 4: 14 Problemes contextualitzats
+│   ├── SectionProblems.tsx→ Secció 4: 3 exemples guiats + 14 Problemes contextualitzats
 │   ├── SectionExpert.tsx  → Extra: Ternes pitagòriques
 │   ├── SectionSummary.tsx → Secció resum amb mini-quiz de consolidació
 │   └── AIChat.tsx         → Agent IA flotant (Gemini)

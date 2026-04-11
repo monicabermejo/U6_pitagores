@@ -181,6 +181,18 @@ Contingut: Històries de la Germandat Pitagòrica (acordió), demostració visua
 
 ### Secció 4 — Problemes Reals (`SectionProblems.tsx`)
 
+#### Exemples Guiats (3 targetes amb SVG)
+
+Abans de la bateria de 14 problemes, hi ha 3 exemples guiats amb il·lustració i resolució desplegable:
+
+| #  | Situació                          | Dades         | Resposta | Unitat |
+|----|-----------------------------------|---------------|----------|--------|
+| 1  | Escala recolzada a la paret       | h=5, base=4   | **3**    | m      |
+| 2  | Arbre i ombra (copa→punta ombra)  | alt=6, ombra=8| **10**   | m      |
+| 3  | Drecera pel parc rectangular      | 5×12          | **13**   | m      |
+
+#### Bateria de 14 problemes contextualitzats
+
 14 problemes contextualitzats. L'alumne els resol un per un amb input numèric. Bilingues (ca/es).
 
 | ID    | Tema                         | Busques  | Resposta | Unitat |

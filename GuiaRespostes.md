@@ -107,7 +107,19 @@
 
 ---
 
-## SECCIÓ 4 · Problemes Reals — 14 problemes contextualitzats
+## SECCIÓ 4 · Problemes Reals — 3 exemples guiats + 14 problemes contextualitzats
+
+### 4A · Exemples Guiats — Resolem junts!
+
+> 3 exemples amb il·lustració SVG i resolució pas a pas (botó "Mostra la resolució").
+
+| #  | Situació                                          | Dades        | Busca       | **R**  | Unit |
+|----|---------------------------------------------------|--------------|-------------|--------|------|
+| Ex1| Escala recolzada a la paret                       | h=5, base=4  | Altura (c)  | **3**  | m    |
+| Ex2| Arbre i ombra — distància copa a punta ombra      | alt=6, ombra=8| Hipotenusa | **10** | m    |
+| Ex3| Drecera pel parc rectangular                      | 5×12         | Diagonal (h)| **13** | m    |
+
+### 4B · Bateria de 14 problemes
 
 | ID   | Enunciat (resum)                                  | Busca       | **R** | Unit |
 |------|---------------------------------------------------|-------------|-------|------|

@@ -63,25 +63,43 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
         {examplesOpen && (
           <div className="px-6 pb-6 grid grid-cols-1 md:grid-cols-3 gap-5">
 
-            {/* Exemple 1: Rectangle 3×4, diagonal = 5 */}
+            {/* Exemple 1: Escala recolzada a la paret — 3, 4, 5 */}
             <div className="bg-white rounded-xl p-5 border border-indigo-100 flex flex-col items-center text-center">
               <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">{lang === 'ca' ? 'Exemple 1' : 'Ejemplo 1'}</span>
-              <svg width="160" height="130" viewBox="0 0 160 130">
-                {/* Rectangle */}
-                <rect x="20" y="20" width="80" height="60" fill="none" stroke="#4b5563" strokeWidth="2.5" rx="2"/>
+              <svg width="160" height="130" viewBox="0 0 160 140">
+                {/* Wall */}
+                <rect x="15" y="10" width="12" height="110" fill="#d1d5db" stroke="#6b7280" strokeWidth="1.5"/>
+                {/* Bricks */}
+                <line x1="15" y1="30" x2="27" y2="30" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="15" y1="50" x2="27" y2="50" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="15" y1="70" x2="27" y2="70" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="15" y1="90" x2="27" y2="90" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="21" y1="10" x2="21" y2="30" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="21" y1="50" x2="21" y2="70" stroke="#9ca3af" strokeWidth="0.8"/>
+                <line x1="21" y1="90" x2="21" y2="110" stroke="#9ca3af" strokeWidth="0.8"/>
+                {/* Ground */}
+                <line x1="5" y1="120" x2="150" y2="120" stroke="#6b7280" strokeWidth="2"/>
+                {/* Ladder */}
+                <line x1="27" y1="28" x2="115" y2="120" stroke="#b45309" strokeWidth="3.5" strokeLinecap="round"/>
+                {/* Ladder rungs */}
+                <line x1="42" y1="42" x2="52" y2="56" stroke="#b45309" strokeWidth="2" transform="rotate(-42, 47, 49)"/>
+                <line x1="55" y1="56" x2="65" y2="70" stroke="#b45309" strokeWidth="2" transform="rotate(-42, 60, 63)"/>
+                <line x1="68" y1="70" x2="78" y2="84" stroke="#b45309" strokeWidth="2" transform="rotate(-42, 73, 77)"/>
+                <line x1="81" y1="84" x2="91" y2="98" stroke="#b45309" strokeWidth="2" transform="rotate(-42, 86, 91)"/>
+                <line x1="94" y1="98" x2="104" y2="112" stroke="#b45309" strokeWidth="2" transform="rotate(-42, 99, 105)"/>
                 {/* Right angle marker */}
-                <rect x="20" y="68" width="12" height="12" fill="none" stroke="#4b5563" strokeWidth="1.5"/>
-                {/* Diagonal */}
-                <line x1="20" y1="80" x2="100" y2="20" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="6"/>
-                {/* Labels */}
-                <text x="60" y="96" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#374151">4 cm</text>
-                <text x="8" y="52" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#374151">3 cm</text>
-                <text x="68" y="44" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#6366f1">?</text>
+                <rect x="27" y="108" width="10" height="10" fill="none" stroke="#4b5563" strokeWidth="1.5"/>
+                {/* Height label (vertical) */}
+                <text x="8" y="72" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#6366f1">? m</text>
+                {/* Base label */}
+                <text x="70" y="135" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#374151">4 m</text>
+                {/* Ladder label */}
+                <text x="82" y="65" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#b45309">5 m</text>
               </svg>
               <p className="text-sm text-gray-700 mb-3 leading-relaxed">
                 {lang === 'ca'
-                  ? 'Un rectangle fa 3 cm d\'alt i 4 cm d\'ample. Quant mesura la diagonal?'
-                  : 'Un rectángulo mide 3 cm de alto y 4 cm de ancho. ¿Cuánto mide la diagonal?'}
+                  ? 'Una escala de 5 m es recolza a la paret. El peu està a 4 m de la paret. A quina altura arriba?'
+                  : 'Una escalera de 5 m se apoya en la pared. El pie está a 4 m de la pared. ¿A qué altura llega?'}
               </p>
               <button
                 onClick={() => setExReveal(r => ({ ...r, ex1: true }))}
@@ -91,9 +109,9 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
               </button>
               {exReveal.ex1 && (
                 <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
-                  <p className="font-mono text-indigo-800">c² = 3² + 4²</p>
-                  <p className="font-mono text-indigo-800">c² = 9 + 16 = 25</p>
-                  <p className="font-mono text-indigo-800">c = √25 = <strong>5 cm</strong></p>
+                  <p className="font-mono text-indigo-800">h² + 4² = 5²</p>
+                  <p className="font-mono text-indigo-800">h² = 25 − 16 = 9</p>
+                  <p className="font-mono text-indigo-800">h = √9 = <strong>3 m</strong></p>
                 </div>
               )}
             </div>
@@ -133,9 +151,9 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
               </button>
               {exReveal.ex2 && (
                 <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
-                  <p className="font-mono text-indigo-800">c² = 6² + 8²</p>
-                  <p className="font-mono text-indigo-800">c² = 36 + 64 = 100</p>
-                  <p className="font-mono text-indigo-800">c = √100 = <strong>10 m</strong></p>
+                  <p className="font-mono text-indigo-800">h² = 6² + 8²</p>
+                  <p className="font-mono text-indigo-800">h² = 36 + 64 = 100</p>
+                  <p className="font-mono text-indigo-800">h = √100 = <strong>10 m</strong></p>
                 </div>
               )}
             </div>
@@ -180,9 +198,9 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
               </button>
               {exReveal.ex3 && (
                 <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
-                  <p className="font-mono text-indigo-800">c² = 5² + 12²</p>
-                  <p className="font-mono text-indigo-800">c² = 25 + 144 = 169</p>
-                  <p className="font-mono text-indigo-800">c = √169 = <strong>13 m</strong></p>
+                  <p className="font-mono text-indigo-800">h² = 5² + 12²</p>
+                  <p className="font-mono text-indigo-800">h² = 25 + 144 = 169</p>
+                  <p className="font-mono text-indigo-800">h = √169 = <strong>13 m</strong></p>
                 </div>
               )}
             </div>
