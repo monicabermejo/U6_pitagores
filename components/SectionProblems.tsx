@@ -109,9 +109,9 @@ export const SectionProblems: React.FC<SectionProps> = ({ lang, onComplete, isLo
               </button>
               {exReveal.ex1 && (
                 <div className="mt-3 bg-indigo-50 rounded-lg p-3 text-left w-full text-sm space-y-1">
-                  <p className="font-mono text-indigo-800">h² + 4² = 5²</p>
-                  <p className="font-mono text-indigo-800">h² = 25 − 16 = 9</p>
-                  <p className="font-mono text-indigo-800">h = √9 = <strong>3 m</strong></p>
+                  <p className="font-mono text-indigo-800">c² + 4² = 5²</p>
+                  <p className="font-mono text-indigo-800">c² = 25 − 16 = 9</p>
+                  <p className="font-mono text-indigo-800">c = √9 = <strong>3 m</strong></p>
                 </div>
               )}
             </div>
