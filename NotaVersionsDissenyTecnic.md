@@ -350,6 +350,7 @@ El refinament del system prompt reflecteix l'evolució del rol de la IA dins el 
 | **Cicle 7** | Dashboard del professor amb resum automàtic | `updateSummary()` a `Code.gs`, fulla `Resum_alumnes` |
 | **Cicle 8** | Secció de resum i consolidació | `SectionSummary.tsx` amb mini-quiz integrat |
 | **Cicle 9** | Bateria de repte oculta a la Secció 3 | 10 problemes multi-pas amagats sota un acordió a `SectionTheorem.tsx`; s'activen amb "Ja has acabat? Tens ganes de posar-te a prova?"; inclou diagrama SVG codificat per colors al problema 8 |
+| **Cicle 10** | Tab Expert sempre visible a la barra de navegació | Botó ⭐ Expert visible des del principi a `App.tsx`; apareix bloquejat (gris) fins completar la Sec. 4, igual que la resta de seccions |
 
 ---
 

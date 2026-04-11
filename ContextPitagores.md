@@ -108,6 +108,8 @@ interface Translations {
                                               ↑ cada secció desbloqueja la següent en completar-la
 ```
 
+**Barra de navegació:** totes les seccions (1–4, Extra, Resum) apareixen sempre. Les seccions no assolides es mostren en gris amb cursor bloquejat; quan es desbloquegen canvien d'estil i es poden prémer.
+
 - L'email s'emmagatzema a `localStorage('pythagoras_email')`
 - Es valida contra la llista d'autoritzats al Google Sheet (tab "Alumnes_autoritzats")
 - `sessionId` = `Date.now().toString(36) + random` — nou per sessió, permet veure quantes vegades un alumne fa cada problema

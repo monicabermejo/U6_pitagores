@@ -177,4 +177,4 @@
 | Sec. 2 · Visual         | L'alumne completa els 4 exercicis de la Sec. 1           |
 | Sec. 3 · Teorema        | L'alumne completa la Sec. 2                              |
 | Sec. 4 · Problemes Reals| L'alumne completa la Sec. 3                              |
-| Extra · Expert          | Sempre visible (opcional, no obligatòria)                |
+| Extra · Expert          | Visible des del principi (bloquejada fins completar Sec. 4) |
