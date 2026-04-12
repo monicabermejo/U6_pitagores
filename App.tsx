@@ -264,7 +264,7 @@ const App: React.FC = () => {
           </button>
           
           <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
-            <Globe size={16} /> {lang === 'ca' ? 'Canviar a Castellano' : 'Canviar a Català'}
+            <Globe size={16} /> {lang === 'ca' ? 'Castellà' : 'Català'}
           </button>
         </div>
       </div>
@@ -308,7 +308,7 @@ const App: React.FC = () => {
           )}
 
           <button onClick={toggleLang} className="text-gray-400 hover:text-indigo-600 font-bold flex items-center justify-center gap-2 w-full">
-            <Globe size={16} /> {lang === 'ca' ? 'Canviar a Castellano' : 'Canviar a Català'}
+            <Globe size={16} /> {lang === 'ca' ? 'Castellà' : 'Català'}
           </button>
         </div>
       </div>
