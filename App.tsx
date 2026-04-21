@@ -8,6 +8,7 @@ import { SectionTheorem } from './components/SectionTheorem';
 import { SectionProblems } from './components/SectionProblems';
 import { SectionExpert } from './components/SectionExpert';
 import { SectionSummary } from './components/SectionSummary';
+import { SectionPractica } from './components/SectionPractica';
 import { trackAnswer } from './utils/trackAnswer';
 import { RefreshCw, Globe } from 'lucide-react';
 
@@ -430,12 +431,10 @@ const App: React.FC = () => {
              </div>
           )}
 
-          {/* Pràctica — per implementar */}
+          {/* Pràctica */}
           {activeSection === 7 && (
              <div key={`practica-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div className="bg-white rounded-xl shadow-md p-8 text-center text-gray-400 italic">
-                  {lang === 'ca' ? 'Pròximament...' : 'Próximamente...'}
-                </div>
+                <SectionPractica lang={lang} studentEmail={studentEmail} sessionId={sessionId} />
              </div>
           )}
         </div>
