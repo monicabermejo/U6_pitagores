@@ -123,7 +123,7 @@
 
 | ID   | Enunciat (resum)                                  | Busca       | **R** | Unit |
 |------|---------------------------------------------------|-------------|-------|------|
-| rp1  | Escala 5 m, peu 3 m de la paret                  | Alçada (c)  | **4** | m    |
+| rp1  | Escala: peu a 8 m de la paret, finestra a 6 m     | Longitud escala (h) | **10** | m    |
 | rp2  | Camp de futbol 90 × 120 m, diagonal àrbitre       | Hipotenusa  | **150** | m  |
 | rp3  | Tirolina: arbre 15 m, dist. tronc 8 m             | Cable (h)   | **17** | m   |
 | rp4  | Rampa skatepark: inclinada 5 m, alçada 3 m        | Base (c)    | **4** | m    |
