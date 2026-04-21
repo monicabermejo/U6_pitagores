@@ -171,7 +171,6 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 150 150" width="120" height="120" className="float-right ml-3 mb-2">
             <rect x="15" y="15" width="120" height="120" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <line x1="15" y1="15" x2="135" y2="135" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="75" y="155" textAnchor="middle" fill="#2563eb" fontSize="11" fontWeight="bold">P = 40 cm</text>
             <text x="72" y="68" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
           </svg>
           Un quadrat té un <strong>perímetre de 40 cm</strong>. Calcula la longitud de la seva <strong>diagonal</strong>. Dóna el resultat amb dos decimals.
@@ -180,7 +179,6 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 150 150" width="120" height="120" className="float-right ml-3 mb-2">
             <rect x="15" y="15" width="120" height="120" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <line x1="15" y1="15" x2="135" y2="135" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="75" y="155" textAnchor="middle" fill="#2563eb" fontSize="11" fontWeight="bold">P = 40 cm</text>
             <text x="72" y="68" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
           </svg>
           Un cuadrado tiene un <strong>perímetro de 40 cm</strong>. Calcula la longitud de su <strong>diagonal</strong>. Da el resultado con dos decimales.
@@ -215,10 +213,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 130" width="140" height="100" className="float-right ml-3 mb-2">
             <rect x="10" y="20" width="160" height="90" fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"/>
             <line x1="10" y1="20" x2="170" y2="110" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="90" y="13" textAnchor="middle" fill="#16a34a" fontSize="11" fontWeight="bold">base</text>
-            <text x="175" y="65" fill="#16a34a" fontSize="11" fontWeight="bold">h</text>
             <text x="80" y="72" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-            <text x="90" y="125" textAnchor="middle" fill="#374151" fontSize="10">P = 34 cm · A = 60 cm²</text>
           </svg>
           Un rectangle té un <strong>perímetre de 34 cm</strong> i una <strong>àrea de 60 cm²</strong>. Calcula la longitud de la seva <strong>diagonal</strong>.
         </>),
@@ -226,10 +221,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 130" width="140" height="100" className="float-right ml-3 mb-2">
             <rect x="10" y="20" width="160" height="90" fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"/>
             <line x1="10" y1="20" x2="170" y2="110" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="90" y="13" textAnchor="middle" fill="#16a34a" fontSize="11" fontWeight="bold">base</text>
-            <text x="175" y="65" fill="#16a34a" fontSize="11" fontWeight="bold">h</text>
             <text x="80" y="72" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-            <text x="90" y="125" textAnchor="middle" fill="#374151" fontSize="10">P = 34 cm · A = 60 cm²</text>
           </svg>
           Un rectángulo tiene un <strong>perímetro de 34 cm</strong> y un <strong>área de 60 cm²</strong>. Calcula la longitud de su <strong>diagonal</strong>.
         </>),
@@ -268,10 +260,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             {/* angle recte */}
             <rect x="20" y="120" width="10" height="10" fill="none" stroke="#d97706" strokeWidth="1.5"/>
             {/* etiquetes */}
-            <text x="80" y="148" textAnchor="middle" fill="#374151" fontSize="10">catet a</text>
-            <text x="8" y="75" fill="#374151" fontSize="10">catet b</text>
             <text x="90" y="72" fill="#dc2626" fontSize="11" fontWeight="bold">h = 26 cm</text>
-            <text x="40" y="155" fill="#374151" fontSize="9">P = 60 cm</text>
           </svg>
           Un triangle rectangle té un <strong>perímetre de 60 cm</strong> i la <strong>hipotenusa mesura 26 cm</strong>. Calcula l'<strong>àrea</strong> del triangle.
         </>),
@@ -279,10 +268,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 160 150" width="125" height="117" className="float-right ml-3 mb-2">
             <polygon points="20,130 140,130 20,20" fill="#fef3c7" stroke="#d97706" strokeWidth="2"/>
             <rect x="20" y="120" width="10" height="10" fill="none" stroke="#d97706" strokeWidth="1.5"/>
-            <text x="80" y="148" textAnchor="middle" fill="#374151" fontSize="10">cateto a</text>
-            <text x="8" y="75" fill="#374151" fontSize="10">cateto b</text>
             <text x="90" y="72" fill="#dc2626" fontSize="11" fontWeight="bold">h = 26 cm</text>
-            <text x="40" y="155" fill="#374151" fontSize="9">P = 60 cm</text>
           </svg>
           Un triángulo rectángulo tiene un <strong>perímetro de 60 cm</strong> y la <strong>hipotenusa mide 26 cm</strong>. Calcula el <strong>área</strong> del triángulo.
         </>),
