@@ -387,6 +387,13 @@ const App: React.FC = () => {
            >
              🚀 {lang === 'ca' ? 'Resum' : 'Resumen'}
            </button>
+           {/* Pràctica Badge — always visible */}
+           <button
+             onClick={() => setActiveSection(7)}
+             className={`px-3 py-1.5 rounded-full font-bold text-xs shadow-sm transition-all ${activeSection === 7 ? 'bg-emerald-600 text-white scale-105 shadow-md' : 'bg-emerald-100 text-emerald-800'}`}
+           >
+             ✏️ {lang === 'ca' ? 'Pràctica' : 'Práctica'}
+           </button>
         </div>
 
         {/* Active Section Content */}
@@ -420,6 +427,15 @@ const App: React.FC = () => {
           {activeSection === 6 && (
              <div key={`summary-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <SectionSummary lang={lang} />
+             </div>
+          )}
+
+          {/* Pràctica — per implementar */}
+          {activeSection === 7 && (
+             <div key={`practica-${sessionKey}`} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="bg-white rounded-xl shadow-md p-8 text-center text-gray-400 italic">
+                  {lang === 'ca' ? 'Pròximament...' : 'Próximamente...'}
+                </div>
              </div>
           )}
         </div>
