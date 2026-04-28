@@ -127,8 +127,6 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             {/* base */}
             <line x1="10" y1="128" x2="150" y2="128" stroke="#9333ea" strokeWidth="1.5"/>
             <text x="80" y="138" textAnchor="middle" fill="#9333ea" fontSize="11" fontWeight="bold">16 cm</text>
-            {/* àrea */}
-            <text x="80" y="78" textAnchor="middle" fill="#374151" fontSize="10">Àrea = 48 cm²</text>
             {/* costat igual */}
             <text x="28" y="68" fill="#ca8a04" fontSize="10" fontWeight="bold">?</text>
           </svg>
@@ -141,7 +139,6 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             <rect x="80" y="112" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
             <line x1="10" y1="128" x2="150" y2="128" stroke="#9333ea" strokeWidth="1.5"/>
             <text x="80" y="138" textAnchor="middle" fill="#9333ea" fontSize="11" fontWeight="bold">16 cm</text>
-            <text x="80" y="78" textAnchor="middle" fill="#374151" fontSize="10">Área = 48 cm²</text>
             <text x="28" y="68" fill="#ca8a04" fontSize="10" fontWeight="bold">?</text>
           </svg>
           Un triángulo isósceles tiene una <strong>base de 16 cm</strong> y un <strong>área de 48 cm²</strong>. Calcula su <strong>perímetro total</strong>.
@@ -283,7 +280,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             <line x1="20" y1="120" x2="50" y2="120" stroke="#7c3aed" strokeWidth="3.5"/>
             <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
-          Una empresa de gelats vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
+          Una empresa de disseny vol crear un logotip en forma de <strong>romboide (paral·lelogram)</strong>. Sabem que els costats fan <strong>10 cm i 17 cm</strong>, i que l'altura relativa al costat de 17 cm divideix aquest costat en dos segments, un dels quals fa <strong>6 cm</strong>. Calcula l'<strong>àrea total</strong> del logotip.
           <p className="mt-2 text-xs text-indigo-700 bg-indigo-50 rounded px-2 py-1">💡 Recorda: Àrea del paral·lelogram = base × <em>a</em>, on <em>a</em> és l'alçada perpendicular a la base.</p>
         </>),
         es: (<>
@@ -299,9 +296,11 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             <line x1="20" y1="120" x2="50" y2="120" stroke="#7c3aed" strokeWidth="3.5"/>
             <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
-          Una empresa de helados quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
+          Una empresa de diseño quiere crear un logotipo en forma de <strong>romboide (paralelogramo)</strong>. Sabemos que los lados miden <strong>10 cm y 17 cm</strong>, y que la altura relativa al lado de 17 cm divide este lado en dos segmentos, uno de los cuales mide <strong>6 cm</strong>. Calcula el <strong>área total</strong> del logotipo.
           <p className="mt-2 text-xs text-indigo-700 bg-indigo-50 rounded px-2 py-1">💡 Recuerda: Área del paralelogramo = base × <em>a</em>, donde <em>a</em> es la altura perpendicular a la base.</p>
         </>),
+      },
+      steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
           <li>El triangle rectangle format té hipotenusa = costat obliquo = <strong>10 cm</strong></li>
           <li>Un catet és el segment de <strong>6 cm</strong></li>
