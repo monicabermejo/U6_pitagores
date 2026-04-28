@@ -263,28 +263,40 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 180 140" width="140" height="108" className="float-right ml-3 mb-2">
-            {/* paral·lelogram inclinat estil logotip de gelats */}
-            <polygon points="45,110 145,110 135,30 35,30" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
-            {/* franja de color interna decorativa */}
-            <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
-            {/* text marca */}
-            <text x="90" y="86" textAnchor="middle" fill="#92400e" fontSize="12" fontFamily="Georgia, serif" letterSpacing="4">★ ★ ★</text>
-            {/* punt de gelat a dalt */}
-            <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
-            <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
-            <ellipse cx="152" cy="20" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+          <svg viewBox="0 0 180 145" width="140" height="112" className="float-right ml-3 mb-2">
+            {/* paral·lelogram: A(20,120) B(105,120) D(135,80) C(50,80) */}
+            {/* base=85px=17cm · costat=50px=10cm · peu F(50,120) a 30px=6cm de A */}
+            <polygon points="20,120 105,120 135,80 50,80" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
+            {/* franja decorativa interna */}
+            <polygon points="28,120 62,120 92,80 58,80" fill="#fbbf24" opacity="0.5"/>
+            {/* estrelles */}
+            <text x="80" y="108" textAnchor="middle" fill="#92400e" fontSize="11" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            {/* boles de gelat al vèrtex superior dret */}
+            <ellipse cx="152" cy="70" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
+            <ellipse cx="140" cy="63" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
+            <ellipse cx="163" cy="63" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+            {/* alçada puntejada rosa: de C(50,80) fins al peu F(50,120) */}
+            <line x1="50" y1="80" x2="50" y2="120" stroke="#ec4899" strokeWidth="1.8" strokeDasharray="5,3"/>
+            {/* angle recte al peu F(50,120) */}
+            <rect x="50" y="112" width="8" height="8" fill="none" stroke="#ec4899" strokeWidth="1.3"/>
+            {/* segment de 6 cm destacat: de A(20,120) fins a F(50,120) */}
+            <line x1="20" y1="120" x2="50" y2="120" stroke="#7c3aed" strokeWidth="3.5"/>
+            <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
           Una empresa de gelats vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
         </>),
         es: (<>
-          <svg viewBox="0 0 180 140" width="140" height="108" className="float-right ml-3 mb-2">
-            <polygon points="45,110 145,110 135,30 35,30" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
-            <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
-            <text x="90" y="86" textAnchor="middle" fill="#92400e" fontSize="12" fontFamily="Georgia, serif" letterSpacing="4">★ ★ ★</text>
-            <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
-            <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
-            <ellipse cx="152" cy="20" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+          <svg viewBox="0 0 180 145" width="140" height="112" className="float-right ml-3 mb-2">
+            <polygon points="20,120 105,120 135,80 50,80" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
+            <polygon points="28,120 62,120 92,80 58,80" fill="#fbbf24" opacity="0.5"/>
+            <text x="80" y="108" textAnchor="middle" fill="#92400e" fontSize="11" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            <ellipse cx="152" cy="70" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
+            <ellipse cx="140" cy="63" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
+            <ellipse cx="163" cy="63" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+            <line x1="50" y1="80" x2="50" y2="120" stroke="#ec4899" strokeWidth="1.8" strokeDasharray="5,3"/>
+            <rect x="50" y="112" width="8" height="8" fill="none" stroke="#ec4899" strokeWidth="1.3"/>
+            <line x1="20" y1="120" x2="50" y2="120" stroke="#7c3aed" strokeWidth="3.5"/>
+            <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
           Una empresa de helados quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
         </>),
