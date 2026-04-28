@@ -397,10 +397,10 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       },
       statement: {
         ca: (<>
-          Un test de flors té forma de <strong>piràmide truncada de base quadrada</strong>. La base superior fa <strong>20 cm de costat</strong>, la base inferior fa <strong>10 cm de costat</strong> i l'<strong>alçada del test és 24 cm</strong>. Calcula la longitud de l'<strong>apotema de la cara lateral</strong> (la slant height de la cara trapezoïdal). Dóna el resultat amb dos decimals.
+          Un test de flors té forma de <strong>piràmide truncada de base quadrada</strong>. La base superior fa <strong>20 cm de costat</strong>, la base inferior fa <strong>10 cm de costat</strong> i l'<strong>alçada del test és 24 cm</strong>. Calcula la longitud de l'<strong>apotema de la cara lateral</strong> (l'alçada inclinada de la cara trapezoïdal). Dóna el resultat amb dos decimals.
         </>),
         es: (<>
-          Un tiesto de flores tiene forma de <strong>pirámide truncada de base cuadrada</strong>. La base superior mide <strong>20 cm de lado</strong>, la base inferior <strong>10 cm de lado</strong> y la <strong>altura del tiesto es 24 cm</strong>. Calcula la longitud de la <strong>apotema de la cara lateral</strong> (la slant height de la cara trapezoidal). Da el resultado con dos decimales.
+          Un tiesto de flores tiene forma de <strong>pirámide truncada de base cuadrada</strong>. La base superior mide <strong>20 cm de lado</strong>, la base inferior <strong>10 cm de lado</strong> y la <strong>altura del tiesto es 24 cm</strong>. Calcula la longitud de la <strong>apotema de la cara lateral</strong> (la altura inclinada de la cara trapezoidal). Da el resultado con dos decimales.
         </>),
       },
       steps: {
