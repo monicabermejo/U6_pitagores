@@ -269,8 +269,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             {/* franja de color interna decorativa */}
             <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
             {/* text marca */}
-            <text x="90" y="76" textAnchor="middle" fill="#92400e" fontSize="13" fontWeight="bold" fontStyle="italic" fontFamily="Georgia, serif">Gela</text>
-            <text x="90" y="94" textAnchor="middle" fill="#92400e" fontSize="10" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            <text x="90" y="86" textAnchor="middle" fill="#92400e" fontSize="12" fontFamily="Georgia, serif" letterSpacing="4">★ ★ ★</text>
             {/* punt de gelat a dalt */}
             <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
             <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
@@ -282,8 +281,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 140" width="140" height="108" className="float-right ml-3 mb-2">
             <polygon points="45,110 145,110 135,30 35,30" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
             <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
-            <text x="90" y="76" textAnchor="middle" fill="#92400e" fontSize="13" fontWeight="bold" fontStyle="italic" fontFamily="Georgia, serif">Gela</text>
-            <text x="90" y="94" textAnchor="middle" fill="#92400e" fontSize="10" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            <text x="90" y="86" textAnchor="middle" fill="#92400e" fontSize="12" fontFamily="Georgia, serif" letterSpacing="4">★ ★ ★</text>
             <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
             <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
             <ellipse cx="152" cy="20" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
