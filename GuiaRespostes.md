@@ -140,6 +140,85 @@
 
 ---
 
+## SECCIÓ PRÀCTICA · Tab "✏️ Pràctica"
+
+### Part 1 · Problemes multi-pas (p1–p11)
+
+> Problemes avançats amb diversos passos intermedis. Accepta ±0.05 (p3 ±0.5 cm, p2 ±0.15, p7 ±0.15, p8 ±0.12). L'alumne ha de donar el resultat amb dos decimals si cal.
+
+| ID  | Títol                                      | Resposta               | Unitat |
+|-----|--------------------------------------------|------------------------|--------|
+| p1  | El triangle isòsceles: de l'àrea al perímetre | **36**              | cm     |
+| p2  | El senyal de trànsit (octàgon regular)     | **≈ 48.28**            | cm     |
+| p3  | L'escala a la cantonada                    | **≈ 18.71**            | cm     |
+| p4  | El logotip del romboide                    | **136**                | cm²    |
+| p5  | La tenda de campanya                       | **≈ 2.33**             | m      |
+| p6  | El túnel de la via del tren                | **≈ 4.77**             | m      |
+| p7  | El pentàgon i la corda de piano            | **≈ 11.73**            | cm     |
+| p8  | La piràmide truncada (el test de flors)    | **≈ 24.52**            | cm     |
+| p9  | El rectangle dins del cercle               | **30**                 | cm     |
+| p10 | La distància entre pobles                  | **20**                 | km     |
+| p11 | La caixa de varetes                        | **≈ 27.20**            | cm     |
+
+#### Raonament de cada problema
+
+| #  | Passos clau |
+|----|-------------|
+| p1  | h = (2×48)/16 = 6 → semi-base = 8 → costat = √(8²+6²) = 10 → P = 16+20 = **36** |
+| p2  | Inscrit en quadrat: catet = 20/√2 = 10√2 ≈ 14.14 → costat quadrat = 20+2×14.14 ≈ **48.28** |
+| p3  | h₁ = √(25−2.25) ≈ 4.770 m; peu nou = 2 m; h₂ = √(25−4) ≈ 4.583 m; baixada ≈ 0.187 m = **18.71 cm** |
+| p4  | Hipotenusa=10, catet=6 → alçada = √(100−36) = 8 → àrea = 17×8 = **136** |
+| p5  | Semidiagonal base = 2.4√2/2 ≈ 1.697 m → aresta = √(1.6²+1.697²) = √5.44 ≈ **2.33** |
+| p6  | Semi-ample = 1.5 m → alçada = √(5²−1.5²) = √22.75 ≈ **4.77** |
+| p7  | semibbase = √(10²−8.1²) = √34.39 ≈ 5.865 → costat = 2×5.865 ≈ **11.73** |
+| p8  | Voladís = (20−10)/2 = 5 → slant = √(24²+5²) = √601 ≈ **24.52** |
+| p9  | Diagonal = diàmetre = 50 → alçada = √(50²−40²) = √900 = **30** |
+| p10 | ΔX = 5−(−7)=12; ΔY = 12−(−4)=16 → d = √(144+256) = √400 = **20** |
+| p11 | Diagonal base = √(24²+10²) = 26 → diagonal cos = √(26²+8²) = √740 ≈ **27.20** |
+
+---
+
+### Part 2 · Problemes reals contextualitzats per nivell (rp_a1–rp_c16)
+
+#### 🟢 Nivell A — Fàcil (càlcul directe)
+
+| ID      | Enunciat (resum)                                      | Resposta          | Unitat   |
+|---------|-------------------------------------------------------|-------------------|----------|
+| rp_a1   | Pantalla 12×5 cm → diagonal en polzades (÷2.54)       | **≈ 5.12**        | polzades |
+| rp_a2   | Barra 2.5 m, peu a 1.5 m de la base → alçada          | **2**             | m        |
+| rp_a3   | Quadrat xocolata costat=8 → diagonal (2 decimals)     | **≈ 11.31**       | cm       |
+| rp_a4   | Porteria 2.44 m, dist. penal=11 m → dist. pilota      | **≈ 11.27**       | m        |
+| rp_a5   | h=17, c=8 → altre catet                               | **15**            | cm       |
+
+*Raonaments:* a1: diagonal=√(144+25)=13 cm →13/2.54≈5.12 | a2: √(2.5²−1.5²)=√4=2 | a3: 8√2≈11.31 | a4: √(121+5.9536)≈11.27 | a5: √(289−64)=√225=15
+
+#### 🟡 Nivell B — Mitjà (identificar triangle dins figura)
+
+| ID      | Enunciat (resum)                                          | Resposta   | Unitat |
+|---------|-----------------------------------------------------------|------------|--------|
+| rp_b6   | Cabana isòsceles costats=5, base=6 → alçada               | **4**      | m      |
+| rp_b7   | Piscina 25×10 m → diagonal (2 decimals)                   | **≈ 26.93**| m      |
+| rp_b8   | Senyal equilàter costat=60 → alçada (2 decimals)          | **≈ 51.96**| cm     |
+| rp_b9   | Rombe costat=10, diagonal=12 → altra diagonal             | **16**     | cm     |
+| rp_b10  | Tirolina: torre=15m, pal=3m, dist=20m → cable (2 dec.)    | **≈ 23.32**| m      |
+| rp_b11  | 300m N + 400m E → metres estalviats per drecera           | **200**    | m      |
+
+*Raonaments:* b6: √(5²−3²)=4 | b7: √(625+100)=√725≈26.93 | b8: 30√3≈51.96 | b9: semi-d=√(100−36)=8→d=16 | b10: √((15−3)²+20²)=√544≈23.32 | b11: drecera=500→estalvi=700−500=200
+
+#### 🔴 Nivell C — Difícil (multi-pas, 3D, múltiples variables)
+
+| ID      | Enunciat (resum)                                              | Resposta   | Unitat |
+|---------|---------------------------------------------------------------|------------|--------|
+| rp_c12  | Pizza ∅=40, caixa diag=50 → costat caixa (2 decimals)        | **≈ 35.36**| cm     |
+| rp_c13  | Trapezi isòsceles base_inf=10, base_sup=4, costats=5 → àrea  | **28**     | m²     |
+| rp_c14  | Armari 2×1.5×0.5 m → diagonal interna (2 decimals)           | **≈ 2.55** | m      |
+| rp_c15  | Dos vaixells perp. 15 km/h i 20 km/h, 2 hores → distància   | **50**     | km     |
+| rp_c16  | Noi 1.70m sobre banc 0.50m, ombra=4m → dist. cap a punta    | **≈ 4.57** | m      |
+
+*Raonaments:* c12: costat=50/√2=25√2≈35.36 | c13: voladís=3→h=√(25−9)=4→àrea=(10+4)/2×4=28 | c14: diag_base=√(2.5)→diag_cos=√(2.5+4)=√6.5≈2.55 | c15: 30km N, 40km E→√(900+1600)=50 | c16: alçada total=2.2m→√(16+4.84)=√20.84≈4.57
+
+---
+
 ## EXTRA · Nivell Expert — Ternes Pitagòriques
 
 ### Repte dels Egipcis
