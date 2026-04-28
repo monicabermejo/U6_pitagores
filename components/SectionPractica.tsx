@@ -284,6 +284,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
           Una empresa de gelats vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
+          <p className="mt-2 text-xs text-indigo-700 bg-indigo-50 rounded px-2 py-1">💡 Recorda: Àrea del paral·lelogram = base × <em>a</em>, on <em>a</em> és l'alçada perpendicular a la base.</p>
         </>),
         es: (<>
           <svg viewBox="0 0 180 145" width="140" height="112" className="float-right ml-3 mb-2">
@@ -299,9 +300,8 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
             <text x="35" y="136" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="bold">6 cm</text>
           </svg>
           Una empresa de helados quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
+          <p className="mt-2 text-xs text-indigo-700 bg-indigo-50 rounded px-2 py-1">💡 Recuerda: Área del paralelogramo = base × <em>a</em>, donde <em>a</em> es la altura perpendicular a la base.</p>
         </>),
-      },
-      steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
           <li>El triangle rectangle format té hipotenusa = costat obliquo = <strong>10 cm</strong></li>
           <li>Un catet és el segment de <strong>6 cm</strong></li>
