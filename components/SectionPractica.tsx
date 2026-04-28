@@ -12,8 +12,10 @@ interface RealProblem {
   id: string;
   num: number;
   q: { ca: string; es: string };
+  hint?: { ca: string; es: string };
   ans: number;
   unit: string;
+  level: 'A' | 'B' | 'C';
 }
 
 interface ProblemItem {
@@ -34,36 +36,60 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
   const [showSteps, setShowSteps] = useState<Record<string, boolean>>({});
 
   const realProblems: RealProblem[] = [
-    { id: 'rp15', num: 1, unit: 'm', ans: 25,
-      q: { ca: "Un pont tibant té dues torres de 15 m d'alçada. Els cables que subjecten el tauler estan ancorats al terra a 20 m de la base de cada torre. Quant mesura cadascun d'aquests cables diagonals?", es: "Un puente atirantado tiene dos torres de 15 m de altura. Los cables que sujetan el tablero están anclados al suelo a 20 m de la base de cada torre. ¿Cuánto mide cada uno de estos cables diagonales?" } },
-    { id: 'rp16', num: 2, unit: 'm', ans: 26,
-      q: { ca: "La piscina municipal és rectangular i fa 24 m de llarg i 10 m d'ample. La monitora neda en diagonal d'un cantó a l'altre cada matí. Quants metres recorre en cada travessia?", es: "La piscina municipal es rectangular y mide 24 m de largo y 10 m de ancho. La monitora nada en diagonal de una esquina a la otra cada mañana. ¿Cuántos metros recorre en cada travesía?" } },
-    { id: 'rp17', num: 3, unit: 'm', ans: 144,
-      q: { ca: "Una maqueta d'una piràmide d'Egipte té una base quadrada de 120 m de costat i la longitud de la línia que va del centre de la base fins a la punta passant per la cara és de 156 m. Quina és l'alçada de la piràmide?", es: "Una maqueta de una pirámide de Egipto tiene una base cuadrada de 120 m de lado y la longitud de la línea que va del centro de la base hasta la punta pasando por la cara es de 156 m. ¿Cuál es la altura de la pirámide?" } },
-    { id: 'rp18', num: 4, unit: 'm', ans: 36,
-      q: { ca: "Un parapentista vola 45 m en línia recta inclinada i avança 27 m en horitzontal. Quants metres ha baixat verticalment durant el vol?", es: "Un parapentista vuela 45 m en línea recta inclinada y avanza 27 m en horizontal. ¿Cuántos metros ha bajado verticalmente durante el vuelo?" } },
-    { id: 'rp19', num: 5, unit: 'cm', ans: 100,
-      q: { ca: "Un marc de quadre fa 60 cm d'ample i 80 cm d'alt. L'has de fer passar per una porta que fa just 1 metre d'ample. Quant mesura la diagonal del marc?", es: "Un marco de cuadro mide 60 cm de ancho y 80 cm de alto. Lo tienes que pasar por una puerta que mide justo 1 metro de ancho. ¿Cuánto mide la diagonal del marco?" } },
-    { id: 'rp20', num: 6, unit: 'm', ans: 58,
-      q: { ca: "Un atleta surt del punt de partida, corre 40 m cap al nord i després 42 m cap a l'est. Quina és la distància en línia recta des del punt de partida fins on és ara?", es: "Un atleta sale del punto de partida, corre 40 m hacia el norte y después 42 m hacia el este. ¿Cuál es la distancia en línea recta desde el punto de partida hasta donde está ahora?" } },
-    { id: 'rp21', num: 7, unit: 'm', ans: 13,
-      q: { ca: "Una escala mecànica d'un centre comercial puja 5 metres d'alçada. La base de l'escala ocupa 12 metres de recorregut horitzontal. Quina és la longitud real de l'escala inclinada?", es: "Una escalera mecánica de un centro comercial sube 5 metros de altura. La base de la escalera ocupa 12 metros de recorrido horizontal. ¿Cuál es la longitud real de la escalera inclinada?" } },
-    { id: 'rp22', num: 8, unit: 'cm', ans: 48,
-      q: { ca: "La diagonal d'un monitor d'ordinador mesura 80 cm i la seva amplada és de 64 cm. Quina és l'alçada de la pantalla?", es: "La diagonal de un monitor de ordenador mide 80 cm y su anchura es de 64 cm. ¿Cuál es la altura de la pantalla?" } },
-    { id: 'rp23', num: 9, unit: 'm', ans: 21,
-      q: { ca: "Un sonar detecta un objecte submarí a 29 m de distància del vaixell. Sabem que l'objecte es troba a 20 m de profunditat. A quina distància horitzontal del vaixell es troba l'objecte?", es: "Un sonar detecta un objeto submarino a 29 m de distancia del barco. Sabemos que el objeto se encuentra a 20 m de profundidad. ¿A qué distancia horizontal del barco se encuentra el objeto?" } },
-    { id: 'rp24', num: 10, unit: 'km', ans: 2.4,
-      q: { ca: "Un senderista puja per un camí de muntanya. El camí fa 2.6 km de recorregut total i el desnivell vertical és d'1 km. Quant ha avançat el senderista en horitzontal?", es: "Un senderista sube por un camino de montaña. El camino mide 2.6 km de recorrido total y el desnivel vertical es de 1 km. ¿Cuánto ha avanzado el senderista en horizontal?" } },
-    { id: 'rp25', num: 11, unit: 'm', ans: 17,
-      q: { ca: "Un magatzem rectangular fa 8 m d'ample i 15 m de llarg. Un treballador recorre el magatzem en diagonal d'un extrem a l'altre. Quina distància recorre?", es: "Un almacén rectangular mide 8 m de ancho y 15 m de largo. Un trabajador recorre el almacén en diagonal de un extremo al otro. ¿Qué distancia recorre?" } },
-    { id: 'rp26', num: 12, unit: 'm', ans: 5,
-      q: { ca: "Una teulada a dues aigues cobreix un edifici de 8 m d'amplada. El carener (el punt més alt) es troba 3 m per sobre dels murs laterals. Quant mesura cada porció inclinada de la teulada?", es: "Un tejado a dos aguas cubre un edificio de 8 m de ancho. El caballete (el punto más alto) se encuentra 3 m por encima de los muros laterales. ¿Cuánto mide cada porción inclinada del tejado?" } },
-    { id: 'rp27', num: 13, unit: 'm', ans: 25,
-      q: { ca: "Un quarterback llança la pilota de rugby americà 20 m cap endavant i 15 m cap a la dreta del camp. Quina distància ha recorregut la pilota en total?", es: "Un quarterback lanza el balón de fútbol americano 20 m hacia adelante y 15 m hacia la derecha del campo. ¿Qué distancia ha recorrido el balón en total?" } },
-    { id: 'rp28', num: 14, unit: 'm', ans: 12.5,
-      q: { ca: "En un teatre, un focus penjat al sostre es troba a 7.5 m d'alçada. El tècnic de llum vol tirar un cable des del focus fins a la paret, que queda a 10 m de distància horitzontal. Quant de cable necessita?", es: "En un teatro, un foco colgado en el techo se encuentra a 7.5 m de altura. El técnico de luces quiere tirar un cable desde el foco hasta la pared, que queda a 10 m de distancia horizontal. ¿Cuánto cable necesita?" } },
-    { id: 'rp29', num: 15, unit: 'cm', ans: 50,
-      q: { ca: "En un joc de taula, el tauler fa 30 cm d'ample i 40 cm de llarg. Quin és el cordill mínim necessari per travessar el tauler en diagonal d'un extrem a l'altre?", es: "En un juego de mesa, el tablero mide 30 cm de ancho y 40 cm de largo. ¿Cuál es el cordel mínimo necesario para atravesar el tablero en diagonal de un extremo al otro?" } },
+    // ── Nivell A (Fàcil) ──────────────────────────────────────────────
+    { id: 'rp_a1', num: 1, level: 'A', unit: 'polzades', ans: 13 / 2.54,
+      q: { ca: "Un telèfon d'última generació té una pantalla rectangular que fa 12 cm d'alt i 5 cm d'ample. Quina és la mesura de la seva diagonal en polzades?", es: "Un teléfono de última generación tiene una pantalla rectangular de 12 cm de alto y 5 cm de ancho. ¿Cuál es la medida de su diagonal en pulgadas?" },
+      hint: { ca: "Calcula primer la diagonal en cm amb Pitàgores. Després divideix per 2,54 per convertir a polzades.", es: "Calcula primero la diagonal en cm con Pitágoras. Después divide entre 2,54 para convertir a pulgadas." },
+    },
+    { id: 'rp_a2', num: 2, level: 'A', unit: 'm', ans: 2,
+      q: { ca: "Per assegurar una pinya, posem una barra de suport a 1,5 metres de la base del castell. Si la barra fa 2,5 metres de llarg, a quina altura del terra tocarà la barra el tronc del casteller?", es: "Para asegurar una piña, ponemos una barra de soporte a 1,5 metros de la base del castillo. Si la barra mide 2,5 metros de largo, ¿a qué altura del suelo tocará la barra el tronco del casteller?" },
+    },
+    { id: 'rp_a3', num: 3, level: 'A', unit: 'cm', ans: 8 * Math.SQRT2,
+      q: { ca: "Una rajola de xocolata és quadrada i té un costat de 8 cm. Si la tallem exactament per la meitat seguint la diagonal, quina distància recorrerà el ganivet? Dóna el resultat amb dos decimals.", es: "Una tableta de chocolate es cuadrada y tiene un lado de 8 cm. Si la cortamos exactamente por la mitad siguiendo la diagonal, ¿qué distancia recorrerá el cuchillo? Da el resultado con dos decimales." },
+    },
+    { id: 'rp_a4', num: 4, level: 'A', unit: 'm', ans: Math.sqrt(121 + 5.9536),
+      q: { ca: "Una porteria fa 2,44 m d'alt. Un jugador xuta des del punt de penal, però la pilota va directa al travesser. Si el punt de penal està a 11 m de la línia de gol, quina distància ha recorregut la pilota per l'aire? Dóna el resultat amb dos decimals.", es: "Una portería mide 2,44 m de alto. Un jugador chuta desde el punto de penalti, pero el balón va directo al larguero. Si el punto de penalti está a 11 m de la línea de gol, ¿qué distancia ha recorrido el balón por el aire? Da el resultado con dos decimales." },
+    },
+    { id: 'rp_a5', num: 5, level: 'A', unit: 'cm', ans: 15,
+      q: { ca: "D'un triangle rectangle en coneixem la hipotenusa, que mesura 17 cm, i un dels catets, que fa 8 cm. Calcula la mesura de l'altre catet.", es: "De un triángulo rectángulo conocemos la hipotenusa, que mide 17 cm, y uno de los catetos, que mide 8 cm. Calcula la medida del otro cateto." },
+    },
+    // ── Nivell B (Mitjà) ──────────────────────────────────────────────
+    { id: 'rp_b6', num: 6, level: 'B', unit: 'm', ans: 4,
+      q: { ca: "La secció frontal d'una cabana és un triangle isòsceles. La teulada (els costats iguals) fa 5 m de llarg i l'amplada de la cabana (la base) és de 6 m. Quina altura té el punt més alt de la cabana?", es: "La sección frontal de una cabaña es un triángulo isósceles. El tejado (los lados iguales) mide 5 m de largo y la anchura de la cabaña (la base) es de 6 m. ¿Qué altura tiene el punto más alto de la cabaña?" },
+    },
+    { id: 'rp_b7', num: 7, level: 'B', unit: 'm', ans: Math.sqrt(725),
+      q: { ca: "Una piscina rectangular fa 25 m de llarg i 10 m d'ample. Un nedador vol anar des d'una cantonada a la cantonada oposada nedant en línia recta. Quants metres nedarà? Arrodoneix a 2 decimals.", es: "Una piscina rectangular mide 25 m de largo y 10 m de ancho. Un nadador quiere ir desde una esquina a la esquina opuesta nadando en línea recta. ¿Cuántos metros nadará? Redondea a 2 decimales." },
+    },
+    { id: 'rp_b8', num: 8, level: 'B', unit: 'cm', ans: 30 * Math.sqrt(3),
+      q: { ca: "Un senyal de trànsit té forma de triangle equilàter de 60 cm de costat. Calcula l'altura del senyal per saber si cap en una caixa de transport determinada. Dóna el resultat amb dos decimals.", es: "Una señal de tráfico tiene forma de triángulo equilátero de 60 cm de lado. Calcula la altura de la señal para saber si cabe en una caja de transporte determinada. Da el resultado con dos decimales." },
+    },
+    { id: 'rp_b9', num: 9, level: 'B', unit: 'cm', ans: 16,
+      q: { ca: "Volem dissenyar una rajola en forma de rombe. Si sabem que el costat del rombe ha de fer 10 cm i una de les diagonals fa 12 cm, quants centímetres farà l'altra diagonal?", es: "Queremos diseñar una baldosa en forma de rombo. Si sabemos que el lado del rombo debe medir 10 cm y una de las diagonales mide 12 cm, ¿cuántos centímetros medirá la otra diagonal?" },
+    },
+    { id: 'rp_b10', num: 10, level: 'B', unit: 'm', ans: Math.sqrt(544),
+      q: { ca: "Volem instal·lar una tirolina que surt d'una torre de 15 m d'alçada i arriba a un pal que fa 3 m d'alt. Si la distància a terra entre la torre i el pal és de 20 m, quina longitud tindrà el cable de la tirolina? Dóna el resultat amb dos decimals.", es: "Queremos instalar una tirolina que sale de una torre de 15 m de altura y llega a un poste de 3 m de alto. Si la distancia al suelo entre la torre y el poste es de 20 m, ¿qué longitud tendrá el cable de la tirolina? Da el resultado con dos decimales." },
+    },
+    { id: 'rp_b11', num: 11, level: 'B', unit: 'm', ans: 200,
+      q: { ca: "Per anar de casa al gimnàs, camines 300 m cap al Nord i després 400 m cap a l'Est. Si decideixes anar en línia recta travessant el parc, quants metres t'estalviaràs en total?", es: "Para ir de casa al gimnasio, caminas 300 m hacia el Norte y después 400 m hacia el Este. Si decides ir en línea recta atravesando el parque, ¿cuántos metros te ahorrarás en total?" },
+    },
+    // ── Nivell C (Difícil) ────────────────────────────────────────────
+    { id: 'rp_c12', num: 12, level: 'C', unit: 'cm', ans: 25 * Math.SQRT2,
+      q: { ca: "Tenim una pizza circular que té un diàmetre de 40 cm. Volem saber si cabrà en una caixa quadrada que té una diagonal de 50 cm. Calcula quant fa el costat de la caixa quadrada. Dóna el resultat amb dos decimals.", es: "Tenemos una pizza circular con un diámetro de 40 cm. Queremos saber si cabrá en una caja cuadrada que tiene una diagonal de 50 cm. Calcula cuánto mide el lado de la caja cuadrada. Da el resultado con dos decimales." },
+      hint: { ca: "El costat d'un quadrat de diagonal d és: costat = d ÷ √2. Un cop tinguis el costat, compara'l amb el diàmetre de la pizza.", es: "El lado de un cuadrado de diagonal d es: lado = d ÷ √2. Una vez tengas el lado, compáralo con el diámetro de la pizza." },
+    },
+    { id: 'rp_c13', num: 13, level: 'C', unit: 'm²', ans: 28,
+      q: { ca: "Una paret té forma de trapezi isòsceles. La base inferior fa 10 m, la superior fa 4 m i els costats inclinats fan 5 m. Calcula l'àrea de la paret. Recorda: primer has de trobar l'altura utilitzant Pitàgores.", es: "Una pared tiene forma de trapecio isósceles. La base inferior mide 10 m, la superior mide 4 m y los lados inclinados miden 5 m. Calcula el área de la pared. Recuerda: primero debes encontrar la altura usando Pitágoras." },
+      hint: { ca: "El voladís horitzontal de cada costat = (base_inf − base_sup) ÷ 2 = 3 m. Usa Pitàgores amb hipotenusa=5 i catet=3 per trobar l'alçada.", es: "El vuelo horizontal de cada lado = (base_inf − base_sup) ÷ 2 = 3 m. Usa Pitágoras con hipotenusa=5 y cateto=3 para encontrar la altura." },
+    },
+    { id: 'rp_c14', num: 14, level: 'C', unit: 'm', ans: Math.sqrt(6.5),
+      q: { ca: "Un armari fa 2 m d'alt, 1,5 m d'ample i 0,5 m de fons. Quina és la distància entre la cantonada inferior esquerra de davant i la cantonada superior dreta del fons (la diagonal interna)? Dóna el resultat amb dos decimals.", es: "Un armario mide 2 m de alto, 1,5 m de ancho y 0,5 m de fondo. ¿Cuál es la distancia entre la esquina inferior izquierda de delante y la esquina superior derecha del fondo (la diagonal interna)? Da el resultado con dos decimales." },
+    },
+    { id: 'rp_c15', num: 15, level: 'C', unit: 'km', ans: 50,
+      q: { ca: "Dos vaixells surten del mateix port a les 10:00 h en direccions perpendiculars. El vaixell A va cap al Nord a 15 km/h i el vaixell B va cap a l'Est a 20 km/h. Quina distància en línia recta els separarà quan siguin les 12:00 h?", es: "Dos barcos salen del mismo puerto a las 10:00 h en direcciones perpendiculares. El barco A va hacia el Norte a 15 km/h y el barco B va hacia el Este a 20 km/h. ¿Qué distancia en línea recta los separará cuando sean las 12:00 h?" },
+    },
+    { id: 'rp_c16', num: 16, level: 'C', unit: 'm', ans: Math.sqrt(16 + 4.84),
+      q: { ca: "Un noi d'1,70 m d'alçada està dret sobre un banc de 50 cm d'alt. Si el sol projecta una ombra que acaba exactament a 4 m de la base del banc, quina distància hi ha entre el cap del noi i la punta de l'ombra? Dóna el resultat amb dos decimals.", es: "Un chico de 1,70 m de altura está de pie sobre un banco de 50 cm de alto. Si el sol proyecta una sombra que acaba exactamente a 4 m de la base del banco, ¿qué distancia hay entre la cabeza del chico y la punta de la sombra? Da el resultado con dos decimales." },
+    },
   ];
 
 
@@ -680,86 +706,156 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         })}
       </div>
 
-      {/* ── Problemes reals addicionals ── */}
-      <div className="mt-4">
-        <div className="bg-sky-50 border-l-4 border-sky-500 p-5 rounded-r-lg mb-5">
-          <h4 className="font-bold text-sky-900 text-lg mb-1">
-            {lang === 'ca' ? '🌍 Problemes reals — Bateria addicional' : '🌍 Problemas reales — Batería adicional'}
-          </h4>
-          <p className="text-sky-700 text-sm">
-            {lang === 'ca'
-              ? 'Problemes contextualitzats on has d\'identificar els catets i la hipotenusa per aplicar Pitàgores.'
-              : 'Problemas contextualizados donde debes identificar los catetos y la hipotenusa para aplicar Pitágoras.'}
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {realProblems.map((p) => {
-            const isChecked = checked[p.id];
-            const val = parseFloat(inputs[p.id] || '');
-            const isCorrect = !isNaN(val) && Math.abs(val - p.ans) <= 0.05;
-            const isFilled = (inputs[p.id] || '') !== '';
-
-            let inputStyle = "border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200";
-            if (isChecked && isFilled) {
-              inputStyle = isCorrect
-                ? "border-green-500 bg-green-50 text-green-900 font-bold"
-                : "border-red-300 bg-red-50 text-red-900 font-bold";
-            }
-
-            return (
-              <div key={p.id} className="bg-white p-5 rounded-xl border border-sky-200 shadow-sm flex flex-col gap-3">
-                <p className="text-gray-800 text-sm leading-relaxed">
-                  <span className="font-bold text-sky-700 mr-1">{p.num}.</span>
-                  {p.q[lang]}
-                </p>
-                <div className="flex items-center gap-2 mt-auto">
-                  <input
-                    type="number"
-                    step="0.01"
-                    className={`border rounded-lg p-2 w-28 transition-colors outline-none ${inputStyle}`}
-                    value={inputs[p.id] || ''}
-                    onChange={(e) => {
-                      setInputs(prev => ({ ...prev, [p.id]: e.target.value }));
-                      setChecked(prev => { const n = { ...prev }; delete n[p.id]; return n; });
-                    }}
-                  />
-                  <span className="text-gray-500 text-sm">{p.unit}</span>
-                  <button
-                    disabled={!isFilled}
-                    onClick={() => {
-                      trackAnswer({
-                        email: studentEmail,
-                        questionId: `practica_${p.id}`,
-                        questionText: p.q[lang],
-                        userAnswer: isNaN(val) ? '' : val,
-                        correctAnswer: p.ans,
-                        isCorrect,
-                        section: 'practica',
-                        lang,
-                        sessionId,
-                      });
-                      setChecked(prev => ({ ...prev, [p.id]: true }));
-                    }}
-                    className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${
-                      isFilled
-                        ? 'bg-sky-500 text-white hover:bg-sky-600 cursor-pointer'
-                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    }`}
-                  >
-                    {lang === 'ca' ? 'Comprova' : 'Comprobar'}
-                  </button>
-                </div>
-                {isChecked && (
-                  <p className={`text-sm font-bold ${isCorrect ? 'text-green-600' : 'text-red-500'}`}>
-                    {isCorrect
-                      ? (lang === 'ca' ? '✓ Correcte!' : '✓ ¡Correcto!')
-                      : (lang === 'ca' ? `✗ La resposta és ${p.ans} ${p.unit}` : `✗ La respuesta es ${p.ans} ${p.unit}`)}
-                  </p>
-                )}
+      {/* ── Problemes reals per nivell ── */}
+      <div className="mt-4 space-y-6">
+        {(
+          [
+            {
+              level: 'A' as const,
+              emoji: '🟢',
+              labelCa: 'Nivell A — Fàcil',
+              labelEs: 'Nivel A — Fácil',
+              descCa: 'Càlcul directe i situacions quotidianes senzilles.',
+              descEs: 'Cálculo directo y situaciones cotidianas sencillas.',
+              headerBg: 'bg-green-50 border-green-400',
+              titleColor: 'text-green-900',
+              descColor: 'text-green-700',
+              cardBorder: 'border-green-200',
+              numColor: 'text-green-700',
+              inputFocus: 'focus:border-green-500 focus:ring-2 focus:ring-green-200',
+              btnActive: 'bg-green-500 hover:bg-green-600 text-white',
+            },
+            {
+              level: 'B' as const,
+              emoji: '🟡',
+              labelCa: 'Nivell B — Mitjà',
+              labelEs: 'Nivel B — Medio',
+              descCa: 'Identifica el triangle dins d\'altres figures geomètriques.',
+              descEs: 'Identifica el triángulo dentro de otras figuras geométricas.',
+              headerBg: 'bg-yellow-50 border-yellow-400',
+              titleColor: 'text-yellow-900',
+              descColor: 'text-yellow-700',
+              cardBorder: 'border-yellow-200',
+              numColor: 'text-yellow-700',
+              inputFocus: 'focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200',
+              btnActive: 'bg-yellow-500 hover:bg-yellow-600 text-white',
+            },
+            {
+              level: 'C' as const,
+              emoji: '🔴',
+              labelCa: 'Nivell C — Difícil',
+              labelEs: 'Nivel C — Difícil',
+              descCa: 'Reptes multi-pas, geometria en 3D i situacions amb més d\'una variable.',
+              descEs: 'Retos multi-paso, geometría en 3D y situaciones con más de una variable.',
+              headerBg: 'bg-red-50 border-red-400',
+              titleColor: 'text-red-900',
+              descColor: 'text-red-700',
+              cardBorder: 'border-red-200',
+              numColor: 'text-red-700',
+              inputFocus: 'focus:border-red-500 focus:ring-2 focus:ring-red-200',
+              btnActive: 'bg-red-500 hover:bg-red-600 text-white',
+            },
+          ] as const
+        ).map((lvl) => {
+          const group = realProblems.filter((p) => p.level === lvl.level);
+          return (
+            <div key={lvl.level}>
+              <div className={`bg-sky-50 border-l-4 border-sky-500 p-5 rounded-r-lg mb-1`}>
+                <h4 className="font-bold text-sky-900 text-lg mb-1">
+                  🌍 {lang === 'ca' ? 'Problemes reals contextualitzats' : 'Problemas reales contextualizados'}
+                </h4>
               </div>
-            );
-          })}
-        </div>
+              <div className={`border-l-4 ${lvl.headerBg} p-4 rounded-r-lg mb-4`}>
+                <h5 className={`font-bold ${lvl.titleColor} text-base mb-0.5`}>
+                  {lvl.emoji} {lang === 'ca' ? lvl.labelCa : lvl.labelEs}
+                </h5>
+                <p className={`${lvl.descColor} text-sm`}>
+                  {lang === 'ca' ? lvl.descCa : lvl.descEs}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+                {group.map((p) => {
+                  const isChecked = checked[p.id];
+                  const val = parseFloat(inputs[p.id] || '');
+                  const isCorrect = !isNaN(val) && Math.abs(val - p.ans) <= 0.05;
+                  const isFilled = (inputs[p.id] || '') !== '';
+
+                  let inputStyle = `border-gray-300 ${lvl.inputFocus}`;
+                  if (isChecked && isFilled) {
+                    inputStyle = isCorrect
+                      ? 'border-green-500 bg-green-50 text-green-900 font-bold'
+                      : 'border-red-300 bg-red-50 text-red-900 font-bold';
+                  }
+
+                  return (
+                    <div key={p.id} className={`bg-white p-5 rounded-xl border ${lvl.cardBorder} shadow-sm flex flex-col gap-3`}>
+                      <p className="text-gray-800 text-sm leading-relaxed">
+                        <span className={`font-bold ${lvl.numColor} mr-1`}>{p.num}.</span>
+                        {p.q[lang]}
+                      </p>
+                      {p.hint && (
+                        <details className="text-sm">
+                          <summary className="cursor-pointer text-indigo-600 font-semibold hover:text-indigo-800 select-none">
+                            💡 {lang === 'ca' ? 'Pista' : 'Pista'}
+                          </summary>
+                          <p className="mt-2 italic text-gray-500 pl-3 border-l-2 border-indigo-200">
+                            {p.hint[lang]}
+                          </p>
+                        </details>
+                      )}
+                      <div className="flex items-center gap-2 mt-auto">
+                        <input
+                          type="number"
+                          step="0.01"
+                          className={`border rounded-lg p-2 w-28 transition-colors outline-none ${inputStyle}`}
+                          value={inputs[p.id] || ''}
+                          onChange={(e) => {
+                            setInputs(prev => ({ ...prev, [p.id]: e.target.value }));
+                            setChecked(prev => { const n = { ...prev }; delete n[p.id]; return n; });
+                          }}
+                        />
+                        <span className="text-gray-500 text-sm">{p.unit}</span>
+                        <button
+                          disabled={!isFilled}
+                          onClick={() => {
+                            trackAnswer({
+                              email: studentEmail,
+                              questionId: `practica_${p.id}`,
+                              questionText: p.q[lang],
+                              userAnswer: isNaN(val) ? '' : val,
+                              correctAnswer: Math.round(p.ans * 100) / 100,
+                              isCorrect,
+                              section: 'practica',
+                              lang,
+                              sessionId,
+                            });
+                            setChecked(prev => ({ ...prev, [p.id]: true }));
+                          }}
+                          className={`px-3 py-1.5 rounded-lg font-bold text-sm transition-all ${
+                            isFilled
+                              ? lvl.btnActive + ' cursor-pointer'
+                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                          }`}
+                        >
+                          {lang === 'ca' ? 'Comprova' : 'Comprobar'}
+                        </button>
+                      </div>
+                      {isChecked && (
+                        <p className={`text-sm font-bold ${isCorrect ? 'text-green-600' : 'text-red-500'}`}>
+                          {isCorrect
+                            ? (lang === 'ca' ? '✓ Correcte!' : '✓ ¡Correcto!')
+                            : (lang === 'ca'
+                                ? `✗ La resposta correcta és ${Math.round(p.ans * 100) / 100} ${p.unit}`
+                                : `✗ La respuesta correcta es ${Math.round(p.ans * 100) / 100} ${p.unit}`)}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
