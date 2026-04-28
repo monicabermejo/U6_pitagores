@@ -144,252 +144,432 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
     {
       id: 'p2', num: 2,
       title: {
-        ca: "Figura composta: quadrat i dos triangles",
-        es: "Figura compuesta: cuadrado y dos triángulos",
+        ca: "El senyal de trànsit (octàgon regular)",
+        es: "La señal de tráfico (octágono regular)",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 170 150" width="130" height="115" className="float-right ml-3 mb-2">
-            {/* quadrat central */}
-            <rect x="45" y="25" width="80" height="80" fill="#dbeafe" stroke="#2563eb" strokeWidth="2"/>
-            {/* triangle esquerre */}
-            <polygon points="45,25 45,105 5,65" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
-            {/* triangle dret */}
-            <polygon points="125,25 125,105 165,65" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
-            {/* mesures */}
-            <text x="75" y="70" textAnchor="middle" fill="#1d4ed8" fontSize="11" fontWeight="bold">8 cm</text>
-            <text x="28" y="67" fill="#9333ea" fontSize="10">5 cm</text>
-            <text x="130" y="67" fill="#9333ea" fontSize="10">5 cm</text>
-            <line x1="45" y1="138" x2="125" y2="138" stroke="#2563eb" strokeWidth="1"/>
-            <text x="85" y="148" textAnchor="middle" fill="#2563eb" fontSize="10">8 cm</text>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <rect x="10" y="10" width="160" height="160" fill="none" stroke="#d1d5db" strokeWidth="1" strokeDasharray="4,3"/>
+            <polygon points="57,10 123,10 170,57 170,123 123,170 57,170 10,123 10,57"
+              fill="#fee2e2" stroke="#dc2626" strokeWidth="2"/>
+            <text x="90" y="100" textAnchor="middle" fill="#dc2626" fontSize="18" fontWeight="bold">STOP</text>
+            <text x="90" y="22" textAnchor="middle" fill="#374151" fontSize="10">20 cm</text>
+            <line x1="4" y1="10" x2="4" y2="170" stroke="#2563eb" strokeWidth="1.5"/>
+            <text x="8" y="94" fill="#2563eb" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Una figura formada per un <strong>quadrat de costat 8 cm</strong> i dos triangles isòsceles idèntics als costats verticals. Els costats iguals de cada triangle mesuren <strong>5 cm</strong>. Calcula l'<strong>àrea total</strong> de la figura.
+          Un senyal de "STOP" té forma d'<strong>octàgon regular amb costat de 20 cm</strong>. Per fabricar el suport, cal saber la <strong>distància vertical entre dos costats paral·lels</strong> (l'apotema doble). Dóna el resultat amb dos decimals.
         </>),
         es: (<>
-          <svg viewBox="0 0 170 150" width="130" height="115" className="float-right ml-3 mb-2">
-            <rect x="45" y="25" width="80" height="80" fill="#dbeafe" stroke="#2563eb" strokeWidth="2"/>
-            <polygon points="45,25 45,105 5,65" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
-            <polygon points="125,25 125,105 165,65" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
-            <text x="75" y="70" textAnchor="middle" fill="#1d4ed8" fontSize="11" fontWeight="bold">8 cm</text>
-            <text x="28" y="67" fill="#9333ea" fontSize="10">5 cm</text>
-            <text x="130" y="67" fill="#9333ea" fontSize="10">5 cm</text>
-            <line x1="45" y1="138" x2="125" y2="138" stroke="#2563eb" strokeWidth="1"/>
-            <text x="85" y="148" textAnchor="middle" fill="#2563eb" fontSize="10">8 cm</text>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <rect x="10" y="10" width="160" height="160" fill="none" stroke="#d1d5db" strokeWidth="1" strokeDasharray="4,3"/>
+            <polygon points="57,10 123,10 170,57 170,123 123,170 57,170 10,123 10,57"
+              fill="#fee2e2" stroke="#dc2626" strokeWidth="2"/>
+            <text x="90" y="100" textAnchor="middle" fill="#dc2626" fontSize="18" fontWeight="bold">STOP</text>
+            <text x="90" y="22" textAnchor="middle" fill="#374151" fontSize="10">20 cm</text>
+            <line x1="4" y1="10" x2="4" y2="170" stroke="#2563eb" strokeWidth="1.5"/>
+            <text x="8" y="94" fill="#2563eb" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Una figura formada por un <strong>cuadrado de lado 8 cm</strong> y dos triángulos isósceles idénticos en los lados verticales. Los lados iguales de cada triángulo miden <strong>5 cm</strong>. Calcula el <strong>área total</strong> de la figura.
+          Una señal de "STOP" tiene forma de <strong>octágono regular con lado 20 cm</strong>. Para fabricar el soporte, necesitamos la <strong>distancia vertical entre dos lados paralelos</strong> (la apotema doble). Da el resultado con dos decimales.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Base de cada triangle = costat del quadrat = <strong>8 cm</strong></li>
-          <li>Semibbase = 4 cm. Pitàgores: alçada = √(5² − 4²) = √9 = <strong>3 cm</strong></li>
-          <li>Àrea quadrat = 8² = <strong>64 cm²</strong></li>
-          <li>Àrea cada triangle = (8 × 3) ÷ 2 = <strong>12 cm²</strong></li>
-          <li>Total = 64 + 2 × 12 = <strong>88 cm²</strong></li>
+          <li>Inscrivim l'octàgon en un quadrat: als 4 vèrtexs es formen triangles rectangles isòsceles.</li>
+          <li>La hipotenusa de cada triangle = costat de l'octàgon = <strong>20 cm</strong></li>
+          <li>Pitàgores (isòsceles: catets iguals): catet = 20 ÷ √2 = 10√2 ≈ <strong>14,14 cm</strong></li>
+          <li>Costat del quadrat = 20 + 2 × 14,14 ≈ <strong>48,28 cm</strong></li>
+          <li>Apotema doble = costat del quadrat ≈ <strong>48,28 cm</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Base de cada triángulo = lado del cuadrado = <strong>8 cm</strong></li>
-          <li>Semibbase = 4 cm. Pitágoras: altura = √(5² − 4²) = √9 = <strong>3 cm</strong></li>
-          <li>Área cuadrado = 8² = <strong>64 cm²</strong></li>
-          <li>Área cada triángulo = (8 × 3) ÷ 2 = <strong>12 cm²</strong></li>
-          <li>Total = 64 + 2 × 12 = <strong>88 cm²</strong></li>
+          <li>Inscribimos el octágono en un cuadrado: en los 4 vértices se forman triángulos rectángulos isósceles.</li>
+          <li>La hipotenusa de cada triángulo = lado del octágono = <strong>20 cm</strong></li>
+          <li>Pitágoras (isósceles: catetos iguales): cateto = 20 ÷ √2 = 10√2 ≈ <strong>14,14 cm</strong></li>
+          <li>Lado del cuadrado = 20 + 2 × 14,14 ≈ <strong>48,28 cm</strong></li>
+          <li>Apotema doble = lado del cuadrado ≈ <strong>48,28 cm</strong></li>
         </ol>),
       },
       hint: {
-        ca: "L'alçada de cada triangle és un catet: usa Pitàgores amb el costat obliquo i la semibbase.",
-        es: "La altura de cada triángulo es un cateto: usa Pitágoras con el lado oblicuo y la semibase.",
+        ca: "Inscriu l'octàgon en un quadrat. Als vèrtexs del quadrat es formen triangles rectangles isòsceles: la seva hipotenusa és el costat de l'octàgon (20 cm).",
+        es: "Inscribe el octágono en un cuadrado. En los vértices del cuadrado se forman triángulos rectángulos isósceles: su hipotenusa es el lado del octágono (20 cm).",
       },
-      unit: "cm²", ans: 88, tol: 0.05,
+      unit: "cm", ans: 20 * (1 + Math.SQRT2), tol: 0.15,
     },
     {
       id: 'p3', num: 3,
       title: {
-        ca: "Del perímetre del quadrat a la diagonal",
-        es: "Del perímetro del cuadrado a la diagonal",
+        ca: "L'escala a la cantonada",
+        es: "La escalera en la esquina",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 150 150" width="120" height="120" className="float-right ml-3 mb-2">
-            <rect x="15" y="15" width="120" height="120" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
-            <line x1="15" y1="15" x2="135" y2="135" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="72" y="68" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-          </svg>
-          Un quadrat té un <strong>perímetre de 40 cm</strong>. Calcula la longitud de la seva <strong>diagonal</strong>. Dóna el resultat amb dos decimals.
+          Una escala de <strong>5 metres de llargada</strong> està recolzada en una paret. El peu de l'escala és a <strong>1,5 m de la paret</strong>. Si l'escala rellisca i el peu s'allunya <strong>0,5 m més</strong>, quants <strong>centímetres</strong> baixarà l'extrem superior de l'escala? Dóna el resultat amb dos decimals.
         </>),
         es: (<>
-          <svg viewBox="0 0 150 150" width="120" height="120" className="float-right ml-3 mb-2">
-            <rect x="15" y="15" width="120" height="120" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
-            <line x1="15" y1="15" x2="135" y2="135" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="72" y="68" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-          </svg>
-          Un cuadrado tiene un <strong>perímetro de 40 cm</strong>. Calcula la longitud de su <strong>diagonal</strong>. Da el resultado con dos decimales.
+          Una escalera de <strong>5 metros de largo</strong> está apoyada en una pared. El pie está a <strong>1,5 m de la pared</strong>. Si la escalera resbala y el pie se aleja <strong>0,5 m más</strong>, ¿cuántos <strong>centímetros</strong> bajará el extremo superior? Da el resultado con dos decimales.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Costat = P ÷ 4 = 40 ÷ 4 = <strong>10 cm</strong></li>
-          <li>La diagonal forma un triangle rectangle on els dos catets = 10 cm</li>
-          <li>Pitàgores: d = √(10² + 10²) = √200 = 10√2 ≈ <strong>14.14 cm</strong></li>
+          <li>Alçada inicial: h₁ = √(5² − 1,5²) = √(25 − 2,25) = √22,75 ≈ <strong>4,770 m</strong></li>
+          <li>Peu nou: 1,5 + 0,5 = <strong>2,0 m</strong></li>
+          <li>Alçada final: h₂ = √(5² − 2²) = √(25 − 4) = √21 ≈ <strong>4,583 m</strong></li>
+          <li>Baixada = h₁ − h₂ ≈ 4,770 − 4,583 = 0,187 m = <strong>≈ 18,71 cm</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Lado = P ÷ 4 = 40 ÷ 4 = <strong>10 cm</strong></li>
-          <li>La diagonal forma un triángulo rectángulo donde los dos catetos = 10 cm</li>
-          <li>Pitágoras: d = √(10² + 10²) = √200 = 10√2 ≈ <strong>14.14 cm</strong></li>
+          <li>Altura inicial: h₁ = √(5² − 1,5²) = √(25 − 2,25) = √22,75 ≈ <strong>4,770 m</strong></li>
+          <li>Pie nuevo: 1,5 + 0,5 = <strong>2,0 m</strong></li>
+          <li>Altura final: h₂ = √(5² − 2²) = √(25 − 4) = √21 ≈ <strong>4,583 m</strong></li>
+          <li>Bajada = h₁ − h₂ ≈ 4,770 − 4,583 = 0,187 m = <strong>≈ 18,71 cm</strong></li>
         </ol>),
       },
       hint: {
-        ca: "Primer calcula el costat dividint el perímetre per 4. Després aplica Pitàgores.",
-        es: "Primero calcula el lado dividiendo el perímetro entre 4. Después aplica Pitágoras.",
+        ca: "Calcula l'alçada inicial amb Pitàgores (escala=hipotenusa, peu=catet). Fes el mateix amb el peu nou. La diferència, en metres, convertida a centímetres, és la resposta.",
+        es: "Calcula la altura inicial con Pitágoras (escalera=hipotenusa, pie=cateto). Haz lo mismo con el pie nuevo. La diferencia, en metros, convertida a centímetros, es la respuesta.",
       },
-      unit: "cm", ans: 10 * Math.SQRT2, tol: 0.05,
+      unit: "cm", ans: (Math.sqrt(22.75) - Math.sqrt(21)) * 100, tol: 0.5,
     },
     {
       id: 'p4', num: 4,
       title: {
-        ca: "El rectangle i la seva diagonal",
-        es: "El rectángulo y su diagonal",
+        ca: "El logotip del romboide",
+        es: "El logotipo del romboide",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 180 130" width="140" height="100" className="float-right ml-3 mb-2">
-            <rect x="10" y="20" width="160" height="90" fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"/>
-            <line x1="10" y1="20" x2="170" y2="110" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="80" y="72" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-          </svg>
-          Un rectangle té un <strong>perímetre de 34 cm</strong> i una <strong>àrea de 60 cm²</strong>. Calcula la longitud de la seva <strong>diagonal</strong>.
+          Una empresa vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
         </>),
         es: (<>
-          <svg viewBox="0 0 180 130" width="140" height="100" className="float-right ml-3 mb-2">
-            <rect x="10" y="20" width="160" height="90" fill="#f0fdf4" stroke="#16a34a" strokeWidth="2"/>
-            <line x1="10" y1="20" x2="170" y2="110" stroke="#dc2626" strokeWidth="2" strokeDasharray="6,3"/>
-            <text x="80" y="72" fill="#dc2626" fontSize="10" fontWeight="bold">?</text>
-          </svg>
-          Un rectángulo tiene un <strong>perímetro de 34 cm</strong> y un <strong>área de 60 cm²</strong>. Calcula la longitud de su <strong>diagonal</strong>.
+          Una empresa quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>P = 2(a+b) → a + b = 17</li>
-          <li>A = a × b = 60</li>
-          <li>Equació: a² − 17a + 60 = 0 → (a−12)(a−5) = 0 → <strong>a = 12 cm, b = 5 cm</strong></li>
-          <li>Pitàgores: d = √(12² + 5²) = √169 = <strong>13 cm</strong></li>
+          <li>El triangle rectangle format té hipotenusa = costat obliquo = <strong>10 cm</strong></li>
+          <li>Un catet és el segment de <strong>6 cm</strong></li>
+          <li>Pitàgores: alçada = √(10² − 6²) = √(100 − 36) = √64 = <strong>8 cm</strong></li>
+          <li>Àrea = base × alçada = 17 × 8 = <strong>136 cm²</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>P = 2(a+b) → a + b = 17</li>
-          <li>A = a × b = 60</li>
-          <li>Ecuación: a² − 17a + 60 = 0 → (a−12)(a−5) = 0 → <strong>a = 12 cm, b = 5 cm</strong></li>
-          <li>Pitágoras: d = √(12² + 5²) = √169 = <strong>13 cm</strong></li>
+          <li>El triángulo rectángulo formado tiene hipotenusa = lado oblicuo = <strong>10 cm</strong></li>
+          <li>Un cateto es el segmento de <strong>6 cm</strong></li>
+          <li>Pitágoras: altura = √(10² − 6²) = √(100 − 36) = √64 = <strong>8 cm</strong></li>
+          <li>Área = base × altura = 17 × 8 = <strong>136 cm²</strong></li>
         </ol>),
       },
       hint: {
-        ca: "Usa P per trobar a+b i l'àrea per trobar a×b. Llavors resol el sistema per trobar els costats.",
-        es: "Usa P para encontrar a+b y el área para encontrar a×b. Luego resuelve el sistema para encontrar los lados.",
+        ca: "El costat obliquo (10 cm) és la hipotenusa d'un triangle rectangle. El segment de 6 cm és un catet. Pitàgores et donarà l'alçada del paral·lelogram.",
+        es: "El lado oblicuo (10 cm) es la hipotenusa de un triángulo rectángulo. El segmento de 6 cm es un cateto. Pitágoras te dará la altura del paralelogramo.",
       },
-      unit: "cm", ans: 13, tol: 0.05,
+      unit: "cm²", ans: 136, tol: 0.05,
     },
     {
       id: 'p5', num: 5,
       title: {
-        ca: "L'àrea del triangle rectangle",
-        es: "El área del triángulo rectángulo",
+        ca: "La tenda de campanya",
+        es: "La tienda de campaña",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 160 150" width="125" height="117" className="float-right ml-3 mb-2">
-            {/* triangle rectangle */}
-            <polygon points="20,130 140,130 20,20" fill="#fef3c7" stroke="#d97706" strokeWidth="2"/>
-            {/* angle recte */}
-            <rect x="20" y="120" width="10" height="10" fill="none" stroke="#d97706" strokeWidth="1.5"/>
-            {/* etiquetes */}
-            <text x="90" y="72" fill="#dc2626" fontSize="11" fontWeight="bold">h = 26 cm</text>
-          </svg>
-          Un triangle rectangle té un <strong>perímetre de 60 cm</strong> i la <strong>hipotenusa mesura 26 cm</strong>. Calcula l'<strong>àrea</strong> del triangle.
+          Una tenda de campanya té forma de <strong>piràmide de base quadrada</strong>. El costat de la base fa <strong>2,4 m</strong> i l'alçada central fa <strong>1,6 m</strong>. Quants metres farà l'<strong>aresta lateral</strong> (des del vèrtex superior fins a una cantonada de la base)? Dóna el resultat amb dos decimals.
         </>),
         es: (<>
-          <svg viewBox="0 0 160 150" width="125" height="117" className="float-right ml-3 mb-2">
-            <polygon points="20,130 140,130 20,20" fill="#fef3c7" stroke="#d97706" strokeWidth="2"/>
-            <rect x="20" y="120" width="10" height="10" fill="none" stroke="#d97706" strokeWidth="1.5"/>
-            <text x="90" y="72" fill="#dc2626" fontSize="11" fontWeight="bold">h = 26 cm</text>
-          </svg>
-          Un triángulo rectángulo tiene un <strong>perímetro de 60 cm</strong> y la <strong>hipotenusa mide 26 cm</strong>. Calcula el <strong>área</strong> del triángulo.
+          Una tienda de campaña tiene forma de <strong>pirámide de base cuadrada</strong>. El lado de la base mide <strong>2,4 m</strong> y la altura central mide <strong>1,6 m</strong>. ¿Cuántos metros mide la <strong>aresta lateral</strong> (desde el vértice superior hasta una esquina de la base)? Da el resultado con dos decimales.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>a + b = P − h = 60 − 26 = <strong>34</strong></li>
-          <li>Pitàgores: a² + b² = 26² = <strong>676</strong></li>
-          <li>(a + b)² = a² + 2ab + b² → 34² = 676 + 2ab → 1156 − 676 = 2ab → ab = <strong>240</strong></li>
-          <li>Àrea = a × b ÷ 2 = 240 ÷ 2 = <strong>120 cm²</strong></li>
+          <li>La diagonal de la base = √(2,4² + 2,4²) = 2,4√2 ≈ <strong>3,394 m</strong></li>
+          <li>La semidiagonal = 3,394 ÷ 2 ≈ <strong>1,697 m</strong></li>
+          <li>L'aresta lateral és la hipotenusa del triangle rectangle format per l'alçada i la semidiagonal</li>
+          <li>Pitàgores: aresta = √(1,6² + 1,697²) = √(2,56 + 2,88) = √5,44 ≈ <strong>2,33 m</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>a + b = P − h = 60 − 26 = <strong>34</strong></li>
-          <li>Pitágoras: a² + b² = 26² = <strong>676</strong></li>
-          <li>(a + b)² = a² + 2ab + b² → 34² = 676 + 2ab → 1156 − 676 = 2ab → ab = <strong>240</strong></li>
-          <li>Área = a × b ÷ 2 = 240 ÷ 2 = <strong>120 cm²</strong></li>
+          <li>La diagonal de la base = √(2,4² + 2,4²) = 2,4√2 ≈ <strong>3,394 m</strong></li>
+          <li>La semidiagonal = 3,394 ÷ 2 ≈ <strong>1,697 m</strong></li>
+          <li>La aresta lateral es la hipotenusa del triángulo rectángulo formado por la altura y la semidiagonal</li>
+          <li>Pitágoras: aresta = √(1,6² + 1,697²) = √(2,56 + 2,88) = √5,44 ≈ <strong>2,33 m</strong></li>
         </ol>),
       },
       hint: {
-        ca: "Usa el perímetre per trobar a+b. Amb Pitàgores trobaràs a²+b². A partir d'aquí pots calcular a×b sense necessitat de trobar cada catet.",
-        es: "Usa el perímetro para encontrar a+b. Con Pitágoras encontrarás a²+b². A partir de ahí puedes calcular a×b sin necesidad de encontrar cada cateto.",
+        ca: "Aplica Pitàgores dues vegades: primer la diagonal de la base quadrada, després usa la semidiagonal com a catet per trobar l'aresta lateral.",
+        es: "Aplica Pitágoras dos veces: primero la diagonal de la base cuadrada, después usa la semidiagonal como cateto para encontrar la aresta lateral.",
       },
-      unit: "cm²", ans: 120, tol: 0.05,
+      unit: "m", ans: Math.sqrt(5.44), tol: 0.05,
     },
     {
       id: 'p6', num: 6,
       title: {
-        ca: "El quadrat inscrit en una circumferència",
-        es: "El cuadrado inscrito en una circunferencia",
+        ca: "El túnel de la via del tren",
+        es: "El túnel de la vía del tren",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 170 170" width="130" height="130" className="float-right ml-3 mb-2">
-            {/* circle */}
-            <circle cx="85" cy="85" r="70" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2"/>
-            {/* inscribed square - vertices at top, right, bottom, left */}
-            <polygon points="85,15 155,85 85,155 15,85" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            {/* radius to top vertex */}
-            <line x1="85" y1="85" x2="85" y2="15" stroke="#dc2626" strokeWidth="1.8" strokeDasharray="4,3"/>
-            {/* center dot */}
-            <circle cx="85" cy="85" r="3" fill="#1d4ed8"/>
-            {/* right angle mark at top-right vertex */}
-            <rect x="85" y="15" width="8" height="8" fill="none" stroke="#374151" strokeWidth="1.2"/>
-            <text x="90" y="52" fill="#dc2626" fontSize="11" fontWeight="bold">r=10cm</text>
-            <text x="85" y="165" textAnchor="middle" fill="#374151" fontSize="9">?  àrea</text>
+          <svg viewBox="0 0 180 125" width="140" height="97" className="float-right ml-3 mb-2">
+            <path d="M 10,115 A 80,80 0 0,1 170,115" fill="#e0f2fe" stroke="#0369a1" strokeWidth="2"/>
+            <line x1="10" y1="115" x2="170" y2="115" stroke="#374151" strokeWidth="2"/>
+            <rect x="66" y="75" width="48" height="40" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5"/>
+            <line x1="90" y1="115" x2="90" y2="35" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4,3"/>
+            <text x="94" y="78" fill="#dc2626" fontSize="10">r=5m</text>
+            <line x1="90" y1="120" x2="66" y2="120" stroke="#7c3aed" strokeWidth="1.5"/>
+            <text x="68" y="130" fill="#7c3aed" fontSize="9">1,5m</text>
+            <line x1="60" y1="75" x2="60" y2="115" stroke="#16a34a" strokeWidth="1.5"/>
+            <text x="44" y="98" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Una circumferència de <strong>radi 10 cm</strong> té inscrit un quadrat (els quatre vèrtexs toquen la circumferència). Calcula l'<strong>àrea</strong> d'aquest quadrat.
+          Un túnel té forma de <strong>semicercle de radi 5 m</strong>. Un camió de <strong>3 m d'amplada</strong> vol passar exactament pel mig. Quina és l'<strong>alçada màxima</strong> que pot tenir el camió per no tocar la part superior? Dóna el resultat amb dos decimals.
         </>),
         es: (<>
-          <svg viewBox="0 0 170 170" width="130" height="130" className="float-right ml-3 mb-2">
-            <circle cx="85" cy="85" r="70" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2"/>
-            <polygon points="85,15 155,85 85,155 15,85" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            <line x1="85" y1="85" x2="85" y2="15" stroke="#dc2626" strokeWidth="1.8" strokeDasharray="4,3"/>
-            <circle cx="85" cy="85" r="3" fill="#1d4ed8"/>
-            <rect x="85" y="15" width="8" height="8" fill="none" stroke="#374151" strokeWidth="1.2"/>
-            <text x="90" y="52" fill="#dc2626" fontSize="11" fontWeight="bold">r=10cm</text>
-            <text x="85" y="165" textAnchor="middle" fill="#374151" fontSize="9">?  área</text>
+          <svg viewBox="0 0 180 125" width="140" height="97" className="float-right ml-3 mb-2">
+            <path d="M 10,115 A 80,80 0 0,1 170,115" fill="#e0f2fe" stroke="#0369a1" strokeWidth="2"/>
+            <line x1="10" y1="115" x2="170" y2="115" stroke="#374151" strokeWidth="2"/>
+            <rect x="66" y="75" width="48" height="40" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5"/>
+            <line x1="90" y1="115" x2="90" y2="35" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4,3"/>
+            <text x="94" y="78" fill="#dc2626" fontSize="10">r=5m</text>
+            <line x1="90" y1="120" x2="66" y2="120" stroke="#7c3aed" strokeWidth="1.5"/>
+            <text x="68" y="130" fill="#7c3aed" fontSize="9">1,5m</text>
+            <line x1="60" y1="75" x2="60" y2="115" stroke="#16a34a" strokeWidth="1.5"/>
+            <text x="44" y="98" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Una circunferencia de <strong>radio 10 cm</strong> tiene inscrito un cuadrado (los cuatro vértices tocan la circunferencia). Calcula el <strong>área</strong> de este cuadrado.
+          Un túnel tiene forma de <strong>semicírculo de radio 5 m</strong>. Un camión de <strong>3 m de ancho</strong> quiere pasar exactamente por el centro. ¿Cuál es la <strong>altura máxima</strong> que puede tener el camión para no tocar la parte superior? Da el resultado con dos decimales.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>La diagonal del quadrat = diàmetre = 2 × 10 = <strong>20 cm</strong></li>
-          <li>La diagonal divideix el quadrat en dos triangles rectangles iguals amb catets = costat (l)</li>
-          <li>Pitàgores: l² + l² = 20² → 2l² = 400 → l² = 200</li>
-          <li>Àrea = l² = <strong>200 cm²</strong></li>
+          <li>El camió passa pel mig: cada costat queda a 3 ÷ 2 = <strong>1,5 m del centre</strong></li>
+          <li>El punt crític és la cantonada superior del camió, a 1,5 m del centre</li>
+          <li>Pitàgores (radi=hipotenusa): alçada = √(r² − x²) = √(5² − 1,5²)</li>
+          <li>= √(25 − 2,25) = √22,75 ≈ <strong>4,77 m</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>La diagonal del cuadrado = diámetro = 2 × 10 = <strong>20 cm</strong></li>
-          <li>La diagonal divide el cuadrado en dos triángulos rectángulos iguales con catetos = lado (l)</li>
-          <li>Pitágoras: l² + l² = 20² → 2l² = 400 → l² = 200</li>
-          <li>Área = l² = <strong>200 cm²</strong></li>
+          <li>El camión pasa por el centro: cada lado queda a 3 ÷ 2 = <strong>1,5 m del centro</strong></li>
+          <li>El punto crítico es la esquina superior del camión, a 1,5 m del centro</li>
+          <li>Pitágoras (radio=hipotenusa): altura = √(r² − x²) = √(5² − 1,5²)</li>
+          <li>= √(25 − 2,25) = √22,75 ≈ <strong>4,77 m</strong></li>
         </ol>),
       },
       hint: {
-        ca: "La diagonal del quadrat és igual al diàmetre de la circumferència. Recorda: l'àrea d'un quadrat és el costat al quadrat (l²).",
-        es: "La diagonal del cuadrado es igual al diámetro de la circunferencia. Recuerda: el área de un cuadrado es el lado al cuadrado (l²).",
+        ca: "El camió passa pel mig: el seu mig queda a 1,5 m del centre. El radi (5 m) és la hipotenusa, la semiplada (1,5 m) és un catet. L'alçada és l'altre catet.",
+        es: "El camión pasa por el centro: su mitad queda a 1,5 m del centro. El radio (5 m) es la hipotenusa, la semianchura (1,5 m) es un cateto. La altura es el otro cateto.",
       },
-      unit: "cm²", ans: 200, tol: 0.05,
+      unit: "m", ans: Math.sqrt(22.75), tol: 0.05,
+    },
+    {
+      id: 'p7', num: 7,
+      title: {
+        ca: "El pentàgon i la corda de piano",
+        es: "El pentágono y la cuerda de piano",
+      },
+      statement: {
+        ca: (<>
+          En un <strong>cercle de radi 10 cm</strong> hi dibuixem un <strong>pentàgon regular</strong>. L'<strong>apotema</strong> (distància del centre al mig d'un costat) fa aproximadament <strong>8,1 cm</strong>. Calcula la longitud de cada <strong>costat del pentàgon</strong>. Dóna el resultat amb dos decimals.
+        </>),
+        es: (<>
+          En un <strong>círculo de radio 10 cm</strong> dibujamos un <strong>pentágono regular</strong>. La <strong>apotema</strong> (distancia del centro al centro de un lado) mide aproximadamente <strong>8,1 cm</strong>. Calcula la longitud de cada <strong>lado del pentágono</strong>. Da el resultado con dos decimales.
+        </>),
+      },
+      steps: {
+        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>L'apotema (8,1 cm) i la semibbase formen un triangle rectangle amb el radi (10 cm)</li>
+          <li>Pitàgores: (costat/2)² = r² − apotema² = 10² − 8,1² = 100 − 65,61 = 34,39</li>
+          <li>costat/2 = √34,39 ≈ <strong>5,865 cm</strong></li>
+          <li>Costat = 2 × 5,865 ≈ <strong>11,73 cm</strong></li>
+        </ol>),
+        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>La apotema (8,1 cm) y la semibase forman un triángulo rectángulo con el radio (10 cm)</li>
+          <li>Pitágoras: (lado/2)² = r² − apotema² = 10² − 8,1² = 100 − 65,61 = 34,39</li>
+          <li>lado/2 = √34,39 ≈ <strong>5,865 cm</strong></li>
+          <li>Lado = 2 × 5,865 ≈ <strong>11,73 cm</strong></li>
+        </ol>),
+      },
+      hint: {
+        ca: "L'apotema va del centre al mig d'un costat. El radi va del centre a un vèrtex. Junts formen un triangle rectangle: aplica Pitàgores per trobar la semibbase i dobla-la.",
+        es: "La apotema va del centro al centro de un lado. El radio va del centro a un vértice. Juntos forman un triángulo rectángulo: aplica Pitágoras para encontrar la semibase y duplícala.",
+      },
+      unit: "cm", ans: 2 * Math.sqrt(100 - 8.1 * 8.1), tol: 0.15,
+    },
+    {
+      id: 'p8', num: 8,
+      title: {
+        ca: "La piràmide truncada (el test de flors)",
+        es: "La pirámide truncada (el tiesto de flores)",
+      },
+      statement: {
+        ca: (<>
+          Un test de flors té forma de <strong>piràmide truncada de base quadrada</strong>. La base superior fa <strong>20 cm de costat</strong>, la base inferior fa <strong>10 cm de costat</strong> i l'<strong>alçada del test és 24 cm</strong>. Calcula la longitud de l'<strong>apotema de la cara lateral</strong> (la slant height de la cara trapezoïdal). Dóna el resultat amb dos decimals.
+        </>),
+        es: (<>
+          Un tiesto de flores tiene forma de <strong>pirámide truncada de base cuadrada</strong>. La base superior mide <strong>20 cm de lado</strong>, la base inferior <strong>10 cm de lado</strong> y la <strong>altura del tiesto es 24 cm</strong>. Calcula la longitud de la <strong>apotema de la cara lateral</strong> (la slant height de la cara trapezoidal). Da el resultado con dos decimales.
+        </>),
+      },
+      steps: {
+        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Diferència de semi-costats: (20 − 10) ÷ 2 = <strong>5 cm</strong> (voladís horitzontal)</li>
+          <li>Si talles verticalment la cara, veus un triangle rectangle: un catet és l'alçada (24 cm) i l'altre és el voladís (5 cm)</li>
+          <li>Pitàgores: slant = √(24² + 5²) = √(576 + 25) = √601 ≈ <strong>24,52 cm</strong></li>
+        </ol>),
+        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Diferencia de semilados: (20 − 10) ÷ 2 = <strong>5 cm</strong> (vuelo horizontal)</li>
+          <li>Si cortas verticalmente la cara, ves un triángulo rectángulo: un cateto es la altura (24 cm) y el otro es el vuelo (5 cm)</li>
+          <li>Pitágoras: slant = √(24² + 5²) = √(576 + 25) = √601 ≈ <strong>24,52 cm</strong></li>
+        </ol>),
+      },
+      hint: {
+        ca: "Talla el test verticalment per la meitat d'una cara. Veuràs un triangle rectangle: els catets són l'alçada (24 cm) i la diferència de semi-costats ((20−10)÷2 = 5 cm).",
+        es: "Corta el tiesto verticalmente por la mitad de una cara. Verás un triángulo rectángulo: los catetos son la altura (24 cm) y la diferencia de semilados ((20−10)÷2 = 5 cm).",
+      },
+      unit: "cm", ans: Math.sqrt(601), tol: 0.12,
+    },
+    {
+      id: 'p9', num: 9,
+      title: {
+        ca: "El rectangle dins del cercle",
+        es: "El rectángulo dentro del círculo",
+      },
+      statement: {
+        ca: (<>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
+            <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
+            <line x1="34" y1="48" x2="146" y2="132" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5,3"/>
+            <text x="82" y="98" fill="#dc2626" fontSize="9">∅=50cm</text>
+            <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
+            <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
+          </svg>
+          Tenim una <strong>planxa de fusta circular de 50 cm de diàmetre</strong>. Volem tallar-ne el <strong>rectangle més gran possible</strong> amb una base de <strong>40 cm</strong>. Tingues en compte que, per fer-lo el més gran possible, el diàmetre del cercle ha de ser la diagonal del rectangle. Quina serà l'<strong>alçada</strong> d'aquest rectangle?
+        </>),
+        es: (<>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
+            <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
+            <line x1="34" y1="48" x2="146" y2="132" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5,3"/>
+            <text x="82" y="98" fill="#dc2626" fontSize="9">∅=50cm</text>
+            <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
+            <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
+          </svg>
+          Tenemos una <strong>plancha de madera circular de 50 cm de diámetro</strong>. Queremos cortar el <strong>rectángulo más grande posible</strong> con una base de <strong>40 cm</strong>. Ten en cuenta que, para hacerlo lo más grande posible, el diámetro del círculo debe ser la diagonal del rectángulo. ¿Cuál será la <strong>altura</strong> de este rectángulo?
+        </>),
+      },
+      steps: {
+        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Diagonal del rectangle = diàmetre = <strong>50 cm</strong></li>
+          <li>La diagonal és la hipotenusa del triangle rectangle format pels costats</li>
+          <li>Pitàgores: alçada² = 50² − 40² = 2500 − 1600 = <strong>900</strong></li>
+          <li>Alçada = √900 = <strong>30 cm</strong></li>
+          <li>(Àrea fusta perduda = π×25² − 40×30 ≈ 1963,5 − 1200 ≈ <strong>763,5 cm²</strong>)</li>
+        </ol>),
+        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Diagonal del rectángulo = diámetro = <strong>50 cm</strong></li>
+          <li>La diagonal es la hipotenusa del triángulo rectángulo formado por los lados</li>
+          <li>Pitágoras: altura² = 50² − 40² = 2500 − 1600 = <strong>900</strong></li>
+          <li>Altura = √900 = <strong>30 cm</strong></li>
+          <li>(Área de madera perdida = π×25² − 40×30 ≈ 1963,5 − 1200 ≈ <strong>763,5 cm²</strong>)</li>
+        </ol>),
+      },
+      hint: {
+        ca: "La diagonal del rectangle = diàmetre del cercle = 50 cm. Ara aplica Pitàgores per trobar l'alçada a partir de la diagonal i la base.",
+        es: "La diagonal del rectángulo = diámetro del círculo = 50 cm. Ahora aplica Pitágoras para encontrar la altura a partir de la diagonal y la base.",
+      },
+      unit: "cm", ans: 30, tol: 0.05,
+    },
+    {
+      id: 'p10', num: 10,
+      title: {
+        ca: "La distància entre pobles",
+        es: "La distancia entre pueblos",
+      },
+      statement: {
+        ca: (<>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <line x1="90" y1="10" x2="90" y2="170" stroke="#d1d5db" strokeWidth="1"/>
+            <line x1="10" y1="90" x2="170" y2="90" stroke="#d1d5db" strokeWidth="1"/>
+            <text x="93" y="14" fill="#6b7280" fontSize="8">N</text>
+            <text x="93" y="172" fill="#6b7280" fontSize="8">S</text>
+            <text x="160" y="88" fill="#6b7280" fontSize="8">E</text>
+            <text x="12" y="88" fill="#6b7280" fontSize="8">O</text>
+            <circle cx="90" cy="90" r="4" fill="#374151"/>
+            <text x="94" y="89" fill="#374151" fontSize="9">Torre</text>
+            <circle cx="115" cy="30" r="5" fill="#2563eb"/>
+            <text x="119" y="29" fill="#2563eb" fontSize="9">A</text>
+            <circle cx="55" cy="110" r="5" fill="#dc2626"/>
+            <text x="59" y="109" fill="#dc2626" fontSize="9">B</text>
+            <line x1="115" y1="30" x2="55" y2="110" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="5,3"/>
+            <text x="72" y="67" fill="#7c3aed" fontSize="11" fontWeight="bold">?</text>
+          </svg>
+          El poble A està a <strong>12 km al Nord i 5 km a l'Est</strong> d'una torre. El poble B està a <strong>4 km al Sud i 7 km a l'Oest</strong> de la mateixa torre. Quina és la <strong>distància en línia recta</strong> entre el poble A i el poble B?
+        </>),
+        es: (<>
+          <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
+            <line x1="90" y1="10" x2="90" y2="170" stroke="#d1d5db" strokeWidth="1"/>
+            <line x1="10" y1="90" x2="170" y2="90" stroke="#d1d5db" strokeWidth="1"/>
+            <text x="93" y="14" fill="#6b7280" fontSize="8">N</text>
+            <text x="93" y="172" fill="#6b7280" fontSize="8">S</text>
+            <text x="160" y="88" fill="#6b7280" fontSize="8">E</text>
+            <text x="12" y="88" fill="#6b7280" fontSize="8">O</text>
+            <circle cx="90" cy="90" r="4" fill="#374151"/>
+            <text x="94" y="89" fill="#374151" fontSize="9">Torre</text>
+            <circle cx="115" cy="30" r="5" fill="#2563eb"/>
+            <text x="119" y="29" fill="#2563eb" fontSize="9">A</text>
+            <circle cx="55" cy="110" r="5" fill="#dc2626"/>
+            <text x="59" y="109" fill="#dc2626" fontSize="9">B</text>
+            <line x1="115" y1="30" x2="55" y2="110" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="5,3"/>
+            <text x="72" y="67" fill="#7c3aed" fontSize="11" fontWeight="bold">?</text>
+          </svg>
+          El pueblo A está a <strong>12 km al Norte y 5 km al Este</strong> de una torre. El pueblo B está a <strong>4 km al Sur y 7 km al Oeste</strong> de la misma torre. ¿Cuál es la <strong>distancia en línea recta</strong> entre el pueblo A y el pueblo B?
+        </>),
+      },
+      steps: {
+        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Coordenades A (torre=origen): (+5, +12) km</li>
+          <li>Coordenades B: (−7, −4) km</li>
+          <li>Diferència horitzontal (Est-Oest): 5 − (−7) = <strong>12 km</strong></li>
+          <li>Diferència vertical (Nord-Sud): 12 − (−4) = <strong>16 km</strong></li>
+          <li>Pitàgores: d = √(12² + 16²) = √(144 + 256) = √400 = <strong>20 km</strong></li>
+        </ol>),
+        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Coordenadas A (torre=origen): (+5, +12) km</li>
+          <li>Coordenadas B: (−7, −4) km</li>
+          <li>Diferencia horizontal (Este-Oeste): 5 − (−7) = <strong>12 km</strong></li>
+          <li>Diferencia vertical (Norte-Sur): 12 − (−4) = <strong>16 km</strong></li>
+          <li>Pitágoras: d = √(12² + 16²) = √(144 + 256) = √400 = <strong>20 km</strong></li>
+        </ol>),
+      },
+      hint: {
+        ca: "Calcula la diferència de coordenades en horitzontal (Est-Oest) i en vertical (Nord-Sud) entre A i B. Aquests valors seran els catets del triangle rectangle.",
+        es: "Calcula la diferencia de coordenadas en horizontal (Este-Oeste) y en vertical (Norte-Sur) entre A y B. Estos valores serán los catetos del triángulo rectángulo.",
+      },
+      unit: "km", ans: 20, tol: 0.05,
+    },
+    {
+      id: 'p11', num: 11,
+      title: {
+        ca: "La caixa de varetes",
+        es: "La caja de varetas",
+      },
+      statement: {
+        ca: (<>
+          Una caixa de sabates fa <strong>24 cm de llarg, 10 cm d'ample i 8 cm d'alt</strong>. Volem guardar-hi una vareta metàl·lica que va d'una cantonada inferior a la cantonada superior oposada (la <strong>diagonal del cos</strong>). Quina és la seva <strong>longitud màxima</strong>? Dóna el resultat amb dos decimals.
+        </>),
+        es: (<>
+          Una caja de zapatos mide <strong>24 cm de largo, 10 cm de ancho y 8 cm de alto</strong>. Queremos guardar una vareta metálica que va de una esquina inferior a la esquina superior opuesta (la <strong>diagonal del cuerpo</strong>). ¿Cuál es su <strong>longitud máxima</strong>? Da el resultado con dos decimales.
+        </>),
+      },
+      steps: {
+        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Primer: diagonal de la base = √(24² + 10²) = √(576 + 100) = √676 = <strong>26 cm</strong></li>
+          <li>Ara apliquem Pitàgores en 3D: la diagonal de la base (26 cm) és un catet, l'alçada (8 cm) és l'altre</li>
+          <li>Diagonal del cos = √(26² + 8²) = √(676 + 64) = √740 ≈ <strong>27,20 cm</strong></li>
+        </ol>),
+        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Primero: diagonal de la base = √(24² + 10²) = √(576 + 100) = √676 = <strong>26 cm</strong></li>
+          <li>Ahora Pitágoras en 3D: la diagonal de la base (26 cm) es un cateto, la altura (8 cm) es el otro</li>
+          <li>Diagonal del cuerpo = √(26² + 8²) = √(676 + 64) = √740 ≈ <strong>27,20 cm</strong></li>
+        </ol>),
+      },
+      hint: {
+        ca: "Aplica Pitàgores en dos passos: primer la diagonal del terra (base rectangle), i després usa-la com a catet per trobar la diagonal de tot el cos incloent l'alçada.",
+        es: "Aplica Pitágoras en dos pasos: primero la diagonal del suelo (base rectángulo), y luego úsala como cateto para encontrar la diagonal de todo el cuerpo incluyendo la altura.",
+      },
+      unit: "cm", ans: Math.sqrt(740), tol: 0.05,
     },
   ];
 
