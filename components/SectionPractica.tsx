@@ -358,62 +358,6 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
     {
       id: 'p6', num: 6,
       title: {
-        ca: "El túnel de la via del tren",
-        es: "El túnel de la vía del tren",
-      },
-      statement: {
-        ca: (<>
-          <svg viewBox="0 0 180 125" width="140" height="97" className="float-right ml-3 mb-2">
-            <path d="M 10,115 A 80,80 0 0,1 170,115" fill="#e0f2fe" stroke="#0369a1" strokeWidth="2"/>
-            <line x1="10" y1="115" x2="170" y2="115" stroke="#374151" strokeWidth="2"/>
-            <rect x="66" y="75" width="48" height="40" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5"/>
-            <line x1="90" y1="115" x2="90" y2="35" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4,3"/>
-            <text x="94" y="78" fill="#dc2626" fontSize="10">r=5m</text>
-            <line x1="90" y1="120" x2="66" y2="120" stroke="#7c3aed" strokeWidth="1.5"/>
-            <text x="68" y="130" fill="#7c3aed" fontSize="9">1,5m</text>
-            <line x1="60" y1="75" x2="60" y2="115" stroke="#16a34a" strokeWidth="1.5"/>
-            <text x="44" y="98" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
-          </svg>
-          Un túnel té forma de <strong>semicercle de radi 5 m</strong>. Un camió de <strong>3 m d'amplada</strong> vol passar exactament pel mig. Quina és l'<strong>alçada màxima</strong> que pot tenir el camió per no tocar la part superior? Dóna el resultat amb dos decimals.
-        </>),
-        es: (<>
-          <svg viewBox="0 0 180 125" width="140" height="97" className="float-right ml-3 mb-2">
-            <path d="M 10,115 A 80,80 0 0,1 170,115" fill="#e0f2fe" stroke="#0369a1" strokeWidth="2"/>
-            <line x1="10" y1="115" x2="170" y2="115" stroke="#374151" strokeWidth="2"/>
-            <rect x="66" y="75" width="48" height="40" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5"/>
-            <line x1="90" y1="115" x2="90" y2="35" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="4,3"/>
-            <text x="94" y="78" fill="#dc2626" fontSize="10">r=5m</text>
-            <line x1="90" y1="120" x2="66" y2="120" stroke="#7c3aed" strokeWidth="1.5"/>
-            <text x="68" y="130" fill="#7c3aed" fontSize="9">1,5m</text>
-            <line x1="60" y1="75" x2="60" y2="115" stroke="#16a34a" strokeWidth="1.5"/>
-            <text x="44" y="98" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
-          </svg>
-          Un túnel tiene forma de <strong>semicírculo de radio 5 m</strong>. Un camión de <strong>3 m de ancho</strong> quiere pasar exactamente por el centro. ¿Cuál es la <strong>altura máxima</strong> que puede tener el camión para no tocar la parte superior? Da el resultado con dos decimales.
-        </>),
-      },
-      steps: {
-        ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>El camió passa pel mig: cada costat queda a 3 ÷ 2 = <strong>1,5 m del centre</strong></li>
-          <li>El punt crític és la cantonada superior del camió, a 1,5 m del centre</li>
-          <li>Pitàgores (radi=hipotenusa): alçada = √(r² − x²) = √(5² − 1,5²)</li>
-          <li>= √(25 − 2,25) = √22,75 ≈ <strong>4,77 m</strong></li>
-        </ol>),
-        es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>El camión pasa por el centro: cada lado queda a 3 ÷ 2 = <strong>1,5 m del centro</strong></li>
-          <li>El punto crítico es la esquina superior del camión, a 1,5 m del centro</li>
-          <li>Pitágoras (radio=hipotenusa): altura = √(r² − x²) = √(5² − 1,5²)</li>
-          <li>= √(25 − 2,25) = √22,75 ≈ <strong>4,77 m</strong></li>
-        </ol>),
-      },
-      hint: {
-        ca: "El camió passa pel mig: el seu mig queda a 1,5 m del centre. El radi (5 m) és la hipotenusa, la semiplada (1,5 m) és un catet. L'alçada és l'altre catet.",
-        es: "El camión pasa por el centro: su mitad queda a 1,5 m del centro. El radio (5 m) es la hipotenusa, la semianchura (1,5 m) es un cateto. La altura es el otro cateto.",
-      },
-      unit: "m", ans: Math.sqrt(22.75), tol: 0.05,
-    },
-    {
-      id: 'p7', num: 7,
-      title: {
         ca: "El pentàgon i la corda de piano",
         es: "El pentágono y la cuerda de piano",
       },
@@ -446,7 +390,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       unit: "cm", ans: 2 * Math.sqrt(100 - 8.1 * 8.1), tol: 0.15,
     },
     {
-      id: 'p8', num: 8,
+      id: 'p7', num: 7,
       title: {
         ca: "La piràmide truncada (el test de flors)",
         es: "La pirámide truncada (el tiesto de flores)",
@@ -478,7 +422,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       unit: "cm", ans: Math.sqrt(601), tol: 0.12,
     },
     {
-      id: 'p9', num: 9,
+      id: 'p8', num: 8,
       title: {
         ca: "El rectangle dins del cercle",
         es: "El rectángulo dentro del círculo",
@@ -530,7 +474,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       unit: "cm", ans: 30, tol: 0.05,
     },
     {
-      id: 'p10', num: 10,
+      id: 'p9', num: 9,
       title: {
         ca: "La distància entre pobles",
         es: "La distancia entre pueblos",
@@ -598,7 +542,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       unit: "km", ans: 20, tol: 0.05,
     },
     {
-      id: 'p11', num: 11,
+      id: 'p10', num: 10,
       title: {
         ca: "La caixa de varetes",
         es: "La caja de varetas",
