@@ -88,59 +88,58 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
     {
       id: 'p1', num: 1,
       title: {
-        ca: "El rombe i les seves diagonals",
-        es: "El rombo y sus diagonales",
+        ca: "El triangle isòsceles: de l'àrea al perímetre",
+        es: "El triángulo isósceles: del área al perímetro",
       },
       statement: {
         ca: (<>
-          <svg viewBox="0 0 170 150" width="130" height="115" className="float-right ml-3 mb-2">
-            <polygon points="85,10 155,75 85,140 15,75" fill="#fef9c3" stroke="#ca8a04" strokeWidth="2"/>
-            {/* diagonal major - horitzontal */}
-            <line x1="15" y1="75" x2="155" y2="75" stroke="#2563eb" strokeWidth="1.8" strokeDasharray="5,3"/>
-            {/* diagonal menor - vertical */}
-            <line x1="85" y1="10" x2="85" y2="140" stroke="#dc2626" strokeWidth="1.8" strokeDasharray="5,3"/>
-            {/* angle recte al centre */}
-            <rect x="85" y="75" width="8" height="8" fill="none" stroke="#6b7280" strokeWidth="1.2"/>
-            <circle cx="85" cy="75" r="3" fill="#ca8a04"/>
-            <text x="20" y="70" fill="#2563eb" fontSize="11" fontWeight="bold">24 cm</text>
-            <text x="90" y="50" fill="#dc2626" fontSize="11" fontWeight="bold">?</text>
-            <text x="90" y="100" fill="#dc2626" fontSize="11" fontWeight="bold">P = 52 cm</text>
+          <svg viewBox="0 0 160 140" width="130" height="113" className="float-right ml-3 mb-2">
+            <polygon points="80,10 150,120 10,120" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
+            {/* alçada */}
+            <line x1="80" y1="10" x2="80" y2="120" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="4,3"/>
+            <rect x="80" y="112" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            {/* base */}
+            <line x1="10" y1="128" x2="150" y2="128" stroke="#9333ea" strokeWidth="1.5"/>
+            <text x="80" y="138" textAnchor="middle" fill="#9333ea" fontSize="11" fontWeight="bold">16 cm</text>
+            {/* àrea */}
+            <text x="80" y="78" textAnchor="middle" fill="#374151" fontSize="10">Àrea = 48 cm²</text>
+            {/* costat igual */}
+            <text x="28" y="68" fill="#ca8a04" fontSize="10" fontWeight="bold">?</text>
           </svg>
-          Un rombe té un <strong>perímetre de 52 cm</strong> i una de les seves diagonals mesura <strong>24 cm</strong>. Calcula la longitud de l'<strong>altra diagonal</strong>.
+          Un triangle isòsceles té una <strong>base de 16 cm</strong> i una <strong>àrea de 48 cm²</strong>. Calcula el seu <strong>perímetre total</strong>.
         </>),
         es: (<>
-          <svg viewBox="0 0 170 150" width="130" height="115" className="float-right ml-3 mb-2">
-            <polygon points="85,10 155,75 85,140 15,75" fill="#fef9c3" stroke="#ca8a04" strokeWidth="2"/>
-            <line x1="15" y1="75" x2="155" y2="75" stroke="#2563eb" strokeWidth="1.8" strokeDasharray="5,3"/>
-            <line x1="85" y1="10" x2="85" y2="140" stroke="#dc2626" strokeWidth="1.8" strokeDasharray="5,3"/>
-            <rect x="85" y="75" width="8" height="8" fill="none" stroke="#6b7280" strokeWidth="1.2"/>
-            <circle cx="85" cy="75" r="3" fill="#ca8a04"/>
-            <text x="20" y="70" fill="#2563eb" fontSize="11" fontWeight="bold">24 cm</text>
-            <text x="90" y="50" fill="#dc2626" fontSize="11" fontWeight="bold">?</text>
-            <text x="90" y="100" fill="#dc2626" fontSize="11" fontWeight="bold">P = 52 cm</text>
+          <svg viewBox="0 0 160 140" width="130" height="113" className="float-right ml-3 mb-2">
+            <polygon points="80,10 150,120 10,120" fill="#fce7f3" stroke="#9333ea" strokeWidth="2"/>
+            <line x1="80" y1="10" x2="80" y2="120" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="4,3"/>
+            <rect x="80" y="112" width="8" height="8" fill="none" stroke="#2563eb" strokeWidth="1.2"/>
+            <line x1="10" y1="128" x2="150" y2="128" stroke="#9333ea" strokeWidth="1.5"/>
+            <text x="80" y="138" textAnchor="middle" fill="#9333ea" fontSize="11" fontWeight="bold">16 cm</text>
+            <text x="80" y="78" textAnchor="middle" fill="#374151" fontSize="10">Área = 48 cm²</text>
+            <text x="28" y="68" fill="#ca8a04" fontSize="10" fontWeight="bold">?</text>
           </svg>
-          Un rombo tiene un <strong>perímetro de 52 cm</strong> y una de sus diagonales mide <strong>24 cm</strong>. Calcula la longitud de la <strong>otra diagonal</strong>.
+          Un triángulo isósceles tiene una <strong>base de 16 cm</strong> y un <strong>área de 48 cm²</strong>. Calcula su <strong>perímetro total</strong>.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Costat = P ÷ 4 = 52 ÷ 4 = <strong>13 cm</strong></li>
-          <li>Semidiagonal coneguda = 24 ÷ 2 = <strong>12 cm</strong></li>
-          <li>Pitàgores: semidiag² = 13² − 12² = 169 − 144 = 25 → semidiag = <strong>5 cm</strong></li>
-          <li>Diagonal desconeguda = 2 × 5 = <strong>10 cm</strong></li>
+          <li>Àrea = (base × alçada) / 2 → 48 = (16 × h) / 2 → h = <strong>6 cm</strong></li>
+          <li>Semi-base = 16 / 2 = <strong>8 cm</strong></li>
+          <li>Pitàgores: costat igual = √(8² + 6²) = √(64 + 36) = √100 = <strong>10 cm</strong></li>
+          <li>Perímetre = base + 2 × costat = 16 + 2 × 10 = <strong>36 cm</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Lado = P ÷ 4 = 52 ÷ 4 = <strong>13 cm</strong></li>
-          <li>Semidiagonal conocida = 24 ÷ 2 = <strong>12 cm</strong></li>
-          <li>Pitágoras: semidiag² = 13² − 12² = 169 − 144 = 25 → semidiag = <strong>5 cm</strong></li>
-          <li>Diagonal desconocida = 2 × 5 = <strong>10 cm</strong></li>
+          <li>Área = (base × altura) / 2 → 48 = (16 × h) / 2 → h = <strong>6 cm</strong></li>
+          <li>Semibasse = 16 / 2 = <strong>8 cm</strong></li>
+          <li>Pitágoras: lado igual = √(8² + 6²) = √(64 + 36) = √100 = <strong>10 cm</strong></li>
+          <li>Perímetro = base + 2 × lado = 16 + 2 × 10 = <strong>36 cm</strong></li>
         </ol>),
       },
       hint: {
-        ca: "Calcula primer el costat (P÷4). Cada costat és la hipotenusa de la meitat del rombe.",
-        es: "Calcula primero el lado (P÷4). Cada lado es la hipotenusa de la mitad del rombo.",
+        ca: "Primer calcula l'alçada a partir de l'àrea. Després usa Pitàgores amb la semi-base i l'alçada per trobar el costat igual.",
+        es: "Primero calcula la altura a partir del área. Después usa Pitágoras con la semibase y la altura para encontrar el lado igual.",
       },
-      unit: "cm", ans: 10, tol: 0.05,
+      unit: "cm", ans: 36, tol: 0.05,
     },
     {
       id: 'p2', num: 2,
