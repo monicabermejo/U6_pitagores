@@ -263,10 +263,32 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
       },
       statement: {
         ca: (<>
-          Una empresa vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
+          <svg viewBox="0 0 180 140" width="140" height="108" className="float-right ml-3 mb-2">
+            {/* paral·lelogram inclinat estil logotip de gelats */}
+            <polygon points="45,110 145,110 135,30 35,30" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
+            {/* franja de color interna decorativa */}
+            <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
+            {/* text marca */}
+            <text x="90" y="76" textAnchor="middle" fill="#92400e" fontSize="13" fontWeight="bold" fontStyle="italic" fontFamily="Georgia, serif">Gela</text>
+            <text x="90" y="94" textAnchor="middle" fill="#92400e" fontSize="10" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            {/* punt de gelat a dalt */}
+            <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
+            <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
+            <ellipse cx="152" cy="20" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+          </svg>
+          Una empresa de gelats vol crear un logotip en forma de <strong>paral·lelogram</strong>. Els costats fan <strong>10 cm i 17 cm</strong>. L'alçada traçada fins al costat de 17 cm crea un segment de <strong>6 cm</strong> dins d'aquell costat. Calcula l'<strong>àrea total</strong> del logotip.
         </>),
         es: (<>
-          Una empresa quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
+          <svg viewBox="0 0 180 140" width="140" height="108" className="float-right ml-3 mb-2">
+            <polygon points="45,110 145,110 135,30 35,30" fill="#fde68a" stroke="#d97706" strokeWidth="2.5"/>
+            <polygon points="55,110 95,110 85,30 45,30" fill="#fbbf24" opacity="0.5"/>
+            <text x="90" y="76" textAnchor="middle" fill="#92400e" fontSize="13" fontWeight="bold" fontStyle="italic" fontFamily="Georgia, serif">Gela</text>
+            <text x="90" y="94" textAnchor="middle" fill="#92400e" fontSize="10" fontFamily="Georgia, serif" letterSpacing="3">★ ★ ★</text>
+            <ellipse cx="140" cy="26" rx="9" ry="9" fill="#fbcfe8" stroke="#db2777" strokeWidth="1.5"/>
+            <ellipse cx="128" cy="20" rx="8" ry="8" fill="#fde68a" stroke="#d97706" strokeWidth="1.5"/>
+            <ellipse cx="152" cy="20" rx="8" ry="8" fill="#a7f3d0" stroke="#059669" strokeWidth="1.5"/>
+          </svg>
+          Una empresa de helados quiere crear un logotipo en forma de <strong>paralelogramo</strong>. Los lados miden <strong>10 cm y 17 cm</strong>. La altura trazada hasta el lado de 17 cm crea un segmento de <strong>6 cm</strong> dentro de ese lado. Calcula el <strong>área total</strong> del logotipo.
         </>),
       },
       steps: {
