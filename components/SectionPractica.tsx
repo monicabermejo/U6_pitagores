@@ -392,34 +392,68 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
     {
       id: 'p7', num: 7,
       title: {
-        ca: "La piràmide truncada (el test de flors)",
-        es: "La pirámide truncada (el tiesto de flores)",
+        ca: "El cercle al racó",
+        es: "El círculo en el rincón",
       },
       statement: {
         ca: (<>
-          Un test de flors té forma de <strong>piràmide truncada de base quadrada</strong>. La base superior fa <strong>20 cm de costat</strong>, la base inferior fa <strong>10 cm de costat</strong> i l'<strong>alçada del test és 24 cm</strong>. Calcula la longitud de l'<strong>apotema de la cara lateral</strong> (l'alçada inclinada de la cara trapezoïdal). Dóna el resultat amb dos decimals.
+          <svg viewBox="0 0 190 190" width="145" height="145" className="float-right ml-3 mb-2">
+            <line x1="25" y1="15" x2="25" y2="163" stroke="#334155" strokeWidth="4" strokeLinecap="round"/>
+            <line x1="25" y1="163" x2="173" y2="163" stroke="#334155" strokeWidth="4" strokeLinecap="round"/>
+            <circle cx="95" cy="93" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2.5"/>
+            <line x1="95" y1="93" x2="95" y2="163" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,2"/>
+            <line x1="95" y1="93" x2="25" y2="93" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,2"/>
+            <polyline points="95,153 85,153 85,163" fill="none" stroke="#6366f1" strokeWidth="1.3"/>
+            <polyline points="35,93 35,103 25,103" fill="none" stroke="#6366f1" strokeWidth="1.3"/>
+            <line x1="25" y1="163" x2="95" y2="93" stroke="#dc2626" strokeWidth="2" strokeDasharray="5,3"/>
+            <circle cx="95" cy="93" r="4" fill="#dc2626"/>
+            <circle cx="46" cy="143" r="3.5" fill="#16a34a"/>
+            <text x="55" y="90" fill="#4338ca" fontSize="10" fontWeight="bold">50 cm</text>
+            <text x="28" y="155" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
+            <circle cx="25" cy="163" r="3.5" fill="#334155"/>
+          </svg>
+          Una <strong>taula circular de radi 50 cm</strong> s'ha empès fins al <strong>racó d'una habitació</strong> (angle de 90°) de manera que toca les dues parets. Quina <strong>distància hi ha de la cantonada al centre</strong> de la taula? I quina distància hi ha de la cantonada al <strong>punt de la taula més proper a la cantonada</strong>? Escriu aquesta última distància.
         </>),
         es: (<>
-          Un tiesto de flores tiene forma de <strong>pirámide truncada de base cuadrada</strong>. La base superior mide <strong>20 cm de lado</strong>, la base inferior <strong>10 cm de lado</strong> y la <strong>altura del tiesto es 24 cm</strong>. Calcula la longitud de la <strong>apotema de la cara lateral</strong> (la altura inclinada de la cara trapezoidal). Da el resultado con dos decimales.
+          <svg viewBox="0 0 190 190" width="145" height="145" className="float-right ml-3 mb-2">
+            <line x1="25" y1="15" x2="25" y2="163" stroke="#334155" strokeWidth="4" strokeLinecap="round"/>
+            <line x1="25" y1="163" x2="173" y2="163" stroke="#334155" strokeWidth="4" strokeLinecap="round"/>
+            <circle cx="95" cy="93" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2.5"/>
+            <line x1="95" y1="93" x2="95" y2="163" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,2"/>
+            <line x1="95" y1="93" x2="25" y2="93" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,2"/>
+            <polyline points="95,153 85,153 85,163" fill="none" stroke="#6366f1" strokeWidth="1.3"/>
+            <polyline points="35,93 35,103 25,103" fill="none" stroke="#6366f1" strokeWidth="1.3"/>
+            <line x1="25" y1="163" x2="95" y2="93" stroke="#dc2626" strokeWidth="2" strokeDasharray="5,3"/>
+            <circle cx="95" cy="93" r="4" fill="#dc2626"/>
+            <circle cx="46" cy="143" r="3.5" fill="#16a34a"/>
+            <text x="55" y="90" fill="#4338ca" fontSize="10" fontWeight="bold">50 cm</text>
+            <text x="28" y="155" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
+            <circle cx="25" cy="163" r="3.5" fill="#334155"/>
+          </svg>
+          Una <strong>mesa circular de radio 50 cm</strong> se ha empujado hasta el <strong>rincón de una habitación</strong> (ángulo de 90°) de manera que toca las dos paredes. ¿Qué <strong>distancia hay de la esquina al centro</strong> de la mesa? ¿Y qué distancia hay de la esquina al <strong>punto de la mesa más cercano a la esquina</strong>? Escribe esta última distancia.
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Diferència de semi-costats: (20 − 10) ÷ 2 = <strong>5 cm</strong> (voladís horitzontal)</li>
-          <li>Si talles verticalment la cara, veus un triangle rectangle: un catet és l'alçada (24 cm) i l'altre és el voladís (5 cm)</li>
-          <li>Pitàgores: slant = √(24² + 5²) = √(576 + 25) = √601 ≈ <strong>24,52 cm</strong></li>
+          <li>La taula toca les dues parets → el <strong>centre</strong> es troba a <strong>50 cm de cada paret</strong></li>
+          <li>Des de la cantonada, el centre és a la posició (50, 50) → triangle rectangle amb dos catets iguals de 50 cm</li>
+          <li>Distància cantonada → centre: √(50² + 50²) = √5 000 = 50√2 ≈ <strong>70,71 cm</strong></li>
+          <li>El punt més proper de la taula és sobre la mateixa recta, a <strong>50 cm del centre</strong> (cap a la cantonada)</li>
+          <li>Distància cantonada → punt proper: 50√2 − 50 = 50(√2 − 1) ≈ <strong>20,71 cm</strong></li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
-          <li>Diferencia de semilados: (20 − 10) ÷ 2 = <strong>5 cm</strong> (vuelo horizontal)</li>
-          <li>Si cortas verticalmente la cara, ves un triángulo rectángulo: un cateto es la altura (24 cm) y el otro es el vuelo (5 cm)</li>
-          <li>Pitágoras: slant = √(24² + 5²) = √(576 + 25) = √601 ≈ <strong>24,52 cm</strong></li>
+          <li>La mesa toca las dos paredes → el <strong>centro</strong> está a <strong>50 cm de cada pared</strong></li>
+          <li>Desde la esquina, el centro está en la posición (50, 50) → triángulo rectángulo con dos catetos iguales de 50 cm</li>
+          <li>Distancia esquina → centro: √(50² + 50²) = √5 000 = 50√2 ≈ <strong>70,71 cm</strong></li>
+          <li>El punto más cercano de la mesa está sobre la misma recta, a <strong>50 cm del centro</strong> (hacia la esquina)</li>
+          <li>Distancia esquina → punto más cercano: 50√2 − 50 = 50(√2 − 1) ≈ <strong>20,71 cm</strong></li>
         </ol>),
       },
       hint: {
-        ca: "Talla el test verticalment per la meitat d'una cara. Veuràs un triangle rectangle: els catets són l'alçada (24 cm) i la diferència de semi-costats ((20−10)÷2 = 5 cm).",
-        es: "Corta el tiesto verticalmente por la mitad de una cara. Verás un triángulo rectángulo: los catetos son la altura (24 cm) y la diferencia de semilados ((20−10)÷2 = 5 cm).",
+        ca: "Com que la taula toca les dues parets, el centre queda a 50 cm de cada paret. Imagina un triangle rectangle amb dos catets de 50 cm per trobar la distància de la cantonada al centre. Llavors resta el radi!",
+        es: "Como la mesa toca las dos paredes, el centro queda a 50 cm de cada pared. Imagina un triángulo rectángulo con dos catetos de 50 cm para hallar la distancia de la esquina al centro. ¡Luego resta el radio!",
       },
-      unit: "cm", ans: Math.sqrt(601), tol: 0.12,
+      unit: "cm", ans: 50 * (Math.sqrt(2) - 1), tol: 0.05,
     },
     {
       id: 'p8', num: 8,

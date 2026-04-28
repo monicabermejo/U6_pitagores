@@ -142,9 +142,9 @@
 
 ## SECCIÓ PRÀCTICA · Tab "✏️ Pràctica"
 
-### Part 1 · Problemes multi-pas (p1–p11)
+### Part 1 · Problemes multi-pas (p1–p10)
 
-> Problemes avançats amb diversos passos intermedis. Accepta ±0.05 (p3 ±0.5 cm, p2 ±0.15, p7 ±0.15, p8 ±0.12). L'alumne ha de donar el resultat amb dos decimals si cal.
+> Problemes avançats amb diversos passos intermedis. Accepta ±0.05 (p3 ±0.5 cm, p2 ±0.15). L'alumne ha de donar el resultat amb dos decimals si cal.
 
 | ID  | Títol                                      | Resposta               | Unitat |
 |-----|--------------------------------------------|------------------------|--------|
@@ -153,12 +153,11 @@
 | p3  | L'escala a la cantonada                    | **≈ 18.71**            | cm     |
 | p4  | El logotip del romboide                    | **136**                | cm²    |
 | p5  | La tenda de campanya                       | **≈ 2.33**             | m      |
-| p6  | El túnel de la via del tren                | **≈ 4.77**             | m      |
-| p7  | El pentàgon i la corda de piano            | **≈ 11.73**            | cm     |
-| p8  | La piràmide truncada (el test de flors)    | **≈ 24.52**            | cm     |
-| p9  | El rectangle dins del cercle               | **30**                 | cm     |
-| p10 | La distància entre pobles                  | **20**                 | km     |
-| p11 | La caixa de varetes                        | **≈ 27.20**            | cm     |
+| p6  | El pentàgon i la corda de piano            | **≈ 11.73**            | cm     |
+| p7  | El cercle al racó                          | **≈ 20.71**            | cm     |
+| p8  | El rectangle dins del cercle               | **30**                 | cm     |
+| p9  | La distància entre pobles                  | **20**                 | km     |
+| p10 | La caixa de varetes                        | **≈ 27.20**            | cm     |
 
 #### Raonament de cada problema
 
@@ -169,12 +168,11 @@
 | p3  | h₁ = √(25−2.25) ≈ 4.770 m; peu nou = 2 m; h₂ = √(25−4) ≈ 4.583 m; baixada ≈ 0.187 m = **18.71 cm** |
 | p4  | Hipotenusa=10, catet=6 → alçada = √(100−36) = 8 → àrea = 17×8 = **136** |
 | p5  | Semidiagonal base = 2.4√2/2 ≈ 1.697 m → aresta = √(1.6²+1.697²) = √5.44 ≈ **2.33** |
-| p6  | Semi-ample = 1.5 m → alçada = √(5²−1.5²) = √22.75 ≈ **4.77** |
-| p7  | semibbase = √(10²−8.1²) = √34.39 ≈ 5.865 → costat = 2×5.865 ≈ **11.73** |
-| p8  | Voladís = (20−10)/2 = 5 → slant = √(24²+5²) = √601 ≈ **24.52** |
-| p9  | Diagonal = diàmetre = 50 → alçada = √(50²−40²) = √900 = **30** |
-| p10 | ΔX = 5−(−7)=12; ΔY = 12−(−4)=16 → d = √(144+256) = √400 = **20** |
-| p11 | Diagonal base = √(24²+10²) = 26 → diagonal cos = √(26²+8²) = √740 ≈ **27.20** |
+| p6  | semibbase = √(10²−8.1²) = √34.39 ≈ 5.865 → costat = 2×5.865 ≈ **11.73** |
+| p7  | Centre a (50,50) des de la cantonada → dist. centre = √(50²+50²) = 50√2 ≈ 70.71 → dist. punt proper = 50√2−50 = 50(√2−1) ≈ **20.71** |
+| p8  | Diagonal = diàmetre = 50 → alçada = √(50²−40²) = √900 = **30** |
+| p9  | ΔX = 5−(−7)=12; ΔY = 12−(−4)=16 → d = √(144+256) = √400 = **20** |
+| p10 | Diagonal base = √(24²+10²) = 26 → diagonal cos = √(26²+8²) = √740 ≈ **27.20** |
 
 ---
 
