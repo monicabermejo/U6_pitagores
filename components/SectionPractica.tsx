@@ -465,11 +465,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
             <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            <line x1="90" y1="90" x2="146" y2="132" stroke="#dc2626" strokeWidth="2"/>
-            <text x="122" y="123" fill="#dc2626" fontSize="9" fontWeight="bold">r=25cm</text>
-            <circle cx="90" cy="90" r="4" fill="#dc2626"/>
             <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
-            <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
           Tenim una <strong>planxa de fusta circular de radi 25 cm</strong>. Volem tallar-ne el <strong>rectangle més gran possible</strong> amb una base de <strong>40 cm</strong>. Tingues en compte que, per fer-lo el més gran possible, la diagonal del rectangle ha de ser igual al diàmetre del cercle. Quina serà l'<strong>alçada</strong> d'aquest rectangle?
         </>),
@@ -477,11 +473,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
             <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            <line x1="90" y1="90" x2="146" y2="132" stroke="#dc2626" strokeWidth="2"/>
-            <text x="122" y="123" fill="#dc2626" fontSize="9" fontWeight="bold">r=25cm</text>
-            <circle cx="90" cy="90" r="4" fill="#dc2626"/>
             <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
-            <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
           Tenemos una <strong>plancha de madera circular de radio 25 cm</strong>. Queremos cortar el <strong>rectángulo más grande posible</strong> con una base de <strong>40 cm</strong>. Ten en cuenta que, para hacerlo lo más grande posible, la diagonal del rectángulo debe ser igual al diámetro del círculo. ¿Cuál será la <strong>altura</strong> de este rectángulo?
         </>),
