@@ -107,7 +107,7 @@
 
 ---
 
-## SECCIÓ 4 · Problemes Reals — 3 exemples guiats + 14 problemes contextualitzats
+8. El rectangle dins del cercle
 
 ### 4A · Exemples Guiats — Resolem junts!
 
@@ -170,7 +170,7 @@
 | p5  | Semidiagonal base = 2.4√2/2 ≈ 1.697 m → aresta = √(1.6²+1.697²) = √5.44 ≈ **2.33** |
 | p6  | semibbase = √(10²−8.1²) = √34.39 ≈ 5.865 → costat = 2×5.865 ≈ **11.73** |
 | p7  | Centre a (50,50) des de la cantonada → dist. centre = √(50²+50²) = 50√2 ≈ 70.71 → dist. punt proper = 50√2−50 = 50(√2−1) ≈ **20.71** |
-| p8  | Diagonal = diàmetre = 50 → alçada = √(50²−40²) = √900 = **30** |
+| p8  | Radi=25 → diàmetre=50 → diagonal=50 → alçada = √(50²−40²) = √900 = **30** |
 | p9  | ΔX = 5−(−7)=12; ΔY = 12−(−4)=16 → d = √(144+256) = √400 = **20** |
 | p10 | Diagonal base = √(24²+10²) = 26 → diagonal cos = √(26²+8²) = √740 ≈ **27.20** |
 

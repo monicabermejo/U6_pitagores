@@ -465,44 +465,46 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
           <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
             <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            <line x1="34" y1="48" x2="146" y2="132" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5,3"/>
-            <text x="82" y="98" fill="#dc2626" fontSize="9">∅=50cm</text>
+            <line x1="90" y1="90" x2="146" y2="132" stroke="#dc2626" strokeWidth="2"/>
+            <text x="122" y="123" fill="#dc2626" fontSize="9" fontWeight="bold">r=25cm</text>
+            <circle cx="90" cy="90" r="4" fill="#dc2626"/>
             <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
             <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Tenim una <strong>planxa de fusta circular de 50 cm de diàmetre</strong>. Volem tallar-ne el <strong>rectangle més gran possible</strong> amb una base de <strong>40 cm</strong>. Tingues en compte que, per fer-lo el més gran possible, el diàmetre del cercle ha de ser la diagonal del rectangle. Quina serà l'<strong>alçada</strong> d'aquest rectangle?
+          Tenim una <strong>planxa de fusta circular de radi 25 cm</strong>. Volem tallar-ne el <strong>rectangle més gran possible</strong> amb una base de <strong>40 cm</strong>. Tingues en compte que, per fer-lo el més gran possible, la diagonal del rectangle ha de ser igual al diàmetre del cercle. Quina serà l'<strong>alçada</strong> d'aquest rectangle?
         </>),
         es: (<>
           <svg viewBox="0 0 180 180" width="130" height="130" className="float-right ml-3 mb-2">
             <circle cx="90" cy="90" r="70" fill="#eff6ff" stroke="#2563eb" strokeWidth="2"/>
             <rect x="34" y="48" width="112" height="84" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
-            <line x1="34" y1="48" x2="146" y2="132" stroke="#dc2626" strokeWidth="1.5" strokeDasharray="5,3"/>
-            <text x="82" y="98" fill="#dc2626" fontSize="9">∅=50cm</text>
+            <line x1="90" y1="90" x2="146" y2="132" stroke="#dc2626" strokeWidth="2"/>
+            <text x="122" y="123" fill="#dc2626" fontSize="9" fontWeight="bold">r=25cm</text>
+            <circle cx="90" cy="90" r="4" fill="#dc2626"/>
             <text x="90" y="143" textAnchor="middle" fill="#1d4ed8" fontSize="10">40 cm</text>
             <text x="12" y="95" fill="#16a34a" fontSize="11" fontWeight="bold">?</text>
           </svg>
-          Tenemos una <strong>plancha de madera circular de 50 cm de diámetro</strong>. Queremos cortar el <strong>rectángulo más grande posible</strong> con una base de <strong>40 cm</strong>. Ten en cuenta que, para hacerlo lo más grande posible, el diámetro del círculo debe ser la diagonal del rectángulo. ¿Cuál será la <strong>altura</strong> de este rectángulo?
+          Tenemos una <strong>plancha de madera circular de radio 25 cm</strong>. Queremos cortar el <strong>rectángulo más grande posible</strong> con una base de <strong>40 cm</strong>. Ten en cuenta que, para hacerlo lo más grande posible, la diagonal del rectángulo debe ser igual al diámetro del círculo. ¿Cuál será la <strong>altura</strong> de este rectángulo?
         </>),
       },
       steps: {
         ca: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Radi = 25 cm → diàmetre = 2 × 25 = <strong>50 cm</strong></li>
           <li>Diagonal del rectangle = diàmetre = <strong>50 cm</strong></li>
           <li>La diagonal és la hipotenusa del triangle rectangle format pels costats</li>
           <li>Pitàgores: alçada² = 50² − 40² = 2500 − 1600 = <strong>900</strong></li>
           <li>Alçada = √900 = <strong>30 cm</strong></li>
-          <li>(Àrea fusta perduda = π×25² − 40×30 ≈ 1963,5 − 1200 ≈ <strong>763,5 cm²</strong>)</li>
         </ol>),
         es: (<ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+          <li>Radio = 25 cm → diámetro = 2 × 25 = <strong>50 cm</strong></li>
           <li>Diagonal del rectángulo = diámetro = <strong>50 cm</strong></li>
           <li>La diagonal es la hipotenusa del triángulo rectángulo formado por los lados</li>
           <li>Pitágoras: altura² = 50² − 40² = 2500 − 1600 = <strong>900</strong></li>
           <li>Altura = √900 = <strong>30 cm</strong></li>
-          <li>(Área de madera perdida = π×25² − 40×30 ≈ 1963,5 − 1200 ≈ <strong>763,5 cm²</strong>)</li>
         </ol>),
       },
       hint: {
-        ca: "La diagonal del rectangle = diàmetre del cercle = 50 cm. Ara aplica Pitàgores per trobar l'alçada a partir de la diagonal i la base.",
-        es: "La diagonal del rectángulo = diámetro del círculo = 50 cm. Ahora aplica Pitágoras para encontrar la altura a partir de la diagonal y la base.",
+        ca: "El radi de la fusta circular és 25 cm. Primer calcula el diàmetre. Recorda que la diagonal del rectangle és igual al diàmetre del cercle. Aplica Pitàgores amb la diagonal i la base per trobar l'alçada.",
+        es: "El radio de la madera circular es 25 cm. Primero calcula el diámetro. Recuerda que la diagonal del rectángulo es igual al diámetro del círculo. Aplica Pitágoras con la diagonal y la base para encontrar la altura.",
       },
       unit: "cm", ans: 30, tol: 0.05,
     },
