@@ -162,7 +162,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Primer calcula l'alçada a partir de l'àrea. Després usa Pitàgores amb la semi-base i l'alçada per trobar el costat igual.",
         es: "Primero calcula la altura a partir del área. Después usa Pitágoras con la semibase y la altura para encontrar el lado igual.",
       },
-      unit: "cm", ans: 36, tol: 0.05,
+      unit: "cm", ans: 36, tol: 0.01,
     },
     {
       id: 'p2', num: 2,
@@ -216,7 +216,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Inscriu l'octàgon en un quadrat. Als vèrtexs del quadrat es formen triangles rectangles isòsceles: la seva hipotenusa és el costat de l'octàgon (20 cm).",
         es: "Inscribe el octágono en un cuadrado. En los vértices del cuadrado se forman triángulos rectángulos isósceles: su hipotenusa es el lado del octágono (20 cm).",
       },
-      unit: "cm", ans: 20 * (1 + Math.SQRT2), tol: 0.15,
+      unit: "cm", ans: 20 * (1 + Math.SQRT2), tol: 0.01,
     },
     {
       id: 'p3', num: 3,
@@ -250,7 +250,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Calcula l'alçada inicial amb Pitàgores (escala=hipotenusa, peu=catet). Fes el mateix amb el peu nou. La diferència, en metres, convertida a centímetres, és la resposta.",
         es: "Calcula la altura inicial con Pitágoras (escalera=hipotenusa, pie=cateto). Haz lo mismo con el pie nuevo. La diferencia, en metros, convertida a centímetros, es la respuesta.",
       },
-      unit: "cm", ans: (Math.sqrt(22.75) - Math.sqrt(21)) * 100, tol: 0.5,
+      unit: "cm", ans: (Math.sqrt(22.75) - Math.sqrt(21)) * 100, tol: 0.01,
     },
     {
       id: 'p4', num: 4,
@@ -318,7 +318,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "El costat obliquo (10 cm) és la hipotenusa d'un triangle rectangle. El segment de 6 cm és un catet. Pitàgores et donarà l'alçada del paral·lelogram.",
         es: "El lado oblicuo (10 cm) es la hipotenusa de un triángulo rectángulo. El segmento de 6 cm es un cateto. Pitágoras te dará la altura del paralelogramo.",
       },
-      unit: "cm²", ans: 136, tol: 0.05,
+      unit: "cm²", ans: 136, tol: 0.01,
     },
     {
       id: 'p5', num: 5,
@@ -352,7 +352,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Aplica Pitàgores dues vegades: primer la diagonal de la base quadrada, després usa la semidiagonal com a catet per trobar l'aresta lateral.",
         es: "Aplica Pitágoras dos veces: primero la diagonal de la base cuadrada, después usa la semidiagonal como cateto para encontrar la aresta lateral.",
       },
-      unit: "m", ans: Math.sqrt(5.44), tol: 0.05,
+      unit: "m", ans: Math.sqrt(5.44), tol: 0.01,
     },
     {
       id: 'p6', num: 6,
@@ -386,7 +386,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "L'apotema va del centre al mig d'un costat. El radi va del centre a un vèrtex. Junts formen un triangle rectangle: aplica Pitàgores per trobar la semibbase i dobla-la.",
         es: "La apotema va del centro al centro de un lado. El radio va del centro a un vértice. Juntos forman un triángulo rectángulo: aplica Pitágoras para encontrar la semibase y duplícala.",
       },
-      unit: "cm", ans: 2 * Math.sqrt(100 - 8.1 * 8.1), tol: 0.15,
+      unit: "cm", ans: 2 * Math.sqrt(100 - 8.1 * 8.1), tol: 0.01,
     },
     {
       id: 'p7', num: 7,
@@ -452,7 +452,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Com que la taula toca les dues parets, el centre queda a 50 cm de cada paret. Imagina un triangle rectangle amb dos catets de 50 cm per trobar la distància de la cantonada al centre. Llavors resta el radi!",
         es: "Como la mesa toca las dos paredes, el centro queda a 50 cm de cada pared. Imagina un triángulo rectángulo con dos catetos de 50 cm para hallar la distancia de la esquina al centro. ¡Luego resta el radio!",
       },
-      unit: "cm", ans: 50 * (Math.sqrt(2) - 1), tol: 0.05,
+      unit: "cm", ans: 50 * (Math.sqrt(2) - 1), tol: 0.01,
     },
     {
       id: 'p8', num: 8,
@@ -498,7 +498,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "El radi de la fusta circular és 25 cm. Primer calcula el diàmetre. Recorda que la diagonal del rectangle és igual al diàmetre del cercle. Aplica Pitàgores amb la diagonal i la base per trobar l'alçada.",
         es: "El radio de la madera circular es 25 cm. Primero calcula el diámetro. Recuerda que la diagonal del rectángulo es igual al diámetro del círculo. Aplica Pitágoras con la diagonal y la base para encontrar la altura.",
       },
-      unit: "cm", ans: 30, tol: 0.05,
+      unit: "cm", ans: 30, tol: 0.01,
     },
     {
       id: 'p9', num: 9,
@@ -566,7 +566,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Calcula la diferència de coordenades en horitzontal (Est-Oest) i en vertical (Nord-Sud) entre A i B. Aquests valors seran els catets del triangle rectangle.",
         es: "Calcula la diferencia de coordenadas en horizontal (Este-Oeste) y en vertical (Norte-Sur) entre A y B. Estos valores serán los catetos del triángulo rectángulo.",
       },
-      unit: "km", ans: 20, tol: 0.05,
+      unit: "km", ans: 20, tol: 0.01,
     },
     {
       id: 'p10', num: 10,
@@ -598,7 +598,7 @@ export const SectionPractica: React.FC<Props> = ({ lang, studentEmail, sessionId
         ca: "Aplica Pitàgores en dos passos: primer la diagonal del terra (base rectangle), i després usa-la com a catet per trobar la diagonal de tot el cos incloent l'alçada.",
         es: "Aplica Pitágoras en dos pasos: primero la diagonal del suelo (base rectángulo), y luego úsala como cateto para encontrar la diagonal de todo el cuerpo incluyendo la altura.",
       },
-      unit: "cm", ans: Math.sqrt(740), tol: 0.05,
+      unit: "cm", ans: Math.sqrt(740), tol: 0.01,
     },
   ];
 
